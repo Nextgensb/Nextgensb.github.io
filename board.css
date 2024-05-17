@@ -1,0 +1,666 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.pages{
+    width: 100vw;
+    height: 100vh;
+    visibility: hidden;
+    position: absolute;
+}
+#page_1{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    visibility: visible;
+  overflow: auto;
+}
+#page_1 div{
+    text-align: center;
+
+}
+.lop{
+  width: 90vw;
+    padding: 20px;
+    border: 2px solid green;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+	font-size: 4vw;
+	text-decoration: bold;
+
+}
+TABLE{
+    margin-top: 20px;
+    width: 100%;
+    border: 2px solid rgb(3, 71, 102);
+    border-collapse: collapse;
+}
+tr,td{
+    width: 33.3%;
+    border: 2px solid rgb(3, 71, 102);
+    padding: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 3vh;
+    text-align: center;
+    border-collapse: collapse;
+}
+td:nth-child(odd){
+    background: grey;
+}
+tr:nth-child(even){
+    background: greenyellow;
+}
+#match{
+    font-size: 3vh;
+    background: green;
+    border: none;
+    border-radius: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 5vh;
+    width: 40%;
+    height: 5vh;
+}
+img{
+  width: 40vw;
+  height: 40vw;
+  margin: 20px;
+  border-radius: 39% 61% 46% 54% / 67% 58% 42% 33% ;
+}
+#page_2{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    visibility: hidden;
+}
+#typom{
+    font-size: 5vw;
+    height: 40vw;
+    background-image: url(seven.jpeg);
+    background-color: rgba(0,0,0,0.2);
+    background-blend-mode: overlay;
+    background-size: 100% 100%;
+    overflow: auto;
+    padding: 20px;
+    clear: both;
+}
+#tym{
+    font-size: 5vw;
+    height: 35vw;
+    background-color: gray;
+	padding: 20px;
+	clear: both;
+  color: whitesmoke;
+}
+.sect{
+    height: 90vh;
+    width: 60vw;
+    border: 2px solid teal;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    overflow-y: scroll;
+}
+h3{
+    background: teal;
+    padding: 20px;
+    color: white;
+    font-size: 4vh;
+}
+.clik1{
+    height: 40vh;
+    background-image: url(four.jpeg);
+    background-color: rgba(255, 64, 0,0.5);
+    background-blend-mode: overlay;
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.clik2{
+    height: 43vh;
+    background: rgba(0, 234, 255,0.5) url(five.jpeg);
+    background-size: 100% 100%;
+    background-blend-mode: overlay;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.clik3{
+	  height: 40vh;
+     background: rgba(200, 204, 25,0.5) url(two.jpeg);
+    background-blend-mode: overlay;
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.log{
+    width: 40vw;
+    height: 15vh;
+    border: 2px solid teal;
+	margin-left: 10vw;
+    margin-bottom: 2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+input[type=text]{
+    width: 30vw;
+    margin: 5px;
+    text-align: center;
+    height: auto;
+    padding: 5px;
+}
+input[type=file]{
+    position: relative;
+    width: 30vw;
+    height: 10vh;
+    display: block;
+    opacity: 0;
+}
+h4{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background: teal;
+    color: white;
+}
+h5{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    background: rgb(7, 236, 22);
+    color: white;
+}
+.dym{
+    display: inline;
+    width: 60vw;
+    border: none;
+    background: teal;
+    padding: 10px;
+    font-size: 3vh;
+    color: aliceblue;
+}
+#page_3{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    visibility: hidden;
+}
+#card_1{
+    height: 80vh;
+    width: 40vw;
+    border: 2px solid teal;
+    margin: 20px;
+    float: left;
+    border-radius: 30px;
+    background:  rgb(255, 64, 0);
+}
+#card_2{
+    height: 80vh;
+    width: 40vw;
+    background: rgb(7, 194, 211);
+    border: 2px solid teal;
+    margin: 20px;
+    float: left;
+    border-radius: 30px;
+}
+h2{
+    background: rgb(145, 255, 11);
+    padding: 20px;
+    color: rgb(45, 2, 71);
+    font-size: 5vh;
+}
+.hold{
+    width: 20vw;
+    height: 20vw;
+    border-radius: 50%;
+    background: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    
+}
+.pic{
+	width: 99%;
+	height: 99%;
+	border-radius: 50%;
+}
+.hl{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5vh;
+    margin-bottom: 1vh;
+}
+.namehold{
+    position: relative;
+    color: white;
+    font-size: 3vw;
+    padding: 3vh;
+    width: 39.5vw;
+    font-size: 4vh;
+    margin-bottom: 0;
+}
+.buto{
+    margin: 3px;
+    border-radius: 20px;
+    width: 20vw;
+}
+#page_4{
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+    visibility: hidden;
+}
+.bars{
+	position: relative;
+	bottom: 0;
+    width: 50vw;
+    height: 70vh;
+    float: left; 
+}
+#team-1{
+    background-color: rgba(255, 17, 5, 0.5);
+    padding: 20px;
+}
+#team-2{
+    background-color: rgba(6, 10, 253, 0.5);
+    padding: 20px;
+}
+.nimo{
+    margin: 0;
+    font-size: 4vw;
+    background: aliceblue;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 2vw;
+}
+.tent{
+    height: 80vh;
+    border-radius: 20px;
+    border: 1px solid grey;
+    background: transparent;
+    backdrop-filter: blur(10px);
+    margin: 20px;
+    font-size: 10vw;
+}
+.addd{
+    width: 5vw;
+    height: 5vw;
+    border-radius: 50%;
+    border: none;
+}
+.jiek{
+	width: 7vw;
+	height: 7vw;
+	border-radius: 50%;
+	display: inline-block;
+	margin: 5px;
+	background: lightgreen;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.jump{
+	width: 99%;
+	height: 99%;
+	border-radius: 50%;
+}
+h6{
+	margin: 0;
+	background: teal;
+	border-radius: 20px;
+}
+@media screen and (max-width: 789px){
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.pages{
+    width: 100vw;
+    height: 100vh;
+    visibility: hidden;
+    position: absolute;
+}
+#page_1{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    visibility: visible;
+  overflow: auto;
+}
+#page_1 div{
+    text-align: center;
+
+}
+.lop{
+  width: 90vw;
+    padding: 20px;
+    border: 2px solid green;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+	font-size: 4vw;
+	text-decoration: bold;
+
+}
+TABLE{
+    margin-top: 20px;
+    width: 100%;
+    border: 2px solid rgb(3, 71, 102);
+    border-collapse: collapse;
+}
+tr,td{
+    width: 33.3%;
+    border: 2px solid rgb(3, 71, 102);
+    padding: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 3vh;
+    text-align: center;
+    border-collapse: collapse;
+}
+td:nth-child(odd){
+    background: grey;
+}
+tr:nth-child(even){
+    background: greenyellow;
+}
+#match{
+    font-size: 3vh;
+    background: green;
+    border: none;
+    border-radius: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 5vh;
+    width: 40%;
+    height: 5vh;
+}
+#page_2{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    visibility: hidden;
+}
+  #typom{
+    font-size: 5vw;
+    height: 40vw;
+    background-image: url(seven.jpeg);
+    background-color: rgba(0,0,0,0.2);
+    background-blend-mode: overlay;
+    background-size: 100% 100%;
+    overflow: auto;
+    padding: 20px;
+    clear: both;
+}
+  img{
+  width: 30vw;
+  height: 30vw;
+  margin: 20px;
+  border-radius: 39% 61% 46% 54% / 67% 58% 42% 33% ;
+}
+#tym{
+    font-size: 5vw;
+    height: 40vw;
+    background-color: gray;
+    overflow: auto;
+    padding: 20px;
+    clear: both;
+    color: whitesmoke;
+}
+.sect{
+    height: 100vh;
+    width: 100vw;
+    border: 2px solid teal;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    overflow-y: scroll;
+}
+h3{
+    background: teal;
+    padding: 20px;
+    color: white;
+    font-size: 4vh;
+}
+.clik1{
+    height: 40vh;
+    background-image: url(four.jpeg);
+    background-color: rgba(255, 64, 0,0.5);
+    background-blend-mode: overlay;
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.clik2{
+    height: 43vh;
+    background: rgba(0, 234, 255,0.5) url(five.jpeg);
+    background-size: 100% 100%;
+    background-blend-mode: overlay;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.clik3{
+	  height: 40vh;
+    background: rgba(200, 204, 25,0.5) url(two.jpeg);
+    background-blend-mode: overlay;
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.log{
+    width: 60vw;
+    height: 15vh;
+    border: 2px solid teal;
+	    margin-left: 10vw;
+    margin-bottom: 2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+input[type=text]{
+    width: 50vw;
+    margin: 5px;
+    text-align: center;
+    height: auto;
+    padding: 5px;
+}
+input[type=file]{
+    position: relative;
+    width: 50vw;
+    height: 10vh;
+    display: block;
+    opacity: 0;
+}
+h4{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background: teal;
+    color: white;
+}
+h5{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    background: rgb(7, 236, 22);
+    color: white;
+}
+.dym{
+    display: inline;
+    width: 60vw;
+    border: none;
+    background: teal;
+    padding: 10px;
+    font-size: 3vh;
+    color: aliceblue;
+}
+#page_3{
+    width: 100vw;
+    height: 100vh;
+    visibility: hidden;
+    overflow: auto;
+}
+  .contain{
+    width: 100%;
+    margin-top: 30px;
+    height: 550px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: auto;
+  }
+#card_1{
+    height: 400px;
+    width: 80vw;
+    border: 2px solid teal;
+    margin: 20px;
+    border-radius: 30px;
+    background:  rgb(255, 64, 0);
+}
+#card_2{
+    height: 400px;
+    width: 80vw;
+    background: rgb(7, 194, 211);
+    border: 2px solid teal;
+    margin: 20px;
+    border-radius: 30px;
+}
+h2{
+    background: rgb(145, 255, 11);
+    padding: 20px;
+    color: rgb(45, 2, 71);
+    font-size: 5vh;
+}
+.hold{
+    width: 20vw;
+    height: 20vw;
+    border-radius: 50%;
+    background: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    
+}
+.hold img{
+	width: 99%;
+	height: 99%;
+	border-radius: 50%;
+}
+.hl{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5vh;
+    margin-bottom: 1vh;
+}
+.namehold{
+    position: relative;
+    color: white;
+    font-size: 3vw;
+    padding: 3vh;
+    width: 100%;
+    font-size: 4vh;
+    margin-bottom: 0;
+}
+.buto{
+    margin: 3px;
+    border-radius: 20px;
+    width: 20vw;
+}
+#page_4{
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+    visibility: hidden;
+  overflow: auto;
+}
+.bars{
+	position: relative;
+	bottom: 0;
+    width: 100vw;
+    height: 60vh;
+}
+#team-1{
+    background-color: rgba(255, 17, 5, 0.5);
+    padding: 20px;
+}
+#team-2{
+    background-color: rgba(6, 10, 253, 0.5);
+    padding: 20px;
+}
+.nimo{
+    margin: 0;
+    font-size: 4vw;
+    background: aliceblue;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 2vw;
+}
+.tent{
+    height: 40vh;
+    width: 40vw;
+    background: transparent;
+    border-radius: 20px;
+    border: 1px solid grey;
+    backdrop-filter: blur(10px);
+    padding: 10px;
+    margin: 20px;
+    font-size: 25vw;
+}
+.addd{
+    width: 10vw;
+    height: 10vw;
+    border-radius: 50%;
+    border: none;
+}
+.jiek{
+	width: 7vw;
+	height: 7vw;
+	border-radius: 50%;
+	display: inline-block;
+	margin: 5px;
+	background: lightgreen;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.jiek img{
+	width: 99%;
+	height: 99%;
+	border-radius: 50%;
+}
+h6{
+	margin: 0;
+	background: teal;
+	border-radius: 20px;
+}
+}
