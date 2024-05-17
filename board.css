@@ -84,7 +84,7 @@ img{
 }
 #typom{
     font-size: 5vw;
-    height: 40vw;
+    height: 40vh;
     background-image: url(seven.jpeg);
     background-color: rgba(0,0,0,0.2);
     background-blend-mode: overlay;
@@ -407,7 +407,7 @@ tr:nth-child(even){
 }
   #typom{
     font-size: 5vw;
-    height: 40vw;
+    height: 40vh;
     background-image: url(seven.jpeg);
     background-color: rgba(0,0,0,0.2);
     background-blend-mode: overlay;
