@@ -184,7 +184,7 @@ h5{
 }
 .dym{
     display: inline;
-    width: 60vw;
+    width: 100%;
     border: none;
     background: teal;
     padding: 10px;
@@ -514,7 +514,7 @@ h5{
 }
 .dym{
     display: inline;
-    width: 60vw;
+    width: 100%;
     border: none;
     background: teal;
     padding: 10px;
@@ -527,17 +527,6 @@ h5{
     visibility: hidden;
     overflow: auto;
 }
-  .contain{
-    width: 100%;
-    margin-top: 30px;
-    height: 550px;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    overflow: auto;
-  }
 #card_1{
     height: 400px;
     width: 80vw;
@@ -570,7 +559,7 @@ h2{
 	justify-content: center;
     
 }
-.hold img{
+.pic{
 	width: 99%;
 	height: 99%;
 	border-radius: 50%;
@@ -653,7 +642,7 @@ h2{
 	align-items: center;
 	justify-content: center;
 }
-.jiek img{
+.jump{
 	width: 99%;
 	height: 99%;
 	border-radius: 50%;
