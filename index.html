@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="board.css"/>
+    <link rel="icon" type="image/icon-x" href="favicon.jpeg"/>
+   <title>NEXTGEN_SB</title>
+  <style>
+    .hold{
+    width: 20vw;
+    height: 20vw;
+    border-radius: 50%;
+    background: gray;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    
+}
+.pic{
+	width: 99%;
+	height: 99%;
+	border-radius: 50%;
+}
+  .jiek{
+	width: 7vw;
+	height: 7vw;
+	border-radius: 50%;
+	display: inline-block;
+	margin: 5px;
+	background: lightgreen;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.jump{
+	width: 99%;
+	height: 99%;
+	border-radius: 50%;
+}
+  </style>
+</head>
+<body>
+    <div class="pages" id="page_1">
+              <div>
+        <div>
+          <img src="favicon.jpeg"/>
+          <div id="kiki">
+          </div>
+</div>
+        <button id="match" onclick="apper()">Create Match</button>
+          <div id="prin" style="overflow-y: auto; height: 20vh; border-top: 2px solid tomato;">
+        <table id="retab">
+            <tr>
+                <td>HOME</td>
+                <td>SCORE</td>
+                <td>AWAY</td>
+                <td>SCORE</td>
+            </tr>
+        </table>
+          </div>
+            <br>
+			<button id="pliee" style="border-radius: 20px;" class="dym">PRINT</button>
+    </div>
+    </div>
+    <div class="pages" id="page_2">
+        <secton class="sect">
+            <h3>TEAM INFORMATION</h3>
+        <div class="clik1">
+            <div>
+            <h4>TEAM ONE</h4>
+            <h5>TEAM NAME</h5>
+        <input type="text" id="t_1" placeholder="team name"/>
+    </div>
+    </div> 
+    <button class="dym" onclick="reel()">SUBMIT TEAM ONE</button>
+    <div class="clik2">
+        <div>
+        <h4>TEAM TWO</h4>
+        <h5>TEAM NAME</h5>
+    <input type="text" id="t_2" placeholder="team name"/>
+    </div>
+</div>
+<button class="dym" onclick="ripple()">SUBMIT TEAM TWO</button>
+					<div class="clik3">
+						<section>
+				<h5>TEAM LOGOS</h5>
+				<div class="log">
+					<section>
+            <input type="file" id="logo_s" name="files[]" multiple/>
+            </section>		
+				</div>
+		<div id="txti" style="text-decoration: underline;">CLICK IN THE BOX TO CHOOSE TWO IMAGES</div>
+						</section>
+			</div>
+			<button class="dym" onClick="toem()">SUBMIT LOGOS</button>
+<div id="typom">
+    <h5>MATCH DURATION</h5>
+    <input type="text" id="hh" placeholder="Hours" value="00"/>
+    <input type="text" id="mm" placeholder="minutes"value="00"/>
+    <input type="text" id="ss" placeholder="seconds" value="00"/>
+			</div>
+            <button class="dym" onclick="tyym()">SUBMIT TIME</button>
+</section>
+    </div>
+    <div class="pages" id="page_3">
+      <div style="position: fixed; display: flex; top: 0; gap: 20px;">
+        <input type="button" id="fron" class="dym" value="back"/>
+        <input type="button" id="back" class="dym" value="confirm"/>
+      </div>
+        <div id="card_1">
+            <H2>HOME</H2>
+            <div class="hl">
+            <section class="hold" id="oinkk"></section>
+            </div>
+            <section class="namehold" id="team-name_1">TEAM ONE</section>
+            <div id="tym"><span id="hhh">00</span>:<span id="mmm">00</span>:<span id="sss">00</span></div>
+        </div>
+        <div id="card_2">
+            <h2>AWAY</h2>
+            <div class="hl">
+            <section class="hold" id="lolip"></section>
+            </div>
+            <section class="namehold" id="team-name_2">TEAM TWO</section>
+            <div id="tym"><span id="hxh">00</span>:<span id="mxm">00</span>:<span id="sxs">00</span></div>
+        </div>
+    </div>
+    <div class="pages" id="page_4">
+			<input type="button" class="dym" style="display: none; width: 100vw;" id="coww" value="TABULATE MATCH"/>
+        <div class="bars" id="team-1">
+            <div class="nimo"><span class="jiek" id="image1001"></span><span id="rell">TEAM NAME</span></div>
+            <input id="tio_1" class="tent" type="text" value="0"/>
+            <div>
+            <button class="addd" onClick="plus_1()">1</button> 
+            <button class="addd" onClick="plus_2()">2</button> 
+            <button class="addd" onClick="plus_3()">3</button> 
+        </div>
+        </div>
+        <div class="bars" id="team-2">
+            <div class="nimo"><span class="jiek" id="image2002"></span><span id="roll">TEAM NAME</span></div>
+            <input id="tio_2" class="tent" type="text" value="0"/>
+            <div>
+            <button class="addd" onClick="poly_1()">1</button> 
+            <button class="addd" onClick="poly_2()">2</button> 
+            <button class="addd" onClick="poly_3()">3</button> 
+        </div>
+        </div>
+			<div id="tym">
+		<h6 style="width: 100%; border-radius: 0; padding: 0px;">MATCH DURATION</h6>
+		<span id="hours">00</span>:
+		<span id="minutes">00</span>:
+		<span id="secs">00</span>
+		<input type="button" class="dym" onClick="holdr()" id="couy" value="START" style="border-radius: 20px; margin: 20px;"/>
+	</div>
+    </div>
+    <script src="green.js"></script>
+    </body>
+    </html>
