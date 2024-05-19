@@ -290,3 +290,46 @@ tab.addEventListener("click",function(){
     
     
 });
+function extra(){
+    let extraholder = document.getElementById("extratime");
+    let exthr = document.getElementById("hrs");
+    let extmin = document.getElementById("mns");
+    let extsec = document.getElementById("scs");
+    
+    let currentHours = parseInt(hr.innerHTML, 10);
+    let currentMinutes = parseInt(mn.innerHTML, 10);
+    let currentSeconds = parseInt(sc.innerHTML, 10);
+
+    // Parse the extra time values
+    let extraHours = parseInt(exthr.value, 10) || 0;
+    let extraMinutes = parseInt(extmin.value, 10) || 0;
+    let extraSeconds = parseInt(extsec.value, 10) || 0;
+
+    // Add the extra time to the current time
+    let totalSeconds = currentSeconds + extraSeconds;
+    let totalMinutes = currentMinutes + extraMinutes + Math.floor(totalSeconds / 60);
+    let totalHours = currentHours + extraHours + Math.floor(totalMinutes / 60);
+
+    // Normalize the time values
+    totalSeconds = totalSeconds % 60;
+    totalMinutes = totalMinutes % 60;
+
+    // Update the DOM with the new time values
+    hr.innerHTML = totalHours;
+    mn.innerHTML = totalMinutes;
+    sc.innerHTML = totalSeconds;
+
+    // Clear the input values
+    exthr.value = "";
+    extmin.value = "";
+    extsec.value = "";
+
+    // Hide the extra time input holder
+    extraholder.style.display = "none";
+}
+
+function appear(){
+    let extraholder = document.getElementById("extratime");
+    extraholder.style.visibility = "visible";
+}
+
