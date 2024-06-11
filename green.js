@@ -19,7 +19,7 @@ window.onload = function(){
                 }else{
                     clearInterval(iter);
                     let rext = `THE NEXTGEN SCOREBOARD`;
-                        let hode = document.createElement("h1");
+                        let hode = document.createElement("h5");
                         holder.appendChild(hode);
                         var t = 0;
                     var interv = setInterval(function(){
