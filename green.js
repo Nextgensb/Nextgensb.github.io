@@ -40,7 +40,13 @@ btn.addEventListener("click", function(){
 	const originalContents = document.body.innerHTML;
 	const printContents = document.getElementById("prin").innerHTML;
 	document.body.innerHTML = printContents;
-	window.print();
+	PrintJS({
+		printable : 'body',
+		type : 'pdf',
+		filename : 'scoreboard.pdf',
+		pageSizes : 'A4',
+		margin : [0.5, 0.5, 0.5, 0.5]
+	});
 	document.body.innerHTML = originalContents;
 });
 let p_1 = document.getElementById("page_1");
@@ -204,7 +210,7 @@ function poly_3(){
 	score2.value = Number(score2.value) + 3;
 }
 let tab = document.getElementById("coww");
-var bton = document.getElementById("button");
+var bton = document.getElementById("couy");
 function holdr(){
 	let tm = setInterval(timer, 1000);
 	if(bton.innerHTML == "START"){
