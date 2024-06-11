@@ -19,7 +19,7 @@ window.onload = function(){
                 }else{
                     clearInterval(iter);
                     let rext = `THE NEXTGEN SCOREBOARD`;
-                        let hode = document.createElement("h5");
+                        let hode = document.createElement("div");
                         holder.appendChild(hode);
                         var t = 0;
                     var interv = setInterval(function(){
@@ -204,8 +204,11 @@ function poly_3(){
 	score2.value = Number(score2.value) + 3;
 }
 let tab = document.getElementById("coww");
+var bton = document.getElementById("button");
 function holdr(){
 	let tm = setInterval(timer, 1000);
+	if(bton.innerHTML == "START"){
+		bton.innerHTML = "PAUSE";
 function timer(){
 	if(sc.innerHTML > 0){
 		sc.innerHTML = sc.innerHTML -1;
@@ -255,6 +258,10 @@ function timer(){
 apper();
 	}
 }
+	}else{
+		clearInterval(timer);
+		bton.innerHTML = "START";
+	}
 }
 tab.addEventListener("click",function(){
 	let table = document.getElementById("retab");
