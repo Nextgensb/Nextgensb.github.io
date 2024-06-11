@@ -1,7 +1,6 @@
 window.onload = function(){
     let welcomText = `WE WELCOME YOU TO ...`;
     let hold = document.createElement("div");
-	hold.className = "lop";
    let holder = document.getElementById("kiki");
 	holder.appendChild(hold);
     let i = 0;
@@ -21,7 +20,6 @@ window.onload = function(){
                     clearInterval(iter);
                     let rext = `THE NEXTGEN SCOREBOARD`;
                         let hode = document.createElement("h1");
-                        hode.className = "lop";
                         holder.appendChild(hode);
                         var t = 0;
                     var interv = setInterval(function(){
