@@ -103,8 +103,8 @@ tr:nth-child(even){
     height: 5vh;
 }
 img{
-  width: 40vw;
-  height: 40vw;
+  width: 25vw;
+  height: 25vw;
   margin: 20px;
   border-radius: 39% 61% 46% 54% / 67% 58% 42% 33% ;
 }
