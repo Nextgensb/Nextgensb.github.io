@@ -213,8 +213,8 @@ let tab = document.getElementById("coww");
 var bton = document.getElementById("couy");
 function holdr(){
 	let tm = setInterval(timer, 1000);
-	if(bton.innerHTML == "START"){
-		bton.innerHTML = "PAUSE";
+	if(bton.value == "START"){
+		bton.value = "PAUSE";
 function timer(){
 	if(sc.innerHTML > 0){
 		sc.innerHTML = sc.innerHTML -1;
@@ -266,7 +266,7 @@ apper();
 }
 	}else{
 		clearInterval(timer);
-		bton.innerHTML = "START";
+		bton.value = "START";
 	}
 }
 tab.addEventListener("click",function(){
