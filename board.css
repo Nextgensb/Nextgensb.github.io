@@ -342,6 +342,8 @@ h2{
 }
 .nimo{
     margin: 0;
+	display: flex;
+	height: 15vh;
     font-size: 4vw;
     background: aliceblue;
     border-top-left-radius: 20px;
