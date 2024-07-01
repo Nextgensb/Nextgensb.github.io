@@ -264,6 +264,7 @@ function timer(){
 apper();
 	}
 }
+		timer();
 	}else{
 		clearInterval(timer);
 		bton.value = "START";
