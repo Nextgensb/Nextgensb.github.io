@@ -212,9 +212,6 @@ function poly_3(){
 let tab = document.getElementById("coww");
 var bton = document.getElementById("couy");
 function holdr(){
-	let tm = setInterval(timer, 1000);
-	if(bton.value == "START"){
-		bton.value = "PAUSE";
 function timer(){
 	if(sc.innerHTML > 0){
 		sc.innerHTML = sc.innerHTML -1;
@@ -264,7 +261,9 @@ function timer(){
 apper();
 	}
 }
-		timer();
+	if(bton.value == "START"){
+		let tm = setInterval(timer, 1000);
+		bton.value = "PAUSE";
 	}else{
 		clearInterval(timer);
 		bton.value = "START";
