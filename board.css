@@ -131,7 +131,7 @@ img{
 }
 .sect{
     height: 100vh;
-    width: 60vw;
+    max-width: 400px;
     border: 2px solid teal;
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -273,8 +273,8 @@ h2{
     font-size: 5vh;
 }
 .hold{
-    width: 20vw;
-    height: 20vw;
+    width: 162px;
+    height: 162px;
     border-radius: 50%;
     background: white;
 	display: flex;
@@ -283,8 +283,8 @@ h2{
     
 }
 .pic{
-	width: 19vw;
-	height: 19vw;
+	width: 162px;
+	height: 162px;
 	border-radius: 100%;
 }
 .hl{
@@ -297,7 +297,7 @@ h2{
 .namehold{
     position: relative;
     color: white;
-    font-size: 3vw;
+    font-size: 2vw;
     padding: 3vh;
     width: 39.5vw;
     font-size: 4vh;
@@ -335,6 +335,7 @@ h2{
     font-size: 5vw;
     width: 100%;
     background-color: yellowgreen;
+    text-align: center;
     padding: 20px;
     color: whitesmoke;
     grid-row: 4/5;
