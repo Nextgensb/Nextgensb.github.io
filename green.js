@@ -211,64 +211,59 @@ function poly_3(){
 }
 let tab = document.getElementById("coww");
 var bton = document.getElementById("couy");
-function holdr(){
-function timer(){
-	if(sc.innerHTML > 0){
-		sc.innerHTML = sc.innerHTML -1;
-	}
-	while(sc.innerHTML == 0){
-		if(mn.innerHTML > 0){
-			sc.innerHTML = 60;
-	    mn.innerHTML = mn.innerHTML -1;
-		}else{
-			break;
-		}
-	}
-	while(mn.innerHTML == 0){
-		if(hr.innerHTML > 0){
-			hr.innerHTML = hr.innerHTML -1;
-			mn.innerHTML = 60;
-		}else{
-			break;
-		}
-	}
-	if(sc.innerHTML == 0 && mn.innerHTML == 0 && hr.innerHTML == 0){
-		clearInterval(tm);
-			tab.style.display = "block";
-		   
-	    function apper(){
-	        let announcer = document.createElement("div");
-	        announcer.className = "contain";
-	        let nimee = document.getElementById("roll");
+function holdr() {
+    let tm; // Declare tm outside to make it accessible globally
 
-        let nme = document.getElementById("rell");
-        let score1 = document.getElementById("tio_1");
-	        let score2 = document.getElementById("tio_2");
+    function timer() {
+        if (sc.innerHTML > 0) {
+            sc.innerHTML = sc.innerHTML - 1;
+        }
+        while (sc.innerHTML == 0 && mn.innerHTML > 0) {
+            sc.innerHTML = 60;
+            mn.innerHTML = mn.innerHTML - 1;
+        }
+        while (mn.innerHTML == 0 && hr.innerHTML > 0) {
+            hr.innerHTML = hr.innerHTML - 1;
+            mn.innerHTML = 60;
+        }
+        if (sc.innerHTML == 0 && mn.innerHTML == 0 && hr.innerHTML == 0) {
+            clearInterval(tm); // Clear interval using tm, not timer
+            tab.style.display = "block";
 
-      if(Number(score1.value) > Number(score2.value)){
-          announcer.innerHTML = nimee.innerHTML + " WINS WITH " + score1.value + "POINTS.";
-      } else if(Number(score1.value) == Number(score2.value)){
-	            announcer.innerHTML = "IT IS A DRAW.";
-	        }else{
-          announcer.innerHTML = nme.innerHTML + " WINS WITH " + score2.value + "POINTS.";
-      }
-	        document.body.appendChild(announcer);
-	       setTimeout(function(){
-	           announcer.remove();
-	       },5000);
-	    }
-		
-apper();
-	}
+            function apper() {
+                let announcer = document.createElement("div");
+                announcer.className = "contain";
+                let nimee = document.getElementById("roll");
+                let nme = document.getElementById("rell");
+                let score1 = document.getElementById("tio_1");
+                let score2 = document.getElementById("tio_2");
+
+                if (Number(score1.value) > Number(score2.value)) {
+                    announcer.innerHTML = nimee.innerHTML + " WINS WITH " + score1.value + " POINTS.";
+                } else if (Number(score1.value) == Number(score2.value)) {
+                    announcer.innerHTML = "IT IS A DRAW.";
+                } else {
+                    announcer.innerHTML = nme.innerHTML + " WINS WITH " + score2.value + " POINTS.";
+                }
+                document.body.appendChild(announcer);
+                setTimeout(function () {
+                    announcer.remove();
+                }, 5000);
+            }
+
+            apper();
+        }
+    }
+
+    if (bton.value == "START") {
+        tm = setInterval(timer, 1000); // Assign interval ID to tm
+        bton.value = "PAUSE";
+    } else {
+        clearInterval(tm); // Clear interval using tm, not timer
+        bton.value = "START";
+    }
 }
-	if(bton.value == "START"){
-		let tm = setInterval(timer, 1000);
-		bton.value = "PAUSE";
-	}else{
-		clearInterval(timer);
-		bton.value = "START";
-	}
-}
+
 tab.addEventListener("click",function(){
 	let table = document.getElementById("retab");
 	let row = table.insertRow(-1);
