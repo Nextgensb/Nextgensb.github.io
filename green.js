@@ -233,11 +233,11 @@ function holdr() {
                 let score2 = document.getElementById("tio_2");
 
                 if (Number(score1.value) > Number(score2.value)) {
-                    announcer.innerHTML = nimee.innerHTML + " WINS WITH " + score1.value + " POINTS.";
+                    announcer.innerHTML = nme.innerHTML + " WINS WITH " + score1.value + " POINTS.";
                 } else if (Number(score1.value) == Number(score2.value)) {
                     announcer.innerHTML = "IT IS A DRAW.";
                 } else {
-                    announcer.innerHTML = nme.innerHTML + " WINS WITH " + score2.value + " POINTS.";
+                    announcer.innerHTML = nimee.innerHTML + " WINS WITH " + score2.value + " POINTS.";
                 }
                 document.body.appendChild(announcer);
                 setTimeout(function () {
