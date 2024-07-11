@@ -39,15 +39,9 @@ let btn = document.getElementById("pliee");
 btn.addEventListener("click", function(){
 	const originalContents = document.body.innerHTML;
 	const printContents = document.getElementById("prin").innerHTML;
-	document.body.innerHTML = printContents;
-	PrintJS({
-		printable : 'body',
-		type : 'pdf',
-		filename : 'scoreboard.pdf',
-		pageSizes : 'A4',
-		margin : [0.5, 0.5, 0.5, 0.5]
-	});
-	document.body.innerHTML = originalContents;
+document.write(printContents);
+window.print();
+location.reload();
 });
 let p_1 = document.getElementById("page_1");
 let p_2 = document.getElementById("page_2");
