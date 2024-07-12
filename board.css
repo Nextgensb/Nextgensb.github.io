@@ -35,6 +35,15 @@
 	text-decoration: bold;
 
 }
+#color-theme{
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+}
 #link-holder{
   display: grid;
   place-content: center;
@@ -233,6 +242,11 @@ h5{
     padding: 10px;
     font-size: 3vh;
     color: aliceblue;
+}
+.dym:hover{
+	color: white;
+	background: RGB(47, 79, 79);
+	box-shadow: 0, 0 , 20px, tomato;
 }
 #page_3{
     width: 100vw;
