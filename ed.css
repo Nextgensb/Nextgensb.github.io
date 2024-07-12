@@ -1,0 +1,426 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.pages{
+    width: 100vw;
+    height: 100vh;
+    visibility: hidden;
+    position: absolute;
+    background: rgb(34, 34, 34);
+    color: white;
+}
+#page_1{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    visibility: visible;
+  overflow: auto;
+}
+#page_1 div{
+    text-align: center;
+
+}
+.lop{
+  width: 70vw;
+    padding: 20px;
+    border: 2px solid green;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+	font-size: 4vw;
+	text-decoration: bold;
+	box-shadow: 0, 0, 2px, green;
+
+}
+#link-holder{
+  display: grid;
+  place-content: center;
+  color: white;
+  width: 400px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  height: 50px;
+  border: 1px solid teal;
+  background: linear-gradient(45deg, rgba(0,0,0,0.7), rgba(0,0,0,0.2), rgba(0,0,0,0));
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-blend-mode: overlay;
+}
+  .butt{
+    margin-top: 0;
+    margin-right: 0;
+    position: absolute;
+    right: 0;
+  }
+  .contain{
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-size: 40px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    background: rgba(0,0,0,0.8);
+    position: fixed;
+    z-index: 1000;
+    top: 0; right: 0;
+    left: 0; bottom: 0;
+  }
+  .cont{
+    width: 80%;
+    height: 65%;
+    background: white;
+    border: 1px solid gray;
+    border-radius: 20px;
+  }
+  .cont input, .cont button{
+    width: 80%;
+    border: 1px solid gray;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+  }
+TABLE{
+    margin-top: 20px;
+    width: 100%;
+    border: 2px solid rgb(3, 71, 102);
+    border-collapse: collapse;
+}
+tr,td{
+    width: 33.3%;
+    border: 2px solid rgb(3, 71, 102);
+    padding: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 3vh;
+    text-align: center;
+    border-collapse: collapse;
+}
+td:nth-child(odd){
+    background: grey;
+}
+tr:nth-child(even){
+    background: greenyellow;
+}
+#match{
+    font-size: 3vh;
+    background: green;
+    border: none;
+    border-radius: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 5vh;
+    width: 40%;
+    height: 5vh;
+    color: white;
+}
+img{
+  width: 25vw;
+  height: 25vw;
+  margin: 20px;
+  border: 3px solid;
+  border-image: linear-gradient: white, blue;
+  border-radius: 39% 61% 46% 54% / 67% 58% 42% 33% ;
+}
+#page_2{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    visibility: hidden;
+}
+#typom{
+    font-size: 5vw;
+    height: 40vh;
+    background-image: url(seven.jpeg);
+    background-color: rgba(0,0,0,0.2);
+    background-blend-mode: overlay;
+    background-size: 100% 100%;
+    overflow: auto;
+    padding: 20px;
+    clear: both;
+}
+.sect{
+    height: 100vh;
+    max-width: 566px;
+    border: 2px solid teal;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    overflow-y: scroll;
+}
+h3{
+    background: teal;
+    padding: 20px;
+    color: white;
+    font-size: 4vh;
+}
+.clik1{
+    height: 40vh;
+    background-image: url(four.jpeg);
+    background-color: rgba(255, 64, 0,0.5);
+    background-blend-mode: overlay;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.clik2{
+    height: 43vh;
+    background: rgba(0, 234, 255,0.5) url(five.jpeg);
+    background-size: cover;
+    background-blend-mode: overlay;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.clik3{
+	  height: 40vh;
+     background: rgba(200, 204, 25,0.5) url(two.jpeg);
+    background-blend-mode: overlay;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.log{
+    width: 40vw;
+    height: 15vh;
+    border: 2px solid teal;
+	margin-left: 10vw;
+    margin-bottom: 2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+input[type=text]{
+    width: 80%;
+    margin: 5px;
+    text-align: center;
+    height: auto;
+    padding: 5px;
+}
+input[type=file]{
+    position: relative;
+    width: 80%;
+    height: 10vh;
+    display: block;
+    opacity: 0;
+}
+h4{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background: teal;
+    color: white;
+}
+h5{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    background: rgb(7, 236, 22);
+    color: white;
+}
+.dym{
+    display: inline;
+    max-width: 370px;
+    border: none;
+    border-radius: 20px;
+    background: teal;
+    padding: 10px;
+    font-size: 3vh;
+    color: aliceblue;
+}
+.dym:hover{
+	color: white;
+	background: RGB(47, 79, 79);
+	box-shadow: 0, 0 , 20px, tomato;
+}
+#page_3{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    visibility: hidden;
+}
+#card_1{
+    height: 80vh;
+    width: 40vw;
+    border: 2px solid teal;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    grid-row: 2/5;
+    grid-column: 1/3;
+    border-radius: 30px;
+    background:  rgb(255, 64, 0);
+}
+#card_2{
+    height: 80vh;
+    width: 40vw;
+    background: rgb(7, 194, 211);
+    border: 2px solid teal;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    grid-row: 1/5;
+    grid-column: 3/5;
+    border-radius: 30px;
+}
+.connn{
+	grid-row: 6/7;
+	grid-column: 1/5;
+	gap: 20px;
+	color: white;
+}
+.loli{
+	padding: 10px;
+	width: 40vw;
+	color: white;
+	background: teal;
+	border-radius: 30px;
+	border: none;
+	margin: 20px;
+}
+h2{
+    background: rgb(145, 255, 11);
+    padding: 20px;
+    color: rgb(45, 2, 71);
+    font-size: 5vh;
+}
+.hold{
+    width: 162px;
+    height: 162px;
+    border-radius: 50%;
+    background: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    
+}
+.pic{
+	width: 162px;
+	height: 162px;
+	border-radius: 100%;
+}
+.hl{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5vh;
+    margin-bottom: 1vh;
+}
+.namehold{
+    position: relative;
+    color: white;
+    text-align: center;
+    font-size: 2vw;
+    padding: 3vh;
+    width: 39.5vw;
+    font-size: 4vh;
+    margin-bottom: 0;
+}
+.buto{
+    margin: 3px;
+    border-radius: 20px;
+    width: 20vw;
+}
+#page_4{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: grid;
+    visibility: hidden;
+}
+.tabule{
+	position: absolute;
+	grid-row: 1/1;
+	grid-column: 1/5;
+	z-index: 2000;
+}
+.bars{
+    position: relative;
+    height: 70vh;
+}
+#team-1{
+    background-color: tomato;
+    padding: 20px;
+	grid-row: 1/3;
+	grid-column: 1/3;
+}
+#team-2{
+    background-color: dodgerblue;
+    padding: 20px;
+	grid-row: 1/3;
+	grid-column: 3/5;
+}
+#tym{
+    font-size: 5vw;
+    width: 100%;
+    background-color: yellowgreen;
+    text-align: center;
+    padding: 20px;
+    color: whitesmoke;
+    grid-row: 4/5;
+	grid-column: 1/5;
+}
+.nimo{
+    margin: 0;
+	display: flex;
+	height: 15vh;
+    font-size: 4vw;
+    background: aliceblue;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 2vw;
+}
+.tent{
+    height: 80vh;
+    border-radius: 20px;
+    border: 1px solid grey;
+    background: transparent;
+    backdrop-filter: blur(10px);
+    margin: 20px;
+    font-size: 10vw;
+}
+.addd{
+    width: 5vw;
+    height: 5vw;
+    border-radius: 50%;
+    border: none;
+}
+.jiek{
+	width: 7vw;
+	height: 7vw;
+	border-radius: 50%;
+	display: inline-block;
+	margin: 5px;
+	background: lightgreen;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.jump{
+	width: 100%;
+	height: 100%;
+	border-radius: 100%;
+}
+h6{
+	margin: 0;
+	background: teal;
+	border-radius: 20px;
+}
