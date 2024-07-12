@@ -35,6 +35,17 @@ window.onload = function(){
         }
     },200);
 }
+var linkes = ["https://www.answers.com/search?q=what%20are%20alkanes", "https://www.goodreads.com/quotes/tag/attributed-no-source", "https://www.answers.com/search?q=what+is+space+physics", "https://byjus.com/biology/diseases/"];
+var textHolder = ["Know your Chemistry: alkenes", "Be yourself, everyone else is already taken ~ Oscar Wilde", "Learn your physics", "Know your biology at byjus"];
+var backs = ["https://images.unsplash.com/photo-1693919653649-27492e78899d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y2hlbWlzdHJ5JTNBJTIwYWxrYW5lc3xlbnwwfHwwfHx8MA%3D%3D", "https://plus.unsplash.com/premium_vector-1711987780595-38b176997836?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c2t5JTIwc3Vuc2V0fGVufDB8fDB8fHww", "https://media.istockphoto.com/id/1614252539/photo/the-moon-against-the-background-of-the-starry-night-sky-moon-and-stars-view-from-space.webp?b=1&s=170667a&w=0&k=20&c=ntA4xsP9Zu7Mu39x-3bTNNa5mtMAV-z6cmWmULcbUk4=", "https://media.istockphoto.com/id/1451790531/photo/microscopic-magnification-legionella-pneumophila-gram-negative-bacillus-that-causes-pneumonia.webp?b=1&s=170667a&w=0&k=20&c=4Z5B0u5h6sKZTICev7LCnxU-01X_MUn1kfiiuOR5HhE="];
+var link = document.getElementById("link-holder");
+var i = 0;
+var adInterval = setInterval(function(){
+  link.href = linkes[i];
+  link.innerHTML = textHolder[i];
+  link.style.backgroundImage = `url(${backs[i]})`;
+  i = (i + 1) % linkes.length;
+}, 10000);
 let btn = document.getElementById("pliee");
 btn.addEventListener("click", function(){
 	const originalContents = document.body.innerHTML;
