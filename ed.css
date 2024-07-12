@@ -400,6 +400,8 @@ h2{
 .addd{
     width: 5vw;
     height: 5vw;
+    color: white;
+    background: RGB(47, 79, 79);
     border-radius: 50%;
     border: none;
 }
