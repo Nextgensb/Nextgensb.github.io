@@ -334,6 +334,7 @@ h2{
 	position: absolute;
 	grid-row: 1/1;
 	grid-column: 1/5;
+	z-index: 2000;
 }
 .bars{
     position: relative;
