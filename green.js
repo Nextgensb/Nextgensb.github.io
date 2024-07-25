@@ -54,6 +54,32 @@ document.write(printContents);
 window.print();
 location.reload();
 });
+
+var light = `<span class="material-symbols-outlined">
+light_mode
+</span>`;
+var dark = `<span class="material-symbols-outlined">
+nightlight
+</span>`;
+var themer = document.getElementById("themer");
+var themeChanger = document.getElemenById("color-theme");
+themeChanger.addEventListener("click", changeTheme);
+function changeTheme(){
+  var theme = "light";
+  if(theme == "light"){
+    themer.href = "ed.css";
+    themeChanger.innerHTML = light;
+    themeChanger.style.color = "black";
+    themeChanger.style.backgroundColor = "white";
+    theme = "dark";
+  }else{
+    themer.href = "board.css";
+    themeChanger.innerHTML = dark;
+    themeChanger.style.color = "white";
+    themeChanger.style.backgroundColor = "black";
+    theme = "light";
+  }
+}
 let p_1 = document.getElementById("page_1");
 let p_2 = document.getElementById("page_2");
 let p_3 = document.getElementById("page_3");
