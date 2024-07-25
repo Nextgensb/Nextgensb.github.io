@@ -114,18 +114,11 @@ function reel() {
     const ery = logo1.files[0];
     const redt = new FileReader();
     redt.onload = function (e) {
-        let imgone = document.createElement("img");
-        imgone.src = e.target.result;
-        imgone.classList.add("jump");
-
-        let imgtwo = document.createElement("img");
-        imgtwo.src = e.target.result;
-        imgtwo.classList.add("pic");
-
-        imgo.innerHTML = "";
-        imgo.appendChild(imgone);
-        imar.innerHTML = "";
-        imar.appendChild(imgtwo);
+	var imgLink = e.target.result;
+        imgo.style.background = `url(${imgLink})`;
+	    
+        imar.style.background = `url(${imgLink})`;
+        
         txt.innerHTML = "Logo one was submitted";
     };
     redt.readAsDataURL(ery);
