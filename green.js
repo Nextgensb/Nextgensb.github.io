@@ -13,7 +13,7 @@ window.onload = function(){
             var iter = setInterval(function(){
                 let txt = holder.textContent;
                 let n = -1;
-                if(txt.length > 1){
+                if(txt.length > 0){
                     holder.textContent = txt.slice(0,n);
                     n--;
                 }else{
