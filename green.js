@@ -64,8 +64,8 @@ nightlight
 var themer = document.getElementById("themer");
 var themeChanger = document.getElemenById("color-theme");
 themeChanger.addEventListener("click", changeTheme);
+var theme = "light";
 function changeTheme(){
-  var theme = "light";
   if(theme == "light"){
     themer.href = "ed.css";
     themeChanger.innerHTML = light;
@@ -134,18 +134,11 @@ function reel() {
         const oim = logo1.files[1];
         const reff = new FileReader();
         reff.onload = function (e) {
-            let iomk = document.createElement("img");
-            iomk.src = e.target.result;
-            iomk.classList.add("jump");
-
-            let im1 = document.createElement("img");
-            im1.src = e.target.result;
-            im1.classList.add("pic");
-
-            iomg.innerHTML = "";
-            iomg.appendChild(im1);
-            oommp.innerHTML = "";
-            oommp.appendChild(iomk);
+	var imageLink = e.target.result;
+            iom.style.background = `${imagelink}`;
+            
+            oommp.style.background = `url(${imageLink})`;
+        
             txt.innerHTML = "Successfull submission";
         };
         reff.readAsDataURL(oim);
@@ -243,7 +236,7 @@ function poly_3(){
 let tab = document.getElementById("coww");
 var bton = document.getElementById("couy");
 function holdr() {
-    let tm; // Declare tm outside to make it accessible globally
+    let tm;
 
     function timer() {
         if (sc.innerHTML > 0) {
@@ -258,7 +251,7 @@ function holdr() {
             mn.innerHTML = 60;
         }
         if (sc.innerHTML == 0 && mn.innerHTML == 0 && hr.innerHTML == 0) {
-            clearInterval(tm); // Clear interval using tm, not timer
+            clearInterval(tm);
             tab.style.display = "block";
 
             function apper() {
