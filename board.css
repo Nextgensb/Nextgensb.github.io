@@ -345,6 +345,11 @@ border-radius: 100%;
   visibility: hidden;
 }
 .tabule{
+  height: 30px;
+  padding: 5px;
+  background: teal;
+  border: none;
+  color: white;
 position: absolute;
 grid-row: 1/1;
 grid-column: 1/5;
