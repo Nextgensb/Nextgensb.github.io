@@ -102,7 +102,7 @@ function reel() {
         const reff = new FileReader();
         reff.onload = function (e) {
 	var imageLink = e.target.result;
-            iom.style.background = `${imagelink}`;
+            iom.style.background = `url(${imagelink})`;
             
             oommp.style.background = `url(${imageLink})`;
         
@@ -247,10 +247,10 @@ function holdr() {
     }
 
     if (bton.value == "START") {
-        tm = setInterval(timer, 1000); // Assign interval ID to tm
+        tm = setInterval(timer, 1000);
         bton.value = "PAUSE";
     } else {
-        clearInterval(tm); // Clear interval using tm, not timer
+        clearInterval(tm); 
         bton.value = "START";
     }
 }
