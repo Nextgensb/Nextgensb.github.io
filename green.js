@@ -102,7 +102,7 @@ function reel() {
         const reff = new FileReader();
         reff.onload = function (e) {
 	var imageLink = e.target.result;
-            iom.style.background = `url(${imagelink})`;
+            iomg.style.background = `url(${imageLink})`;
             
             oommp.style.background = `url(${imageLink})`;
         
@@ -112,7 +112,7 @@ function reel() {
     } else {
         txt.innerHTML = "Only one file was selected.";
     }
-     logo1.files = null;
+     logo1.files = "";
 }
 
 function ripple() {
@@ -202,9 +202,9 @@ function poly_3(){
 }
 let tab = document.getElementById("coww");
 var bton = document.getElementById("couy");
+ let tm;
 function holdr() {
-    let tm;
-
+   
     function timer() {
         if (sc.innerHTML > 0) {
             sc.innerHTML = sc.innerHTML - 1;
