@@ -34,14 +34,16 @@ overflow: auto;
   display: flex;
   flex-direction: column;
   opacity: 0.5;
-  width: 150px;
-  font-size: 1.5rem;
+  width: 400px;
+  font-size: 1rem;
 }
 .copy a{
   text-decoration: none;
-  width: 130px;
+  width: 200px;
   height: 40px;
+  border-radius: 5px;
   padding: 5px;
+  
 }
 .copy:hover a{
   background: rgba(0,0,0,0.5);
