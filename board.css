@@ -39,6 +39,7 @@ overflow: auto;
   text-decoration: none;
   width: 130px;
   height: 40px;
+  border-radius: 5px;
   padding: 5px;
 }
 .copy:hover a{
