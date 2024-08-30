@@ -50,8 +50,10 @@ let btn = document.getElementById("pliee");
 btn.addEventListener("click", function(){
 	const originalContents = document.body.innerHTML;
 	const printContents = document.getElementById("prin").innerHTML;
-document.write(printContents);
+document.body.innerHTML = "";
+	document.body.innerHTML = printContents;
 window.print();
+	document.body.innerHTML = originalContents;
 location.reload();
 });
 let p_1 = document.getElementById("page_1");
