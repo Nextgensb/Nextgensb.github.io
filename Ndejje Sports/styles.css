@@ -1,0 +1,782 @@
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --light-blue: #ADD8E6;
+    --yellow: #FFD700;
+    --white: #FFFFFF;
+    --dark-blue: #4682B4;
+    --gray: #F5F5F5;
+    --dark-gray: #333333;
+    --border-color: #E0E0E0;
+    --success: #28A745;
+    --danger: #DC3545;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--dark-gray);
+    background: linear-gradient(135deg, var(--light-blue) 0%, var(--white) 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Page Management */
+.page {
+    display: none;
+    min-height: 100vh;
+}
+
+.active {
+    display: block;
+}
+
+/* Header Styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 3px solid var(--yellow);
+    margin-bottom: 10px;
+}
+.sign-up-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 3px solid var(--yellow);
+    margin-bottom: 10px;
+}
+.header img {
+    width: 35%;
+    aspect-ratio: 1/1;
+    
+}
+
+.main-title {
+    font-size: 2.5rem;
+    color: var(--dark-blue);
+    font-weight: bold;
+    text-shadow: 3px 3px 0px yellow;
+}
+
+.subtitle {
+    color: var(--dark-gray);
+    font-size: 1.2rem;
+    margin-top: 5px;
+}
+
+.header-actions {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+}
+
+#user-info, #admin-info {
+    color: var(--dark-blue);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Button Styles */
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    
+}
+
+.btn-primary {
+    background-color: var(--yellow);
+    color: var(--dark-gray);
+}
+
+.btn-primary:hover {
+    background-color: #E6C200;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    display: flex;
+    gap: 2px;
+    align-items: center;
+    height: 50px;
+}
+
+.btn-secondary:hover {
+    background-color: var(--light-blue);
+    color: black;
+    transform: translateY(-2px);
+}
+
+.back-btn {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+}
+
+/* Welcome Page */
+.welcome-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+}
+
+.welcome-card {
+    background: var(--white);
+    padding: 60px 40px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 3px solid var(--yellow);
+}
+
+h2 {
+    color: var(--dark-blue);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.welcome-card p {
+    color: var(--dark-gray);
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+/* Form Styles */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}
+
+.form-card {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 3px solid var(--yellow);
+    width: 100%;
+    max-width: 500px;
+}
+
+.form-card h2 {
+    color: var(--dark-blue);
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+.passholder {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.passholder button {
+  background: transparent;
+  border: none;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--dark-blue);
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--light-blue);
+}
+.button-holder {
+  display: flex;
+  width: 100%;
+  gap: 2%;
+}
+.button-holder button {
+  width: 49%;
+}
+
+/* Dashboard Styles */
+.dashboard-content h2 {
+    color: var(--dark-blue);
+    margin-bottom: 15px;
+    font-size: 2rem;
+}
+
+.dashboard-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.section-description {
+    color: var(--dark-gray);
+    font-size: 1rem;
+    margin-bottom: 25px;
+    font-style: italic;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    border: 2px solid var(--light-blue);
+    background: var(--white);
+    color: var(--dark-blue);
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+    background: var(--light-blue);
+    color: var(--white);
+}
+
+.tab-btn.active {
+    background: var(--yellow);
+    border-color: var(--yellow);
+    color: var(--dark-gray);
+}
+
+/* Tables */
+.sport-table {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.sport-table h3 {
+    background: var(--dark-blue);
+    color: var(--white);
+    padding: 20px;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+th {
+    background: var(--yellow);
+    color: var(--dark-gray);
+    font-weight: bold;
+}
+
+tr:hover {
+    background: var(--gray);
+}
+
+/* Admin Dashboard */
+.admin-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.section {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--yellow);
+}
+
+.section.full-width {
+    width: 100%;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section h3 {
+    color: var(--dark-blue);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.section-header h3 {
+    margin-bottom: 0;
+}
+
+.record-game-btn {
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+/* Enhanced Form Styling */
+.enhanced-form {
+    border: 3px solid var(--light-blue);
+    background: var(--gray);
+}
+
+.enhanced-form .form-row {
+    display: flex;
+    align-items: end;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.enhanced-form .form-group {
+    flex: 1;
+}
+
+.vs-separator {
+    background: var(--yellow);
+    color: var(--dark-gray);
+    font-weight: bold;
+    padding: 15px 20px;
+    border-radius: 50%;
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    height: 60px;
+    align-self: center;
+    margin-top: 10px;
+}
+
+.enhanced-form textarea {
+    resize: vertical;
+    font-family: inherit;
+    padding: 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    width: 100%;
+}
+
+.enhanced-form textarea:focus {
+    outline: none;
+    border-color: var(--light-blue);
+}
+
+.date-hint {
+    display: block;
+    color: var(--dark-blue);
+    font-size: 0.85rem;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.submit-group {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.submit-btn {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.cancel-btn {
+    padding: 12px 24px;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: var(--dark-gray);
+}
+
+.empty-state h4 {
+    margin-bottom: 10px;
+    color: var(--dark-blue);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2.5rem;
+    }
+    
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .form-row {
+        flex-direction: column;
+    }
+    
+    .tabs {
+        justify-content: center;
+    }
+    
+    .tab-btn {
+        flex: 1;
+        min-width: 120px;
+    }
+    
+    .admin-sections {
+        flex-direction: column;
+    }
+    
+    .enhanced-form .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .vs-separator {
+        align-self: center;
+        margin: 10px 0;
+    }
+    
+    .submit-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .submit-group .btn {
+        width: 100%;
+    }
+    
+    .welcome-card {
+        padding: 40px 20px;
+    }
+    
+    .form-card {
+        padding: 30px 20px;
+    }
+    
+    .section {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .main-title {
+        font-size: 2.5rem;
+    }
+    
+    .welcome-card h2 {
+        font-size: 1.5rem;
+    }
+    
+    .welcome-card p {
+        font-size: 1rem;
+    }
+    
+    .tabs {
+        flex-direction: column;
+    }
+    
+    .tab-btn {
+        width: 100%;
+    }
+    
+    .overall-rankings-table table {
+        font-size: 0.8rem;
+    }
+    
+    .overall-rankings-table th,
+    .overall-rankings-table td {
+        padding: 8px 4px;
+    }
+    
+    .club-cell {
+        min-width: 100px;
+    }
+    
+    th, td {
+        padding: 10px 8px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Animation for page transitions */
+.page {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Success/Error Messages */
+.message {
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.message.success {
+    background: var(--success);
+    color: var(--white);
+}
+
+.message.error {
+    background: var(--danger);
+    color: var(--white);
+}
+
+/* Password hint styling */
+.password-hint {
+    display: block;
+    color: var(--dark-blue);
+    font-size: 0.85rem;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+/* Admin passwords info section */
+.admin-passwords-info {
+    background: var(--gray);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    border: 2px solid var(--light-blue);
+}
+
+.admin-passwords-info h4 {
+    color: var(--dark-blue);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.password-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    font-size: 0.9rem;
+}
+
+.password-grid span {
+    padding: 8px;
+    background: var(--white);
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+}
+
+/* Winner badge styling */
+.winner-badge {
+    background: var(--success);
+    color: var(--white);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+/* Recent games table enhancements */
+.table-container table {
+    font-size: 0.95rem;
+}
+
+.table-container td:first-child {
+    width: 100px;
+    font-size: 0.9rem;
+}
+
+.table-container td:nth-child(2) {
+    min-width: 150px;
+}
+
+.table-container td:nth-child(3) {
+    text-align: center;
+    font-weight: bold;
+    color: var(--dark-blue);
+}
+
+.table-container td:nth-child(4) {
+    text-align: center;
+}
+
+.table-container td:last-child {
+    font-size: 0.85rem;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Overall Rankings Table Styling */
+.overall-rankings-table {
+    background: linear-gradient(135deg, var(--white) 0%, var(--gray) 100%);
+    border: 3px solid var(--yellow);
+}
+
+.overall-rankings-table .table-container {
+    background: var(--white);
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.overall-rankings-table table {
+    font-size: 0.9rem;
+}
+
+.overall-rankings-table th {
+    background: var(--dark-blue);
+    color: var(--white);
+    font-weight: 600;
+    padding: 12px 8px;
+    text-align: center;
+}
+
+.overall-rankings-table td {
+    text-align: center;
+    padding: 12px 8px;
+}
+
+/* Ranking badges and highlights */
+.rank-1 {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    color: var(--dark-gray);
+    font-weight: bold;
+}
+
+.rank-2 {
+    background: linear-gradient(135deg, #C0C0C0 0%, #A9A9A9 100%);
+    color: var(--dark-gray);
+    font-weight: bold;
+}
+
+.rank-3 {
+    background: linear-gradient(135deg, #CD7F32 0%, #A0522D 100%);
+    color: var(--white);
+    font-weight: bold;
+}
+
+.rank-cell {
+    font-size: 1.1rem;
+    font-weight: bold;
+    min-width: 80px;
+}
+
+.club-cell {
+    text-align: left;
+    font-size: 1rem;
+    min-width: 120px;
+}
+
+.points-cell {
+    color: var(--dark-blue);
+    font-size: 1.1rem;
+    background: var(--yellow);
+    border-radius: 4px;
+}
+
+.wins-cell {
+    color: var(--success);
+    font-weight: 600;
+}
+
+.draws-cell {
+    color: var(--yellow);
+    font-weight: 600;
+}
+
+.losses-cell {
+    color: var(--danger);
+    font-weight: 600;
+}
+
+.avg-cell {
+    font-family: monospace;
+    font-weight: 600;
+}
+
+

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ndejje Sports</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="image/x-icon" href="favicon.png">
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+    <!-- Welcome Page -->
+    <div id="welcome-page" class="page active">
+        <div class="container">
+            <header class="header">
+                <img src="favicon.png"/>
+                <h1 class="main-title">Ndejje Sports</h1>
+                <p class="subtitle">Record Keeping System</p>
+            </header>
+            
+            <div class="welcome-content">
+                <div class="welcome-card">
+                    <h2>Welcome to Ndejje Sports</h2>
+                    <p>Track and manage sports performance across all sports activities and competitions</p>
+                    <button class="btn btn-primary" onclick="showPage('signup-page')">Join the Fun</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign Up Page -->
+    <div id="signup-page" class="page">
+        <div class="container">
+            <header class="sign-up-header">
+                <h1 class="main-title">Ndejje Sports</h1>
+                <button class="btn btn-secondary back-btn" onclick="showPage('welcome-page')">
+                    <span class="material-symbols-outlined">
+arrow_circle_left
+</span>
+                    Back</button>
+            </header>
+            
+            <div class="form-container">
+                <div class="form-card">
+                    <h2>Login / Sign Up</h2>
+                    <div id="signup-form">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <div class="passholder">
+                                <input type="password" id="password" name="password" required>
+                                <button type="button" id="seePass"><span class="material-symbols-outlined">
+visibility
+</span></button>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="role">Sign up as</label>
+                            <select id="role" name="role" required onchange="toggleSportSelection()">
+                                <option value="">Select Role</option>
+                                <option value="normal">Normal User</option>
+                                <option value="admin">Admin User</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group" id="sport-selection" style="display: none;">
+                            <label for="sport">Manage Sport</label>
+                            <select id="sport" name="sport">
+                                <option value="">Select Sport</option>
+                                <option value="Football">Football</option>
+                                <option value="Basketball">Basketball</option>
+                                <option value="Athletics">Athletics</option>
+                                <option value="Chess">Chess</option>
+                                <option value="Cricket">Cricket</option>
+                                <option value="Handball">Handball</option>
+                                <option value="Volleyball">Volleyball</option>
+                                <option value="Netball">Netball</option>                          
+                            </select>
+                        </div>
+                        
+                        <div class="form-group" id="admin-password-section" style="display: none;">
+                            <label for="admin-password">Sport Admin Password</label>
+                            <div class="passholder">
+                                <input type="password" id="admin-password" name="admin-password" placeholder="Enter sport-specific password">
+                                <button type="button" id="seeAdmin"><span class="material-symbols-outlined">
+visibility
+</span></button>
+                            </div>
+                            
+                            <small class="password-hint">Each sport has its own admin password</small>
+                        </div>
+                        <div class="button-holder">
+                             <button id="submitbtn" type="button" class="btn btn-primary">Sign Up</button>
+                        <button id="loginbtn" type="button" class="btn btn-primary">Login</button>
+                        </div>
+                       
+                    </div>
+                    <!--  
+                    <div class="admin-passwords-info">
+                        <h4>Admin Passwords Reference:</h4>
+                        <div class="password-grid">
+                            <span><strong>Football:</strong> football123</span>
+                            <span><strong>Basketball:</strong> basketball123</span>
+                            <span><strong>Athletics:</strong> athletics123</span>
+                            <span><strong>Chess:</strong> chess123</span>
+                            <span><strong>Cricket:</strong> cricket123</span>
+                            <span><strong>Handball:</strong> handball123</span>
+                            <span><strong>Volleyball:</strong> volleyball123</span>
+                            <span><strong>Netball:</strong> netball123</span>
+                            <span><strong>Rugby:</strong> rugby123</span>
+                        </div>
+                    </div>--->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Normal User Dashboard -->
+    <div id="user-dashboard" class="page">
+        <div class="container">
+            <header class="header">
+                <h1 class="main-title">Ndejje Sports</h1>
+                <h2>User Dashboard</h2>
+                <div class="header-actions">
+                    <div id="user-info"></div>
+                    <button id="logoutbtn" class="btn btn-secondary" onclick="logout()">Logout</button>
+                </div>
+            </header>
+            
+            <div class="dashboard-content">
+                <div class="dashboard-sections">
+                    <div class="section full-width">
+                        <h2>Overall Club Rankings</h2>
+                        <p class="section-description">Combined performance across all sports competitions</p>
+                        <div id="overall-rankings">
+                            <!-- Overall rankings table -->
+                        </div>
+                    </div>
+                    
+                    <div class="section full-width">
+                        <h2>Sport-Specific Performance</h2>
+                        <p class="section-description">View detailed standings for individual sports</p>
+                        
+                        <div class="tabs">
+                            <button class="tab-btn active" onclick="showSport('football')">Football</button>
+                            <button class="tab-btn" onclick="showSport('basketball')">Basketball</button>
+                            <button class="tab-btn" onclick="showSport('athletics')">Athletics</button>
+                            <button class="tab-btn" onclick="showSport('chess')">Chess</button>
+                            <button class="tab-btn" onclick="showSport('cricket')">Cricket</button>
+                            <button class="tab-btn" onclick="showSport('handball')">Handball</button>
+                            <button class="tab-btn" onclick="showSport('volleyball')">Volleyball</button>
+                            <button class="tab-btn" onclick="showSport('netball')">Netball</button>                   
+                        </div>
+                        
+                        <div id="sport-tables">
+                            <!-- Tables will be generated dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="admin-dashboard" class="page">
+        <div class="container">
+            <header class="header">
+                <h1 class="main-title">Ndejje Sports</h1>
+                <h2 id="admin-holder">Admin Dashboard</h2>
+                <div class="header-actions">
+                    <div id="admin-info"></div>
+                    <button id="logoutbtn" class="btn btn-secondary" onclick="logout()">Logout</button>
+                </div>
+            </header>
+            
+            <div class="dashboard-content">
+                <div class="admin-sections">
+                    <div class="section full-width">
+                        <div class="section-header">
+                            <h3>Current Sport Performance</h3>
+                            <button class="btn btn-primary record-game-btn" onclick="toggleGameForm()">
+                                ➕ Record New Game
+                            </button>
+                        </div>
+                        <div id="admin-sport-table">
+                            <!-- Current sport table -->
+                        </div>
+                    </div>
+                    
+                    <div class="section full-width" id="game-recording-section" style="display: none;">
+                        <h3>Add New Game Record</h3>
+                        <div class="form-card enhanced-form">
+                            <form id="game-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="clubA">Club A</label>
+                                        <select id="clubA" name="clubA" required>
+                                            <option value="">Select Club A</option>
+                                            <option value="Muyingo">Muyingo</option>
+                                            <option value="Kabalega">Kabalega</option>
+                                            <option value="Walusimbi">Walusimbi</option>
+                                            <option value="Muteesa">Muteesa</option>
+                                            <option value="Mboya">Mboya</option>
+                                            <option value="Lumumba">Lumumba</option>
+                                            <option value="Lubambula">Lubambula</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="scoreA">Score A</label>
+                                        <input type="number" id="scoreA" name="scoreA" min="0" required placeholder="0">
+                                    </div>
+                                    
+                                    <div class="vs-separator">VS</div>
+                                    
+                                    <div class="form-group">
+                                        <label for="clubB">Club B</label>
+                                        <select id="clubB" name="clubB" required>
+                                            <option value="">Select Club B</option>
+                                            <option value="Muyingo">Muyingo</option>
+                                            <option value="Kabalega">Kabalega</option>
+                                            <option value="Walusimbi">Walusimbi</option>
+                                            <option value="Muteesa">Muteesa</option>
+                                            <option value="Mboya">Mboya</option>
+                                            <option value="Lumumba">Lumumba</option>
+                                            <option value="Lubambula">Lubambula</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="scoreB">Score B</label>
+                                        <input type="number" id="scoreB" name="scoreB" min="0" required placeholder="0">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="scorers">Scorers</label>
+                                        <textarea id="scorers" name="scorers" rows="3" placeholder="List scorers separated by commas&#10;e.g. John Doe, Jane Smith, Mike Wilson"></textarea>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="mvp">MVP (Most Valuable Player)</label>
+                                        <input type="text" id="mvp" name="mvp" required placeholder="Enter MVP name">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="game-date">Game Date</label>
+                                        <input type="date" id="game-date" name="game-date">
+                                        <small class="date-hint">Leave empty to use today's date</small>
+                                    </div>
+                                    
+                                    <div class="form-group submit-group">
+                                        <button type="submit" class="btn btn-primary submit-btn">Submit Game Record</button>
+                                        <button type="button" class="btn btn-secondary cancel-btn" onclick="toggleGameForm()">Cancel</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="section full-width" id="recent-games-section">
+                        <h3>Recent Game Records</h3>
+                        <div id="recent-games-table">
+                            <!-- Recent games table -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="aep.js"></script>
+    <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-analytics.js";
+  import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signOut } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+  import { getDatabase, ref, get, set, push, query, orderByChild, onValue } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+
+    
+ const firebaseConfig = {
+    apiKey: "AIzaSyAV7M-zZkGYQ0knqwj_Ye6h6Kv8t8es0Xs",
+    authDomain: "ndejjesports-fd835.firebaseapp.com",
+    databaseURL: "https://ndejjesports-fd835-default-rtdb.firebaseio.com",
+    projectId: "ndejjesports-fd835",
+    storageBucket: "ndejjesports-fd835.firebasestorage.app",
+    messagingSenderId: "790541678240",
+    appId: "1:790541678240:web:958631d2e7f1f71c94fbc5",
+    measurementId: "G-6BCLJS55LZ"
+  };
+
+  // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getDatabase(app);
+    const auth = getAuth(app);
+    
+    var usernameInput = document.querySelector("#username");
+    var emailInput = document.querySelector("#email");
+    var passwordInput = document.querySelector("#password");
+    var userRole = document.querySelector("#role");
+    var sportInChargeInput = document.querySelector("#sport");
+    var adminPasswordInput = document.querySelector("#admin-password");
+    var submitBtn = document.querySelector("#submitbtn");
+    
+    var userInfoHolder = document.querySelector("#user-info");
+    var adminInfoHolder = document.querySelector("#admin-info");
+    var adminHeader = document.querySelector("#admin-holder");
+    
+
+    submitBtn.addEventListener('click', () => {
+       var email = emailInput.value;
+        var password = passwordInput.value;
+        var username = usernameInput.value;
+        var role = userRole.value;
+        var sportInCharge = sportInChargeInput.value;
+       var adminPassword = adminPasswordInput.value;
+        
+        if (role === "admin") {
+            alert("chose admin");
+            var adminPassRef = ref(db, "adminpass");
+            get(adminPassRef)
+            .then((snapshot) => {
+                var data = snapshot.val();
+                if (data) {
+                    Object.keys(data).forEach(key => {
+                    if (data[key].Sport === sportInCharge){
+                        if (data[key].Passcode === adminPassword.trim()) {
+                            alert("correct pass...");
+           createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                var userData = userCredential.user;
+                var userMail = userData.email;
+                var userId = userData.uid;
+                alert(`${userMail}: ${userId}... signed in.`);
+                var userRef = push(ref(db, "users/"));
+                set(userRef, {
+                    email: userMail,
+                    userId: userId,
+                    username: username,
+                    role: "admin",
+                    mysport: sportInCharge                   
+                })
+                .then(() => {
+                   adminInfoHolder.textContent = `Welcome ${usernameInput.value}`; 
+                    adminHeader.textContent = `${sportInCharge} Admin Dashboard`;
+                emailInput.value = "";
+                passwordInput.value = "";
+                usernameInput.value = "";
+                userRole.value = "";
+                    alert("sign in successful");
+                    showPage("admin-dashboard");
+                });
+            });
+                        } 
+                    } 
+                });
+              }
+                
+            });
+        } else {
+            alert("chose normal");
+            createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                var userData = userCredential.user;
+                var userMail = userData.email;
+                var userId = userData.uid;
+                alert(`${userMail}: ${userId}... signed in.`);
+                var userRef = push(ref(db, "users/"));
+                set(userRef, {
+                    email: userMail,
+                    userId: userId,
+                    username: username,
+                    role: "normal"
+                })
+                .then(() => {
+                    userInfoHolder.textContent = `Welcome ${usernameInput.value}`;
+                emailInput.value = "";
+                passwordInput.value = "";
+                usernameInput.value = "";
+                userRole.value = "";
+                    alert("sign in successful");
+                    showPage("user-dashboard");                   
+                });
+            });
+        }
+    });
+    var loginBtn = document.querySelector("#loginbtn");
+    loginBtn.addEventListener("click", () => {
+        var email = emailInput.value;
+        var password = passwordInput.value;
+        var username = usernameInput.value;
+        
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            var loginMail = userCredential.user.email;
+            var loginUserRef = ref(db, "users/");
+       get(loginUserRef)
+            .then((snapshot) => {
+                var data = snapshot.val();
+                if (data) {
+                    Object.keys(data).forEach(key => {
+                    if (data[key].email === loginMail) {
+                        if (data[key].role === "admin") {
+                            showPage("admin-dashboard");
+                            adminHeader.textContent = `${data[key].mysport} Admin Dashboard`;
+                            adminInfoHolder.textContent = `Welcome ${data[key].username}`;
+                        } else {
+                            showPage("user-dashboard");
+                            userInfoHolder.textContent = `Welcome ${data[key].username}`;
+                        }
+                    }
+           
+                });
+              }
+                
+          });
+        });
+        
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+   onAuthStateChanged(auth, (user) => {
+       var UserEmail = user.email;
+      var loginUserRef = ref(db, "users/");
+       get(loginUserRef)
+            .then((snapshot) => {
+                var data = snapshot.val();
+                if (data) {
+                    Object.keys(data).forEach(key => {
+                    if (data[key].email === UserEmail) {
+                        if (data[key].role === "admin") {
+                            showPage("admin-dashboard");
+                            adminHeader.textContent = `${data[key].mysport} Admin Dashboard`;
+                            adminInfoHolder.textContent = `Welcome ${data[key].username}`;
+                        } else {
+                            showPage("user-dashboard");
+                            userInfoHolder.textContent = `Welcome ${data[key].username}`;
+                        }
+                    }
+           
+                });
+              }
+                
+          });
+   });
+});
+    
+    var logoutBtns = document.querySelectorAll("#logoutbtn");
+logoutBtns.forEach((btn) => {
+   btn.addEventListener("click", () => {
+      signOut(auth)
+      .then(()=>{
+         showPage('welcome-page');
+      });
+   });
+});
+
+    
+    function showPage(pageId) {
+  const pages = document.querySelectorAll('.page');
+  pages.forEach(page => page.classList.remove('active'));
+  document.getElementById(pageId).classList.add('active');
+}
+    
+    function showMessage(text, type) {
+    // Remove existing messages
+    const existingMessages = document.querySelectorAll('.message');
+    existingMessages.forEach(msg => msg.remove());
+    
+    // Create new message
+    const message = document.createElement('div');
+    message.className = `message ${type}`;
+    message.textContent = text;
+    
+    // Insert at the top of the active page
+    const activePage = document.querySelector('.page.active');
+    const container = activePage.querySelector('.container');
+    container.insertBefore(message, container.firstChild);
+    
+    // Auto-remove after 5 seconds
+    setTimeout(() => {
+        message.remove();
+    }, 5000);
+}
+    </script>
+</body>
+</html>
