@@ -5,25 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ndejje Sports</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="image/x-icon" href="favicon.png">
-    
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
+    <div id="confetti-container"></div>
+    
+    <div class="floating-sports-elements">
+        <div class="floating-icon football-icon">⚽</div>
+        <div class="floating-icon basketball-icon">🏀</div>
+        <div class="floating-icon volleyball-icon">🏐</div>
+        <div class="floating-icon rugby-icon">🏉</div>
+        <div class="floating-icon tennis-icon">🎾</div>
+        <div class="floating-icon trophy-icon">🏆</div>
+    </div>
+
     <!-- Welcome Page -->
     <div id="welcome-page" class="page active">
+        <div class="animated-bg"></div>
         <div class="container">
-            <header class="header">
-                <img src="favicon.png"/>
-                <h1 class="main-title">Ndejje Sports</h1>
-                <p class="subtitle">Record Keeping System</p>
+            <header class="header hero-header">
+                <div class="logo-container">
+                    <div class="logo-icon pulse-animation">
+                        <img src="favicon.png"/>
+                    </div>
+                    
+                </div>
+                <h1 class="main-title shimmer-text">Ndejje Sports</h1>
+                <p class="subtitle typewriter">Record Management System</p>
             </header>
             
             <div class="welcome-content">
-                <div class="welcome-card">
-                    <h2>Welcome to Ndejje Sports</h2>
-                    <p>Track and manage sports performance across all sports activities and competitions</p>
-                    <button class="btn btn-primary" onclick="showPage('signup-page')">Join the Fun</button>
+                <div class="welcome-card glass-card slide-up">
+                    <div class="sports-icons-row">
+                        <span class="sport-icon bounce-1">⚽</span>
+                        <span class="sport-icon bounce-2">🏀</span>
+                        <span class="sport-icon bounce-3">🏐</span>
+                        <span class="sport-icon bounce-4">🎾</span>
+                        <span class="sport-icon bounce-5">🏉</span>
+                    </div>
+                    <h2 class="gradient-text">Welcome to Ndejje Sports</h2>
+                    <p class="fade-in-text">Track and manage sports performance across all clubs and competitions</p>
+                    <div class="stats-preview">
+                        <div class="stat-box">
+                            <span class="stat-number counter" data-target="7">0</span>
+                            <span class="stat-label">Clubs</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number counter" data-target="9">0</span>
+                            <span class="stat-label">Sports</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number counter" data-target="100">0</span>
+                            <span class="stat-label">Games+</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-glow ripple-btn" onclick="showPage('signup-page')">
+                        <span class="btn-text">Join the Fun</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -31,10 +69,17 @@
 
     <!-- Sign Up Page -->
     <div id="signup-page" class="page">
+        <div class="animated-bg"></div>
         <div class="container">
-            <header class="sign-up-header">
+            <header class="header">
+                <div class="logo-container">
+                    <div class="logo-icon pulse-animation">
+                        <img src="favicon.png"/>
+                    </div>
+                    
+                </div>
                 <h1 class="main-title">Ndejje Sports</h1>
-                <button class="btn btn-secondary back-btn" onclick="showPage('welcome-page')">
+                <button class="btn btn-secondary back-btn ripple-btn" onclick="showPage('welcome-page')">
                     <span class="material-symbols-outlined">
 arrow_circle_left
 </span>
@@ -42,28 +87,31 @@ arrow_circle_left
             </header>
             
             <div class="form-container">
-                <div class="form-card">
-                    <h2>Login / Sign Up</h2>
+                <div class="form-card glass-card slide-up">
+                    <div class="form-header">
+                        <div class="form-icon">🔐</div>
+                        <h2>Login / Sign Up</h2>
+                    </div>
                     <div id="signup-form">
-                        <div class="form-group">
+                        <div class="form-group floating-label">
                             <label for="username">Username</label>
-                            <input type="text" id="username" name="username" required>
+                            <input type="text" id="username" name="username" required placeholder=" " autocomplete="username">                          
                         </div>
                         
-                        <div class="form-group">
+                        <div class="form-group floating-label">
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="email" required placeholder=" " autocomplete="email">                                                      
                         </div>
                         
-                        <div class="form-group">
+                        <div class="form-group floating-label">
                             <label for="password">Password</label>
                             <div class="passholder">
-                                <input type="password" id="password" name="password" required>
-                                <button type="button" id="seePass"><span class="material-symbols-outlined">
+                                <input type="password" id="password" name="password" required>                           
+                            <button type="button" id="seePass"><span class="material-symbols-outlined">
 visibility
-</span></button>
+</span></button>            
                             </div>
-                            
+                                                
                         </div>
                         
                         <div class="form-group">
@@ -79,49 +127,37 @@ visibility
                             <label for="sport">Manage Sport</label>
                             <select id="sport" name="sport">
                                 <option value="">Select Sport</option>
-                                <option value="Football">Football</option>
-                                <option value="Basketball">Basketball</option>
-                                <option value="Athletics">Athletics</option>
-                                <option value="Chess">Chess</option>
-                                <option value="Cricket">Cricket</option>
-                                <option value="Handball">Handball</option>
-                                <option value="Volleyball">Volleyball</option>
-                                <option value="Netball">Netball</option>                          
+                                <option value="football">⚽ Football</option>
+                                <option value="basketball">🏀 Basketball</option>
+                                <option value="athletics">🏃 Athletics</option>
+                                <option value="chess">♟️ Chess</option>
+                                <option value="cricket">🏏 Cricket</option>
+                                <option value="handball">🤾 Handball</option>
+                                <option value="volleyball">🏐 Volleyball</option>
+                                <option value="netball">🥅 Netball</option>
+                                <option value="rugby">🏉 Rugby</option>
                             </select>
                         </div>
                         
                         <div class="form-group" id="admin-password-section" style="display: none;">
                             <label for="admin-password">Sport Admin Password</label>
+                            
                             <div class="passholder">
-                                <input type="password" id="admin-password" name="admin-password" placeholder="Enter sport-specific password">
-                                <button type="button" id="seeAdmin"><span class="material-symbols-outlined">
+                                <input type="password" id="admin-password" name="admin-password" placeholder="Enter sport-specific password" autocomplete="current-password">
+                            <button type="button" id="seeAdmin"><span class="material-symbols-outlined">
 visibility
 </span></button>
                             </div>
-                            
                             <small class="password-hint">Each sport has its own admin password</small>
                         </div>
-                        <div class="button-holder">
-                             <button id="submitbtn" type="button" class="btn btn-primary">Sign Up</button>
-                        <button id="loginbtn" type="button" class="btn btn-primary">Login</button>
+                        <div class="btn-holder">
+                            <button type="button" id="loginbtn" class="btn btn-primary btn-glow ripple-btn half-width">Login</button>
+                        <button type="button" id="submitbtn" class="btn btn-primary btn-glow ripple-btn half-width">Sign Up</button>
                         </div>
-                       
+                        
                     </div>
-                    <!--  
-                    <div class="admin-passwords-info">
-                        <h4>Admin Passwords Reference:</h4>
-                        <div class="password-grid">
-                            <span><strong>Football:</strong> football123</span>
-                            <span><strong>Basketball:</strong> basketball123</span>
-                            <span><strong>Athletics:</strong> athletics123</span>
-                            <span><strong>Chess:</strong> chess123</span>
-                            <span><strong>Cricket:</strong> cricket123</span>
-                            <span><strong>Handball:</strong> handball123</span>
-                            <span><strong>Volleyball:</strong> volleyball123</span>
-                            <span><strong>Netball:</strong> netball123</span>
-                            <span><strong>Rugby:</strong> rugby123</span>
-                        </div>
-                    </div>--->
+                    
+                    
                 </div>
             </div>
         </div>
@@ -129,42 +165,109 @@ visibility
 
     <!-- Normal User Dashboard -->
     <div id="user-dashboard" class="page">
+        <div class="animated-bg"></div>
         <div class="container">
-            <header class="header">
-                <h1 class="main-title">Ndejje Sports</h1>
-                <h2>User Dashboard</h2>
+            <header class="header dashboard-header">
+                <div class="logo-container">
+                    <div class="logo-icon pulse-animation">🏆</div>
+                    <h1 class="main-title">Ndejje Sports</h1>
+                </div>
                 <div class="header-actions">
-                    <div id="user-info"></div>
-                    <button id="logoutbtn" class="btn btn-secondary" onclick="logout()">Logout</button>
+                    <span id="user-info" class="user-badge"></span>
+                    <button class="btn btn-secondary ripple-btn" id="logoutbtn">
+                        <span>Logout</span>
+                        
+                    </button>
                 </div>
             </header>
             
+            <!-- Live Ticker -->
+            <div class="live-ticker">
+                <div class="ticker-label">
+                    <span class="live-dot"></span>
+                    LIVE UPDATES
+                </div>
+                <div class="ticker-wrapper">
+                    <div class="ticker-content" id="ticker-content">
+                        <!-- Ticker items will be generated dynamically -->
+                    </div>
+                </div>
+            </div>
+            
             <div class="dashboard-content">
                 <div class="dashboard-sections">
-                    <div class="section full-width">
-                        <h2>Overall Club Rankings</h2>
-                        <p class="section-description">Combined performance across all sports competitions</p>
-                        <div id="overall-rankings">
+                    <div class="section full-width glass-card slide-up">
+                        <div class="section-header">
+                            <div>
+                                <h2 class="section-title">
+                                    <span class="title-icon">🏅</span>
+                                    Overall Club Rankings
+                                </h2>
+                                <p class="section-description">Combined performance across all sports competitions</p>
+                            </div>
+                            <div class="export-buttons">
+                                <button class="btn btn-secondary ripple-btn" onclick="printRankings()">
+                                    <span>🖨️</span> Print
+                                </button>
+                                <button class="btn btn-primary ripple-btn" onclick="downloadPDF()">
+                                    <span>📄</span> Download PDF
+                                </button>
+                            </div>
+                        </div>
+                        <div id="overall-rankings" class="animated-table">
                             <!-- Overall rankings table -->
                         </div>
                     </div>
                     
-                    <div class="section full-width">
-                        <h2>Sport-Specific Performance</h2>
+                    <div class="section full-width glass-card slide-up-delayed">
+                        <h2 class="section-title">
+                            <span class="title-icon">⭐</span>
+                            MVP Leaderboard
+                        </h2>
+                        <p class="section-description">Most Valuable Players across all sports with cumulative points</p>
+                        <div id="mvp-leaderboard" class="animated-table">
+                            <!-- MVP leaderboard table -->
+                        </div>
+                    </div>
+                    
+                    <div class="section full-width glass-card">
+                        <h2 class="section-title">
+                            <span class="title-icon">📊</span>
+                            Sport-Specific Performance
+                        </h2>
                         <p class="section-description">View detailed standings for individual sports</p>
                         
-                        <div class="tabs">
-                            <button class="tab-btn active" onclick="showSport('football')">Football</button>
-                            <button class="tab-btn" onclick="showSport('basketball')">Basketball</button>
-                            <button class="tab-btn" onclick="showSport('athletics')">Athletics</button>
-                            <button class="tab-btn" onclick="showSport('chess')">Chess</button>
-                            <button class="tab-btn" onclick="showSport('cricket')">Cricket</button>
-                            <button class="tab-btn" onclick="showSport('handball')">Handball</button>
-                            <button class="tab-btn" onclick="showSport('volleyball')">Volleyball</button>
-                            <button class="tab-btn" onclick="showSport('netball')">Netball</button>                   
+                        <div class="tabs sports-tabs">
+                            <button class="tab-btn active ripple-btn" onclick="showSport('football')">
+                                <span class="tab-icon">⚽</span> Football
+                            </button>
+                            <button class="tab-btn ripple-btn" onclick="showSport('basketball')">
+                                <span class="tab-icon">🏀</span> Basketball
+                            </button>
+                            <button class="tab-btn ripple-btn" onclick="showSport('athletics')">
+                                <span class="tab-icon">🏃</span> Athletics
+                            </button>
+                            <button class="tab-btn ripple-btn" onclick="showSport('chess')">
+                                <span class="tab-icon">♟️</span> Chess
+                            </button>
+                            <button class="tab-btn ripple-btn" onclick="showSport('cricket')">
+                                <span class="tab-icon">🏏</span> Cricket
+                            </button>
+                            <button class="tab-btn ripple-btn" onclick="showSport('handball')">
+                                <span class="tab-icon">🤾</span> Handball
+                            </button>
+                            <button class="tab-btn ripple-btn" onclick="showSport('volleyball')">
+                                <span class="tab-icon">🏐</span> Volleyball
+                            </button>
+                            <button class="tab-btn ripple-btn" onclick="showSport('netball')">
+                                <span class="tab-icon">🥅</span> Netball
+                            </button>
+                            <button class="tab-btn ripple-btn" onclick="showSport('rugby')">
+                                <span class="tab-icon">🏉</span> Rugby
+                            </button>
                         </div>
                         
-                        <div id="sport-tables">
+                        <div id="sport-tables" class="animated-table">
                             <!-- Tables will be generated dynamically -->
                         </div>
                     </div>
@@ -175,27 +278,96 @@ visibility
 
     <!-- Admin Dashboard -->
     <div id="admin-dashboard" class="page">
+        <div class="animated-bg"></div>
         <div class="container">
-            <header class="header">
-                <h1 class="main-title">Ndejje Sports</h1>
-                <h2 id="admin-holder">Admin Dashboard</h2>
+            <header class="header dashboard-header">
+                <div class="logo-container">
+                    <div class="logo-icon pulse-animation">
+                        <img src="favicon.png"/>
+                    </div>
+                    <h1 class="main-title" id="admin-holder">Ndejje Sports - Admin</h1>
+                </div>
                 <div class="header-actions">
-                    <div id="admin-info"></div>
-                    <button id="logoutbtn" class="btn btn-secondary" onclick="logout()">Logout</button>
+                    <span id="admin-info" class="admin-badge"></span>
+                    <button id="logoutbtn" class="btn btn-secondary ripple-btn">
+                        <span>Logout</span>
+                        
+                    </button>
                 </div>
             </header>
             
             <div class="dashboard-content">
                 <div class="admin-sections">
-                    <div class="section full-width">
+                    <div class="section full-width glass-card slide-up">
                         <div class="section-header">
-                            <h3>Current Sport Performance</h3>
-                            <button class="btn btn-primary record-game-btn" onclick="toggleGameForm()">
-                                ➕ Record New Game
+                            <h3 class="section-title">
+                                <span class="title-icon" id="admin-sport-icon">⚽</span>
+                                <span id="admin-sport-title">Current Sport Performance</span>
+                            </h3>
+                            <button class="btn btn-primary record-game-btn ripple-btn pulse-btn" onclick="toggleGameForm()">
+                                <span class="btn-icon">➕</span> Record New Game
                             </button>
                         </div>
-                        <div id="admin-sport-table">
+                        <div id="admin-sport-table" class="animated-table">
                             <!-- Current sport table -->
+                        </div>
+                    </div>
+                    
+                    <div class="section full-width glass-card game-form-section" id="game-recording-section" style="display: none;">
+                        <div class="form-header-admin">
+                            <h3> Add New Game Record</h3>
+                        </div>
+                        <div class="form-card enhanced-form">
+                            <form id="game-form">
+                                <div class="form-row match-row">
+                                    <div class="form-group team-group">
+                                        <label for="clubA">Club A</label>
+                                        <select id="clubA" name="clubA" required>
+                                            <option value="">Select Club A</option>
+                                            <option value="Muyingo">Muyingo</option>
+                                            <option value="Kabalega">Kabalega</option>
+                                            <option value="Walusimbi">Walusimbi</option>
+                                            <option value="Muteesa">Muteesa</option>
+                                            <option value="Mboya">Mboya</option>
+                                            <option value="Lumumba">Lumumba</option>
+                                            <option value="Lubambula">Lubambula</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group score-group">
+                                        <label for="scoreA">Score</label>
+                                        <input type="number" id="scoreA" name="scoreA" min="0" required placeholder="0" class="score-input">
+                                    </div>
+                                    
+                                    <div class="vs-separator animated-vs">
+                                        <span class="vs-text">VS</span>
+                                    </div>
+                                    
+                                    <div class="form-group score-group">
+                                        <label for="scoreB">Score</label>
+                                        <input type="number" id="scoreB" name="scoreB" min="0" required placeholder="0" class="score-input">
+                                    </div>
+                                    
+                                    <div class="form-group team-group">
+                                        <label for="clubB">Club B</label>
+                                        <select id="clubB" name="clubB" required>
+                                            <option value="">Select Club B</option>
+                                            <option value="Muyingo">Muyingo</option>
+                                            <option value="Kabalega">Kabalega</option>
+                                            <option value="Walusimbi">Walusimbi</option>
+                                            <option value="Muteesa">Muteesa</option>
+                                            <option value="Mboya">Mboya</option>
+                                            <option value="Lumumba">Lumumba</option>
+                                            <option value="Lubambula">Lubambula</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="scorers">Scorers</label>
+                                        <textarea id="scorers" name="scorers" rows="3" placeholder="List scorers separated by commas&#10;e.g. John Doe, Jane Smith, Mike Wilson"></textarea>
+ <!-- Current sport table -->
                         </div>
                     </div>
                     
