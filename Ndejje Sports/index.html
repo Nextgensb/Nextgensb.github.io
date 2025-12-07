@@ -367,60 +367,6 @@ visibility
                                     <div class="form-group">
                                         <label for="scorers">Scorers</label>
                                         <textarea id="scorers" name="scorers" rows="3" placeholder="List scorers separated by commas&#10;e.g. John Doe, Jane Smith, Mike Wilson"></textarea>
- <!-- Current sport table -->
-                        </div>
-                    </div>
-                    
-                    <div class="section full-width" id="game-recording-section" style="display: none;">
-                        <h3>Add New Game Record</h3>
-                        <div class="form-card enhanced-form">
-                            <form id="game-form">
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="clubA">Club A</label>
-                                        <select id="clubA" name="clubA" required>
-                                            <option value="">Select Club A</option>
-                                            <option value="Muyingo">Muyingo</option>
-                                            <option value="Kabalega">Kabalega</option>
-                                            <option value="Walusimbi">Walusimbi</option>
-                                            <option value="Muteesa">Muteesa</option>
-                                            <option value="Mboya">Mboya</option>
-                                            <option value="Lumumba">Lumumba</option>
-                                            <option value="Lubambula">Lubambula</option>
-                                        </select>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="scoreA">Score A</label>
-                                        <input type="number" id="scoreA" name="scoreA" min="0" required placeholder="0">
-                                    </div>
-                                    
-                                    <div class="vs-separator">VS</div>
-                                    
-                                    <div class="form-group">
-                                        <label for="clubB">Club B</label>
-                                        <select id="clubB" name="clubB" required>
-                                            <option value="">Select Club B</option>
-                                            <option value="Muyingo">Muyingo</option>
-                                            <option value="Kabalega">Kabalega</option>
-                                            <option value="Walusimbi">Walusimbi</option>
-                                            <option value="Muteesa">Muteesa</option>
-                                            <option value="Mboya">Mboya</option>
-                                            <option value="Lumumba">Lumumba</option>
-                                            <option value="Lubambula">Lubambula</option>
-                                        </select>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="scoreB">Score B</label>
-                                        <input type="number" id="scoreB" name="scoreB" min="0" required placeholder="0">
-                                    </div>
-                                </div>
-                                
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="scorers">Scorers</label>
-                                        <textarea id="scorers" name="scorers" rows="3" placeholder="List scorers separated by commas&#10;e.g. John Doe, Jane Smith, Mike Wilson"></textarea>
                                     </div>
                                     
                                     <div class="form-group">
@@ -437,17 +383,24 @@ visibility
                                     </div>
                                     
                                     <div class="form-group submit-group">
-                                        <button type="submit" class="btn btn-primary submit-btn">Submit Game Record</button>
-                                        <button type="button" class="btn btn-secondary cancel-btn" onclick="toggleGameForm()">Cancel</button>
+                                        <button type="submit" class="btn btn-primary submit-btn ripple-btn btn-glow">
+                                            <span>✓</span> Submit Game Record
+                                        </button>
+                                        <button type="button" class="btn btn-secondary cancel-btn ripple-btn" onclick="toggleGameForm()">
+                                            <span>✕</span> Cancel
+                                        </button>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
                     
-                    <div class="section full-width" id="recent-games-section">
-                        <h3>Recent Game Records</h3>
-                        <div id="recent-games-table">
+                    <div class="section full-width glass-card slide-up-delayed" id="recent-games-section">
+                        <h3 class="section-title">
+                            <span class="title-icon">📋</span>
+                            Recent Game Records
+                        </h3>
+                        <div id="recent-games-table" class="animated-table">
                             <!-- Recent games table -->
                         </div>
                     </div>
@@ -456,8 +409,8 @@ visibility
         </div>
     </div>
 
-    <script src="aep.js"></script>
-    <script type="module">
+    <script src="index.js"></script>
+      <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-analytics.js";
   import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signOut } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
@@ -492,6 +445,7 @@ visibility
     var userInfoHolder = document.querySelector("#user-info");
     var adminInfoHolder = document.querySelector("#admin-info");
     var adminHeader = document.querySelector("#admin-holder");
+    var sportImage = document.querySelector("#sport-img");
     
 
     submitBtn.addEventListener('click', () => {
@@ -503,8 +457,8 @@ visibility
        var adminPassword = adminPasswordInput.value;
         
         if (role === "admin") {
-            alert("chose admin");
-            var adminPassRef = ref(db, "adminpass");
+            if (sportInCharge !== "" && adminPassword !== ""){
+                var adminPassRef = ref(db, "adminpass");
             get(adminPassRef)
             .then((snapshot) => {
                 var data = snapshot.val();
@@ -512,13 +466,14 @@ visibility
                     Object.keys(data).forEach(key => {
                     if (data[key].Sport === sportInCharge){
                         if (data[key].Passcode === adminPassword.trim()) {
-                            alert("correct pass...");
+                            alert("passcode check");
            createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
+                alert("signed in...");
                 var userData = userCredential.user;
                 var userMail = userData.email;
                 var userId = userData.uid;
-                alert(`${userMail}: ${userId}... signed in.`);
+                
                 var userRef = push(ref(db, "users/"));
                 set(userRef, {
                     email: userMail,
@@ -528,13 +483,16 @@ visibility
                     mysport: sportInCharge                   
                 })
                 .then(() => {
+                    alert("fully works");
                    adminInfoHolder.textContent = `Welcome ${usernameInput.value}`; 
                     adminHeader.textContent = `${sportInCharge} Admin Dashboard`;
+                    adminHeader.dataset.id = `${sportInCharge}`;
+                    
                 emailInput.value = "";
                 passwordInput.value = "";
                 usernameInput.value = "";
                 userRole.value = "";
-                    alert("sign in successful");
+                    
                     showPage("admin-dashboard");
                 });
             });
@@ -544,14 +502,16 @@ visibility
               }
                 
             });
-        } else {
-            alert("chose normal");
+            }
+            
+        } else if (role === "normal") {
+            alert("well, normal user");
             createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 var userData = userCredential.user;
                 var userMail = userData.email;
                 var userId = userData.uid;
-                alert(`${userMail}: ${userId}... signed in.`);
+                alert("signed in");
                 var userRef = push(ref(db, "users/"));
                 set(userRef, {
                     email: userMail,
@@ -560,15 +520,18 @@ visibility
                     role: "normal"
                 })
                 .then(() => {
+                    alert("fully works");
                     userInfoHolder.textContent = `Welcome ${usernameInput.value}`;
                 emailInput.value = "";
                 passwordInput.value = "";
                 usernameInput.value = "";
                 userRole.value = "";
-                    alert("sign in successful");
+                    
                     showPage("user-dashboard");                   
                 });
             });
+        } else {
+            alert("Please choose a user type.");
         }
     });
     var loginBtn = document.querySelector("#loginbtn");
@@ -589,11 +552,20 @@ visibility
                     if (data[key].email === loginMail) {
                         if (data[key].role === "admin") {
                             showPage("admin-dashboard");
+                            adminHeader.dataset.id = `${data[key].mysport}`;                           
                             adminHeader.textContent = `${data[key].mysport} Admin Dashboard`;
                             adminInfoHolder.textContent = `Welcome ${data[key].username}`;
+                            emailInput.value = "";
+                            passwordInput.value = "";
+                            usernameInput.value = "";
+                            userRole.value = "";
                         } else {
                             showPage("user-dashboard");
                             userInfoHolder.textContent = `Welcome ${data[key].username}`;
+                            emailInput.value = "";
+                            passwordInput.value = "";
+                            usernameInput.value = "";
+                            userRole.value = "";
                         }
                     }
            
@@ -616,6 +588,7 @@ visibility
                     if (data[key].email === UserEmail) {
                         if (data[key].role === "admin") {
                             showPage("admin-dashboard");
+                            adminHeader.dataset.id = `${data[key].mysport}`;                          
                             adminHeader.textContent = `${data[key].mysport} Admin Dashboard`;
                             adminInfoHolder.textContent = `Welcome ${data[key].username}`;
                         } else {
@@ -668,6 +641,24 @@ logoutBtns.forEach((btn) => {
         message.remove();
     }, 5000);
 }
+    
+    //data management...
+ var clubA = document.querySelector("#clubA");
+var scoreA = document.querySelector("#scoreA");
+var clubB = document.querySelector("#clubB");
+var scoreB = document.querySelector("#scoreB");
+var scorers = document.querySelector("#scorers");
+var mvplayer = document.querySelector("#mvp");
+var gameDate = document.querySelector("#game-date");
+var gameSubmitBtn = document.querySelector("#game-submit-btn");
+
+gameSubmitBtn.addEventListener('click', () => {
+   var currentSport = adminHeader.dataset.id;
+   alert(currentSport);
+   var gameRef = push(ref(db, 'games/'));
+   
+});
+
     </script>
 </body>
 </html>
