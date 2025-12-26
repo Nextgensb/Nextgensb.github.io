@@ -1,240 +1,168 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-analytics.js";
+  import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signOut } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+  import { getDatabase, ref, get, set, push, query, orderByChild, onValue } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
+    
+ const firebaseConfig = {
+    apiKey: "AIzaSyAV7M-zZkGYQ0knqwj_Ye6h6Kv8t8es0Xs",
+    authDomain: "ndejjesports-fd835.firebaseapp.com",
+    databaseURL: "https://ndejjesports-fd835-default-rtdb.firebaseio.com",
+    projectId: "ndejjesports-fd835",
+    storageBucket: "ndejjesports-fd835.firebasestorage.app",
+    messagingSenderId: "790541678240",
+    appId: "1:790541678240:web:958631d2e7f1f71c94fbc5",
+    measurementId: "G-6BCLJS55LZ"
+  };
 
-// Initialize the application
-document.addEventListener('DOMContentLoaded', function() {
-    initializeApp();
-    setupEventListeners();
-    startAnimations();
-});
+  // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getDatabase(app);
+    const auth = getAuth(app);
+    
+    var usernameInput = document.querySelector("#username");
+    var emailInput = document.querySelector("#email");
+    var passwordInput = document.querySelector("#password");
+    var userRole = document.querySelector("#role");
+    var sportInChargeInput = document.querySelector("#sport");
+    var adminPasswordInput = document.querySelector("#admin-password");
+    var submitBtn = document.querySelector("#submitbtn");
 
-function initializeApp() {
-    // Check if user is already logged in
-    const savedUser = localStorage.getItem('currentUser');
-    if (savedUser) {
-        currentUser = JSON.parse(savedUser);
-        if (currentUser.role === 'admin') {
-            showAdminDashboard();
-        } else {
-            showUserDashboard();
-        }
-    } else {
-        showPage('welcome-page');
-    }
-    
-    // Initialize empty data structure if not exists
-    if (!localStorage.getItem('sportsData')) {
-        initializeSportsData();
-    }
-}
-
-function setupEventListeners() {
-    // Signup form submission
-    document.getElementById('signup-form').addEventListener('submit', handleSignup);
-    
-    // Game form submission
-    document.getElementById('game-form').addEventListener('submit', handleGameSubmission);
-    
-    // Add ripple effect to all ripple buttons
-    document.querySelectorAll('.ripple-btn').forEach(btn => {
-        btn.addEventListener('click', createRipple);
-    });
-}
-
-function createRipple(event) {
-    const button = event.currentTarget;
-    const ripple = document.createElement('span');
-    const rect = button.getBoundingClientRect();
-    const size = Math.max(rect.width, rect.height);
-    const x = event.clientX - rect.left - size / 2;
-    const y = event.clientY - rect.top - size / 2;
-    
-    ripple.style.cssText = `
-        position: absolute;
-        width: ${size}px;
-        height: ${size}px;
-        left: ${x}px;
-        top: ${y}px;
-        background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 60%);
-        border-radius: 50%;
-        transform: scale(0);
-        animation: rippleEffect 0.6s ease-out;
-        pointer-events: none;
-    `;
-    
-    button.appendChild(ripple);
-    setTimeout(() => ripple.remove(), 600);
-}
-
-function startAnimations() {
-    // Animate counters when visible
-    animateCounters();
-    
-    // Initialize live ticker
-    initializeTicker();
-}
-
-function animateCounters() {
-    const counters = document.querySelectorAll('.counter');
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const counter = entry.target;
-                const target = parseInt(counter.getAttribute('data-target'));
-                animateCounter(counter, target);
-                observer.unobserve(counter);
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    counters.forEach(counter => observer.observe(counter));
-}
-
-function animateCounter(element, target) {
-    let current = 0;
-    const increment = target / 50;
-    const duration = 1500;
-    const stepTime = duration / 50;
-    
-    const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-            element.textContent = target;
-            clearInterval(timer);
-        } else {
-            element.textContent = Math.floor(current);
-        }
-    }, stepTime);
-}
-
-function initializeTicker() {
-    const tickerContent = document.getElementById('ticker-content');
-    if (!tickerContent) return;
-    
-    const sportsData = getSportsData();
-    const allGames = [];
-    
-    // Collect recent games from all sports
-    sports.forEach(sport => {
-        const games = sportsData[sport]?.games || [];
-        games.slice(0, 3).forEach(game => {
-            allGames.push({ ...game, sport });
-        });
-    });
-    
-    if (allGames.length === 0) {
-        // Default ticker items
-        const defaultItems = [
-            { text: 'Welcome to Ndejje Sports!', icon: '🏆' },
-            { text: '7 Clubs competing across 9 Sports', icon: '⚽' },
-            { text: 'Track performance in real-time', icon: '📊' },
-            { text: 'View MVPs and Rankings', icon: '⭐' },
-            { text: 'Record and manage game results', icon: '🎮' }
-        ];
+    submitBtn.addEventListener('click', () => {
+       var email = emailInput.value;
+        var password = passwordInput.value;
+        var username = usernameInput.value;
+        var role = userRole.value;
+        var sportInCharge = sportInChargeInput.value;
+       var adminPassword = adminPasswordInput.value;
         
-        let tickerHTML = '';
-        defaultItems.forEach((item, i) => {
-            tickerHTML += `
-                <div class="ticker-item">
-                    <span>${item.icon}</span>
-                    <span>${item.text}</span>
-                </div>
-                ${i < defaultItems.length - 1 ? '<span class="ticker-divider">|</span>' : ''}
-            `;
-        });
-        
-        // Duplicate for seamless loop
-        tickerContent.innerHTML = tickerHTML + tickerHTML;
-        return;
-    }
-    
-    // Generate ticker from actual games
-    let tickerHTML = '';
-    allGames.forEach((game, i) => {
-        const icon = sportIcons[game.sport] || '🏆';
-        tickerHTML += `
-            <div class="ticker-item">
-                <span>${icon}</span>
-                <span>${game.team1}</span>
-                <span class="ticker-score">${game.score1} - ${game.score2}</span>
-                <span>${game.team2}</span>
-            </div>
-            <span class="ticker-divider">|</span>
-        `;
-    });
-    
-    // Duplicate for seamless loop
-    tickerContent.innerHTML = tickerHTML + tickerHTML;
-}
-
-function showPage(pageId) {
-    // Hide all pages
+        if (role === "admin") {
+           var adminPassRef = ref(db, "adminpass/");
+           get(adminPassRef)
+           .then((snapshot) => {
+              var data = snapshot.val();
+              Object.keys(data).forEach((key) => {
+                 if (data[key].passcode === adminPassword.trim()) {        
+                    
+                    createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            var uid = userCredential.user.uid;
+            var adminUserRef = push(ref(db, "users/"))
+            set(adminUserRef, {
+               username: username,
+               email: email,
+               uid: uid,
+               role: role,
+               sportInCharge: sportInCharge,
+               adminPassword: adminPassword
+            })
+            .then(()=>{
+                emailInput.value = "";
+                passwordInput.value = "";
+                usernameInput.value = "";
+                userRole.value = "";
+                sportInChargeInput.value = "";
+                adminPasswordInput.value = "";
+              
+                // Hide all pages
     const pages = document.querySelectorAll('.page');
     pages.forEach(page => page.classList.remove('active'));
     
     // Show the specified page
-    document.getElementById(pageId).classList.add('active');
+    document.getElementById("admin-dashboard").classList.add('active');
+            });
+        });                           
+                 } else {
+                    alert('Please enter correct Admin Password');
+                 }   
+                     });    
+           });
+        } else {
+           createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            var uid = userCredential.user.uid;
+            var normalUserRef = push(ref(db, "users/"))
+            set(normalUserRef, {
+               username: username,
+               email: email,
+               uid: uid,
+               role: role
+            })
+            .then(()=>{
+                emailInput.value = "";
+                passwordInput.value = "";
+                usernameInput.value = "";
+                userRole.value = "";
+                
+                // Hide all pages
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(page => page.classList.remove('active'));
     
-    // Restart animations for the new page
-    if (pageId === 'welcome-page') {
-        animateCounters();
-    }
+    // Show the specified page
+    document.getElementById("user-dashboard").classList.add('active');
+            });
+        });      
+            
+        }
+    });
+
+var logoutBtns = document.querySelectorAll("#logoutbtn");
+logoutBtns.forEach((btn) => {
+   btn.addEventListener("click", () => {
+      signOut(auth)
+      .then(()=>{
+         showPage('welcome-page');
+      });
+   });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+   onAuthStateChanged(auth, (user) => {
+      
+   });
+});
+function showPage(pageId) {
+  const pages = document.querySelectorAll('.page');
+  pages.forEach(page => page.classList.remove('active'));
+  document.getElementById(pageId).classList.add('active');
 }
 
-function toggleSportSelection() {
-    const role = document.getElementById('role').value;
-    const sportSelection = document.getElementById('sport-selection');
-    const adminPasswordSection = document.getElementById('admin-password-section');
-    
-    if (role === 'admin') {
-        sportSelection.style.display = 'block';
-        adminPasswordSection.style.display = 'block';
-        document.getElementById('sport').setAttribute('required', 'required');
-        document.getElementById('admin-password').setAttribute('required', 'required');
-    } else {
-        sportSelection.style.display = 'none';
-        adminPasswordSection.style.display = 'none';
-        document.getElementById('sport').removeAttribute('required');
-        document.getElementById('admin-password').removeAttribute('required');
-    }
-}
+var clubA = document.querySelector("#clubA");
+var scoreA = document.querySelector("#scoreA");
+var clubB = document.querySelector("#clubB");
+var scoreB = document.querySelector("#scoreB");
+var mvplayer = document.querySelector("#mvp");
+var gameDate = document.querySelector("#game-date");
+var gameSubmitBtn = document.querySelector("#game-submit-btn");
 
-var passwordInput = document.querySelector("#password");
-var adminPasswordInput = document.querySelector("#admin-password");
-var viewPassBtn = document.querySelector("#seePass");
-var checkPass = "pass";
-viewPassBtn.addEventListener("click", viewUserPass);
-function viewUserPass() {
-    if (checkPass === "pass") {
-        passwordInput.type = "text";
-        checkPass = "code";
-        viewPassBtn.innerHTML = `<span class="material-symbols-outlined">
-visibility_off
-</span>`;
-    } else {
-        passwordInput.type = "password";
-        checkPass = "pass";
-        viewPassBtn.innerHTML = `<span class="material-symbols-outlined">
-visibility
-</span>`;
-    }
-}
-var viewAdminPassBtn = document.querySelector("#seeAdmin");
-var adminCheck = "true";
-viewAdminPassBtn.addEventListener("click", viewAdminUserPass);
-function viewAdminUserPass() {
-    if (adminCheck === "true") {
-        adminPasswordInput.type = "text";
-        adminCheck = "False";
-        viewAdminPassBtn.innerHTML = `<span class="material-symbols-outlined">
-visibility_off
-</span>`;
-    } else {
-        adminPasswordInput.type = "password";
-        adminCheck = "true";
-        viewAdminPassBtn.innerHTML = `<span class="material-symbols-outlined">
-visibility
-</span>`;
-    }
-    
-}
+var gameRecordingTab = document.querySelector("#game-recording-section");
+
+gameSubmitBtn.addEventListener('click', () => {
+   var currentSport = adminHeader.dataset.id;
+   alert(currentSport);
+   var gameRef = push(ref(db, 'games/' + currentSport));
+   
+   set(gameRef, {
+      teamone: clubA.value,
+      scoreone: scoreA.value,
+      teamtwo: clubB.value,
+      scoretwo: scoreB.value,
+      mvp: mvplayer.value,
+      gamedate: gameDate.value
+   }).then(() => {
+      clubA.value = "";
+      scoreA.value = "";
+      clubB.value = "";
+      scoreB.value = "";
+      mvplayer.value = "";
+      gameDate.value = "";
+      
+      gameRecordingTab.style.display = "none";
+   });
+});
+
+onValue()
+
+
+

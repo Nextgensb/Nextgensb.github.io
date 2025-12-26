@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="ndejje sports logo_20251221_161551_0000.png"/>
+    <title>Ndejje Sports</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+ 
+
+   
+    <!-- Sign Up Page -->
+    <div id="signup-page" class="page">
+        <div class="animated-bg"></div>
+        <div class="container">
+            <header class="header">
+                <div class="logo-container">
+                     <img class="signup-img" src="logo.png"/>
+                    
+                    
+                </div>
+                
+                <a href="index.html" class="btn btn-secondary back-btn ripple-btn" onclick="showPage('welcome-page')">
+                    <span class="material-symbols-outlined">
+arrow_circle_left
+</span>
+                    Back</a>
+            </header>
+            
+            <div class="form-container">
+                <div class="form-card glass-card slide-up">
+                    <div class="form-header">
+                        <div class="form-icon">🔐</div>
+                        <h2>Login / Sign Up</h2>
+                    </div>
+                    <div id="signup-form">
+                        <div class="form-group floating-label">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" required placeholder=" " autocomplete="username">                          
+                        </div>
+                        
+                        <div class="form-group floating-label">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required placeholder=" " autocomplete="email">                                                      
+                        </div>
+                        
+                        <div class="form-group floating-label">
+                            <label for="password">Password</label>
+                            <div class="passholder">
+                                <input type="password" id="password" name="password" required>                           
+                            <button type="button" id="seePass"><span class="material-symbols-outlined">
+visibility
+</span></button>            
+                            </div>
+                                                
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="role">Sign up as</label>
+                            <select id="role" name="role" required onchange="toggleSportSelection()">
+                                <option value="">Select Role</option>
+                                <option value="normal">Normal User</option>
+                                <option value="admin">Admin User</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group" id="sport-selection" style="display: none;">
+                            <label for="sport">Manage Sport</label>
+                            <select id="sport" name="sport">
+                                <option value="">Select Sport</option>
+                                <option value="Football">⚽ Football</option>
+                                <option value="Basketball">🏀 Basketball</option>
+                                <option value="Athletics">🏃 Athletics</option>
+                                <option value="Chess">♟️ Chess</option>
+                                <option value="Cricket">🏏 Cricket</option>
+                                <option value="Handball">🤾 Handball</option>
+                                <option value="Volleyball">🏐 Volleyball</option>
+                                <option value="Netball">🥅 Netball</option>
+                                <option value="Rugby">🏉 Rugby</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group" id="admin-password-section" style="display: none;">
+                            <label for="admin-password">Sport Admin Password</label>
+                            
+                            <div class="passholder">
+                                <input type="password" id="admin-password" name="admin-password" placeholder="Enter sport-specific password" autocomplete="current-password">
+                            <button type="button" id="seeAdmin"><span class="material-symbols-outlined">
+visibility
+</span></button>
+                            </div>
+                            <small class="password-hint">Each sport has its own admin password</small>
+                        </div>
+                        <div class="btn-holder">
+                            <button type="button" id="submitbtn" class="btn btn-primary btn-glow ripple-btn half-width">Sign Up</button>
+                            <button type="button" id="loginbtn" class="btn btn-primary btn-glow ripple-btn half-width">Login</button>
+                        
+                        </div>
+                        
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="aip.js"></script>
+     <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-analytics.js";
+  import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signOut } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+  import { getDatabase, ref, get, set, push, query, orderByChild, onValue } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+
+    
+ const firebaseConfig = {
+    apiKey: "AIzaSyAV7M-zZkGYQ0knqwj_Ye6h6Kv8t8es0Xs",
+    authDomain: "ndejjesports-fd835.firebaseapp.com",
+    databaseURL: "https://ndejjesports-fd835-default-rtdb.firebaseio.com",
+    projectId: "ndejjesports-fd835",
+    storageBucket: "ndejjesports-fd835.firebasestorage.app",
+    messagingSenderId: "790541678240",
+    appId: "1:790541678240:web:958631d2e7f1f71c94fbc5",
+    measurementId: "G-6BCLJS55LZ"
+  };
+
+  // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getDatabase(app);
+    const auth = getAuth(app);
+    
+    var usernameInput = document.querySelector("#username");
+    var emailInput = document.querySelector("#email");
+    var passwordInput = document.querySelector("#password");
+    var userRole = document.querySelector("#role");
+    var sportInChargeInput = document.querySelector("#sport");
+    var adminPasswordInput = document.querySelector("#admin-password");
+    var submitBtn = document.querySelector("#submitbtn");
+
+      submitBtn.addEventListener("click", async () => {
+  submitBtn.textContent = "Signing up...";
+  submitBtn.style.opacity = "0.5";
+  submitBtn.disabled = true;
+
+  const email = emailInput.value.trim();
+  const password = passwordInput.value.trim();
+  const username = usernameInput.value.trim();
+  const role = userRole.value;
+  const sportInCharge = sportInChargeInput.value.trim();
+  const adminPassword = adminPasswordInput.value.trim();
+
+  if (!email || !password || !username || !role) {
+    alert("Please fill in all required fields");
+    resetBtn();
+    return;
+  }
+
+  try {
+    // ===== ADMIN VALIDATION =====
+    if (role === "admin") {
+      const adminPassRef = ref(db, "adminpass");
+      const snapshot = await get(adminPassRef);
+
+      if (!snapshot.exists()) {
+        alert("Admin credentials not found");
+        resetBtn();
+        return;
+      }
+
+      let isAuthorized = false;
+
+      snapshot.forEach(childSnapshot => {
+        const data = childSnapshot.val();
+
+        if (
+          data.Sport === sportInCharge &&
+          data.Passcode === adminPassword
+        ) {
+          isAuthorized = true;
+        }
+      });
+
+      if (!isAuthorized) {
+        alert("Invalid admin password or sport");
+        resetBtn();
+        return;
+      }
+    }
+
+    // ===== CREATE AUTH USER =====
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    const user = userCredential.user;
+
+    // OPTIONAL: update display name
+    await updateProfile(user, {
+      displayName: username
+    });
+
+    // ===== SAVE USER TO DATABASE =====
+    const userRef = push(ref(db, "users"));
+
+    await set(userRef, {
+      email: user.email,
+      userId: user.uid,
+      username: username,
+      role: role === "admin" ? "admin" : "normal",
+      mysport: role === "admin" ? sportInCharge : ""
+    });
+
+    // ===== REDIRECT =====
+    window.location.href =
+      role === "admin" ? "admin.html" : "normal.html";
+
+  } catch (error) {
+    alert(error.message);
+    resetBtn();
+  }
+
+  function resetBtn() {
+    submitBtn.textContent = "Submit";
+    submitBtn.style.opacity = "1";
+    submitBtn.disabled = false;
+  }
+});
+
+     var loginBtn = document.querySelector("#loginbtn");
+    loginBtn.addEventListener("click", async () => {
+  loginBtn.textContent = "Logging in...";
+  loginBtn.style.opacity = "0.5";
+  loginBtn.disabled = true;
+
+  const email = emailInput.value.trim();
+  const password = passwordInput.value.trim();
+
+  if (!email || !password) {
+    alert("Please enter email and password");
+    resetBtn();
+    return;
+  }
+
+  try {
+    // ===== SIGN IN =====
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    const userEmail = userCredential.user.email;
+
+    // ===== GET USER ROLE =====
+    const usersRef = ref(db, "users");
+    const snapshot = await get(usersRef);
+
+    if (!snapshot.exists()) {
+      alert("User data not found");
+      resetBtn();
+      return;
+    }
+
+    let role = "normal";
+
+    snapshot.forEach(childSnapshot => {
+      const data = childSnapshot.val();
+
+      if (data.email === userEmail) {
+        role = data.role;
+      }
+    });
+
+    // ===== REDIRECT =====
+    window.location.href =
+      role === "admin" ? "admin.html" : "normal.html";
+
+  } catch (error) {
+    alert(error.message);
+    resetBtn();
+  }
+
+  function resetBtn() {
+    loginBtn.textContent = "Login";
+    loginBtn.style.opacity = "1";
+    loginBtn.disabled = false;
+  }
+});
+
+    </script>
+</body>
+</html>
+   

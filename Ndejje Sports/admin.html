@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="ndejje sports logo_20251221_161551_0000.png"/>
+    <title>Ndejje Sports</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+  <!-- Admin Dashboard -->
+    <div id="admin-dashboard" class="page">
+        <div class="animated-bg"></div>
+        <div class="container">
+            <header class="header dashboard-header">
+                <div class="logo-container">
+                     <img class="banner" src="banner.jpg"/>
+                </div>
+                    <h1 class="main-title" id="admin-holder">Ndejje Sports - Admin</h1>
+               
+                <div class="header-actions">
+                    <span id="admin-info" class="admin-badge">Welcome</span>
+                    <button id="logoutbtn" class="btn btn-secondary ripple-btn">
+                        <span>Logout</span>
+                        
+                    </button>
+                </div>
+            </header>
+            
+            <div class="dashboard-content">
+                <div class="admin-sections">
+                    <div class="section full-width glass-card slide-up">
+                        <div class="section-header">
+                            <h3 class="section-title">
+                                <span class="title-icon" id="admin-sport-icon">
+                                    <img src="banner2.png" id="sport-image"/>
+                                </span>
+                                <span id="admin-sport-title">Current Sport Performance</span>
+                            </h3>
+                            <button class="btn btn-primary record-game-btn ripple-btn pulse-btn" onclick="toggleGameForm()">
+                                <span class="btn-icon">➕</span> Record New Game
+                            </button>
+                        </div>
+                        <div id="admin-sport-table" class="animated-table">
+                            <!-- Current sport table -->
+                        </div>
+                    </div>
+                    
+                    <div class="section full-width glass-card game-form-section" id="game-recording-section" style="display: none;">
+                        <div class="form-header-admin">
+                            <h3> Add New Game Record</h3>
+                        </div>
+                        <div class="form-card enhanced-form">
+                            <form id="game-form">
+                                <div class="form-row match-row">
+                                    <div class="form-group team-group">
+                                        <label for="clubA">Club A</label>
+                                        <select id="clubA" name="clubA" required>
+                                            <option value="">Select Club A</option>
+                                            <option value="Muyingo">Muyingo</option>
+                                            <option value="Kabalega">Kabalega</option>
+                                            <option value="Walusimbi">Walusimbi</option>
+                                            <option value="Muteesa">Muteesa</option>
+                                            <option value="Mboya">Mboya</option>
+                                            <option value="Lumumba">Lumumba</option>
+                                            <option value="Lubambula">Lubambula</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group score-group">
+                                        <label for="scoreA">Score</label>
+                                        <input type="number" id="scoreA" name="scoreA" min="0" required placeholder="0" class="score-input">
+                                    </div>
+                                    
+                                    <div class="vs-separator animated-vs">
+                                        <span class="vs-text">VS</span>
+                                    </div>
+                                    
+                                    <div class="form-group score-group">
+                                        <label for="scoreB">Score</label>
+                                        <input type="number" id="scoreB" name="scoreB" min="0" required placeholder="0" class="score-input">
+                                    </div>
+                                    
+                                    <div class="form-group team-group">
+                                        <label for="clubB">Club B</label>
+                                        <select id="clubB" name="clubB" required>
+                                            <option value="">Select Club B</option>
+                                            <option value="Muyingo">Muyingo</option>
+                                            <option value="Kabalega">Kabalega</option>
+                                            <option value="Walusimbi">Walusimbi</option>
+                                            <option value="Muteesa">Muteesa</option>
+                                            <option value="Mboya">Mboya</option>
+                                            <option value="Lumumba">Lumumba</option>
+                                            <option value="Lubambula">Lubambula</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="scorers">Scorers</label>
+                                        <textarea id="scorers" name="scorers" rows="3" placeholder="List scorers separated by commas&#10;e.g. John Doe, Jane Smith, Mike Wilson"></textarea>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="mvp">MVP (Most Valuable Player)</label>
+                                        <input type="text" id="mvp" name="mvp" required placeholder="Enter MVP name">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="game-date">Game Date</label>
+                                        <input type="date" id="game-date" name="game-date">
+                                        <small class="date-hint">Leave empty to use today's date</small>
+                                    </div>
+                                    
+                                    <div class="form-group submit-group">
+                                        <button type="submit" class="btn btn-primary submit-btn ripple-btn btn-glow">
+                                            <span>✓</span> Submit Game Record
+                                        </button>
+                                        <button type="button" class="btn btn-secondary cancel-btn ripple-btn" onclick="toggleGameForm()">
+                                            <span>✕</span> Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="section full-width glass-card slide-up-delayed" id="recent-games-section">
+                        <h3 class="section-title">
+                            <span class="title-icon">📋</span>
+                            Recent Game Records
+                        </h3>
+                        <div id="recent-games-table" class="animated-table">
+                            <!-- Recent games table -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+      <script src="aip.js"></script>
+      <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-analytics.js";
+  import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signOut } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+  import { getDatabase, ref, get, set, push, query, orderByChild, onValue } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+
+    
+ const firebaseConfig = {
+    apiKey: "AIzaSyAV7M-zZkGYQ0knqwj_Ye6h6Kv8t8es0Xs",
+    authDomain: "ndejjesports-fd835.firebaseapp.com",
+    databaseURL: "https://ndejjesports-fd835-default-rtdb.firebaseio.com",
+    projectId: "ndejjesports-fd835",
+    storageBucket: "ndejjesports-fd835.firebasestorage.app",
+    messagingSenderId: "790541678240",
+    appId: "1:790541678240:web:958631d2e7f1f71c94fbc5",
+    measurementId: "G-6BCLJS55LZ"
+  };
+
+  // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getDatabase(app);
+    const auth = getAuth(app);
+    
+    var adminInfoHolder = document.querySelector("#admin-info");
+    var adminHeader = document.querySelector("#admin-holder");
+    var sportImage = document.querySelector("#sport-image");
+        
+    document.addEventListener('DOMContentLoaded', () => {
+   onAuthStateChanged(auth, (user) => {
+       var UserEmail = user.email;
+      var loginUserRef = ref(db, "users/");
+       get(loginUserRef)
+            .then((snapshot) => {
+                var data = snapshot.val();
+                if (data) {
+                    Object.keys(data).forEach(key => {
+                    if (data[key].email === UserEmail) {
+                        adminHeader.dataset.id = `${data[key].mysport}`;
+                            sportImage.src = `${data[key].mysport}.png`;
+                            adminHeader.textContent = `${data[key].mysport} Admin Dashboard`;
+                            adminInfoHolder.textContent = `Welcome ${data[key].username}`;
+                    }
+           
+                });
+              }
+                
+          });
+   });
+});
+    
+    var logoutBtn = document.querySelector("#logoutbtn");
+logoutBtn.addEventListener("click", () => {
+      signOut(auth)
+      .then(()=>{
+         window.location.href = "index.html";
+      });
+   });
+
+
+    </script>
+</body>
+</html>
