@@ -102,20 +102,32 @@
                                     </div>
                                 </div>
                                 
+                                
                                 <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="scorersA">House A Scorers</label>
-                                        <textarea id="scorersA" name="scorers" rows="3" placeholder="List scorers separated by commas&#10;e.g. John Doe, Jane Smith, Mike Wilson"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="scorersB">House B Scorers</label>
-                                        <textarea id="scorersB" name="scorers" rows="3" placeholder="List scorers separated by commas&#10;e.g. John Doe, Jane Smith, Mike Wilson"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group">
+                                    <div class="form-group mvp">
                                         <label for="mvp">MVP (Most Valuable Player)</label>
                                         <input type="text" id="mvp" name="mvp" placeholder="Enter MVP name (Optional)">
+                                        <select id="mvp-class">
+    <option value="">Select MVP Class</option>
+    <option value="S1">S.1</option>
+    <option value="S2">S.2</option>
+    <option value="S3">S.3</option>
+    <option value="S4">S.4</option>
+    <option value="S5">S.5</option>
+    <option value="S6">S.6</option>
+       </select>
+                                        <select id="mvp-house">
+    <option value="">Select MVP House</option>
+    <option value="Kabalega">Kabalega</option>
+    <option value="Lubambula">Lubambula</option>
+    <option value="Lumumba">Lumumba</option>
+    <option value="Mboya">Mboya</option>
+    <option value="Muteesa">Muteesa</option>
+    <option value="Muyingo">Muyingo</option>
+    <option value="Walusimbi">Walusimbi</option>
+</select>
+
+
                                     </div>
                                 </div>
                                 
@@ -202,7 +214,7 @@
     var clubTotalPerSportRef;
 
     var resultsTableHolder = document.querySelector("#recent-games-table");
-    
+    //auto Login and data setting
     document.addEventListener('DOMContentLoaded', () => {
    onAuthStateChanged(auth, (user) => {
        if (!user) {
@@ -314,7 +326,8 @@ logoutBtn.addEventListener("click", () => {
     var scorersAInput = document.querySelector('#scorersA');
     var scorersBInput = document.querySelector('#scorersB');
     var mvpInput = document.querySelector('#mvp');
-    var gameDateInput = document.querySelector('#game-date');
+    var mvpClassInput = document.querySelector('#mvp-class');
+    var mvpHouseInput = document.querySelector('#mvp-house');
 
     var gameSubmitBtn = document.querySelector('#gameSubmit');
     
@@ -323,7 +336,9 @@ logoutBtn.addEventListener("click", () => {
         var scoreA = scoreAInput.value.trim();
         var clubB = clubBInput.value.trim();
         var scoreB = scoreBInput.value.trim();
-        var mvp = mvpInput.value.trim();        
+        var mvp = mvpInput.value.trim();   
+        var mvpHouse = mvpHouseInput.value.trim();
+        var mvpClass = mvpClassInput.value.trim();        
         
        
         var pointOne;
@@ -356,6 +371,8 @@ logoutBtn.addEventListener("click", () => {
             clubTwo: clubB,
             scoreTwo: scoreB,
             mvp: mvp,
+            mvpClass: mvpClass,
+            mvpHouse: mvpHouse,
             gameDate: gameDate,
             timestamp: timestamp,
             pointOne: pointOne,
@@ -452,4 +469,5 @@ var resetBtn = document.querySelector("#reset-season");
     });
     </script>
 </body>
-</html>
+    </html>
+    
