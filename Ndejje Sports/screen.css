@@ -1,0 +1,52 @@
+#closetab, #closemvptab, #closepersporttab {
+  width: 60px;
+  height: 40px;
+  padding: 5px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 1050;
+  top: 0;
+  right: 0;
+  background: #FFD700;
+  border: none;
+  border-radius: 5px;
+}
+.full {
+  position: fixed;          
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 10px;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+  
+  overflow: auto;
+
+  z-index: 1000;
+
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+}
+.noover-flow {
+  overflow: hidden;
+}
+#pdf-report {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  visibility: hidden;
+}
+
+.pdf-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.school-logo {
+  width: 200px;
+  margin-bottom: 10px;
+}
