@@ -35,18 +35,21 @@
 .noover-flow {
   overflow: hidden;
 }
-#pdf-report {
-  font-family: Arial, sans-serif;
+#inner-box {
+  max-width: 900px;
+  height: 200px;
+  border-radius: 20px;
+  background: #FFD700;
   padding: 20px;
-  visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
-
-.pdf-header {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.school-logo {
-  width: 200px;
-  margin-bottom: 10px;
+#info-holder{
+  max-width: 850px;
+  padding: 20px;
+  background: whitesmoke;
+  margin: 10px;
+  border-radius: 20px;
 }
