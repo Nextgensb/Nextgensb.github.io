@@ -1,4 +1,139 @@
 
+// download functions
+ function downloadOverallPDF() {
+  const element = document.getElementById("overall-rankings");
+
+  // Auto filename
+  const today = new Date().toISOString().split("T")[0];
+  const fileName = `Ndejje_overall_totals_${today}.pdf`;
+
+  const options = {
+    margin: [0.8, 0.5, 0.8, 0.5],
+    filename: fileName,
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: {
+      scale: 2,
+      useCORS: true
+    },
+    jsPDF: {
+      unit: 'in',
+      format: 'a4',
+      orientation: 'portrait'
+    },
+    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+  };
+
+  html2pdf()
+    .set(options)
+    .from(element)
+    .toPdf()
+    .get('pdf')
+    .then(pdf => {
+      const totalPages = pdf.internal.getNumberOfPages();
+
+      for (let i = 1; i <= totalPages; i++) {
+        pdf.setPage(i);
+        pdf.setFontSize(10);
+        pdf.text(
+          `Ndejje Sports Department   Overall totals   ${today}`,
+          pdf.internal.pageSize.getWidth() / 2,
+          pdf.internal.pageSize.getHeight() - 0.4,
+          { align: "center" }
+        );
+      }
+    })
+    .save();
+}
+
+function downloadMvpPDF() {
+  const element = document.getElementById("mvp-leaderboard");
+
+  // Auto filename
+  const today = new Date().toISOString().split("T")[0];
+  const fileName = `Ndejje_mvp_${today}.pdf`;
+
+  const options = {
+    margin: [0.8, 0.5, 0.8, 0.5],
+    filename: fileName,
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: {
+      scale: 2,
+      useCORS: true
+    },
+    jsPDF: {
+      unit: 'in',
+      format: 'a4',
+      orientation: 'portrait'
+    },
+    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+  };
+
+  html2pdf()
+    .set(options)
+    .from(element)
+    .toPdf()
+    .get('pdf')
+    .then(pdf => {
+      const totalPages = pdf.internal.getNumberOfPages();
+
+      for (let i = 1; i <= totalPages; i++) {
+        pdf.setPage(i);
+        pdf.setFontSize(10);
+        pdf.text(
+          `Ndejje Sports Department    MVPs   ${today}`,
+          pdf.internal.pageSize.getWidth() / 2,
+          pdf.internal.pageSize.getHeight() - 0.4,
+          { align: "center" }
+        );
+      }
+    })
+    .save();
+}
+
+function downloadPerSportPDF() {
+  const element = document.getElementById("sport-tables");
+
+  // Auto filename
+  const today = new Date().toISOString().split("T")[0];
+  const fileName = `Ndejje_Per_sport_totals_${today}.pdf`;
+
+  const options = {
+    margin: [0.8, 0.5, 0.8, 0.5],
+    filename: fileName,
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: {
+      scale: 2,
+      useCORS: true
+    },
+    jsPDF: {
+      unit: 'in',
+      format: 'a4',
+      orientation: 'portrait'
+    },
+    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+  };
+
+  html2pdf()
+    .set(options)
+    .from(element)
+    .toPdf()
+    .get('pdf')
+    .then(pdf => {
+      const totalPages = pdf.internal.getNumberOfPages();
+
+      for (let i = 1; i <= totalPages; i++) {
+        pdf.setPage(i);
+        pdf.setFontSize(10);
+        pdf.text(
+          `Ndejje Sports Department   Per sport total   ${today}`,
+          pdf.internal.pageSize.getWidth() / 2,
+          pdf.internal.pageSize.getHeight() - 0.4,
+          { align: "center" }
+        );
+      }
+    })
+    .save();
+}
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
