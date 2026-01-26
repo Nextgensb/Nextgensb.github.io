@@ -1,3 +1,5 @@
+//copyright 
+document.getElementById("year").textContent = new Date().getFullYear();
 
 // download functions
  function downloadOverallPDF() {
