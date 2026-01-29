@@ -375,3 +375,33 @@ visibility
     }
     
 }
+function toggleGameForm() {
+    const gameSection = document.getElementById('game-recording-section');
+    const button = document.querySelector('.record-game-btn');
+    
+    if (gameSection.style.display === 'none') {
+        gameSection.style.display = 'block';
+        button.innerHTML = '<span class="btn-icon">❌</span> Cancel Recording';
+        button.classList.remove('btn-primary', 'pulse-btn');
+        button.classList.add('btn-secondary');
+        
+        // Set today's date as default if empty
+        const dateInput = document.getElementById('game-date');
+        if (!dateInput.value) {
+            dateInput.value = new Date().toISOString().split('T')[0];
+        }
+        
+        // Scroll to form
+        gameSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        gameSection.style.display = 'none';
+        button.innerHTML = '<span class="btn-icon">➕</span> Record New Game';
+        button.classList.remove('btn-secondary');
+        button.classList.add('btn-primary', 'pulse-btn');
+        
+        // Reset form
+        document.getElementById('game-form').reset();
+    }
+}
+
+
