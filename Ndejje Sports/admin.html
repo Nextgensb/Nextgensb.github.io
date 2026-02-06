@@ -62,7 +62,7 @@
       
       <h3 id="chat-title">Ndejje Sports Chat room</h3>
       
-      <button id="chat-close-btn"><span class="material-symbols-outlined">
+      <button class="btn" id="chat-close-btn"><span class="material-symbols-outlined">
 close
 </span></button>
     </header>
@@ -336,7 +336,7 @@ folder_delete
                             sportImage.src = `${data[key].mysport}.png`;
                             adminHeader.textContent = `${data[key].mysport} Admin Dashboard`;
                             adminInfoHolder.textContent = `Welcome ${data[key].username}`;
-                            chatTitle.dataset.username = data[key].username;
+                            chatTitle.dataset.username = `${data[key].mysport} admin`;                    
                         currentSport = `${data[key].mysport}`;
                         
                         // Per sport tabulation
@@ -480,24 +480,34 @@ onValue(messageQuery, (snapshot) => {
   if (!snapshot.exists()) return;
 
   messageHolder.innerHTML = "";
-  var currentUser = chatTitle.dataset.username;
+  const currentUser = chatTitle.dataset.username;
 
   snapshot.forEach(child => {
-    var data = child.val();
-    var type = data.user === currentUser ? "to" : "from";
+    const data = child.val();
+    const key = child.key;
+    const type = data.user === currentUser ? "to" : "from";
 
     messageHolder.innerHTML += `
       <div class="message-holder ${type}">
-        <div class="sender">${data.user}</div>
-        <div class="message">${data.text}</div>
-        <div class="sender">${data.time}</div>
+        <div>
+          <div class="sender">${data.user}</div>
+          <div class="message">${data.text}</div>
+          <div class="sender">${data.time}</div>
+        </div>
+
+        ${
+          type === "to"
+            ? `<button class="delete-btns" data-key="${key}">
+                 <span class="material-symbols-outlined">delete</span>
+               </button>`
+            : ""
+        }
       </div>
     `;
   });
 
   messageHolder.scrollTop = messageHolder.scrollHeight;
 });
-
 
                                 
                     }
@@ -739,6 +749,18 @@ function sendMessage() {
     messageInput.value = "";
   });
 }
+    // delete function
+    messageHolder.addEventListener("click", (e) => {
+  const deleteBtn = e.target.closest(".delete-btns");
+  if (!deleteBtn) return;
+
+  const key = deleteBtn.dataset.key;
+  if (!key) return;
+
+  const deleteRef = ref(db, `chat/messages/${key}`);
+  remove(deleteRef);
+});
+
 
   //setting a notification time
   var chatroomHolder = document.querySelector('#chatroom-holder');
