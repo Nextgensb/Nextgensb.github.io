@@ -1,5 +1,17 @@
 //copyright 
 document.getElementById("year").textContent = new Date().getFullYear();
+//chat function
+var chatBtn = document.querySelector('#chat-btn');
+var chatroomHolder = document.querySelector('#chatroom-holder');
+var notificationHolder = document.querySelector("#notifications");
+var messageHolder = document.querySelector('#messages');
+
+chatBtn.addEventListener('click', () => {
+  chatroomHolder.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  notificationHolder.style.display = 'none';
+  messageHolder.scrollTop = messageHolder.scrollHeight;
+});
 
 // download functions
  function downloadOverallPDF() {
