@@ -58,3 +58,23 @@
   align-items: center;
   justify-content: center;
 }
+.btn-danger {
+  background: red;
+  color: white;
+}
+#notifications {
+  width: 20px;
+  height: 20px;
+  background: red;
+  border-radius: 100%;
+  color: white;
+  display: none;
+  place-content: center;
+  font-size: 0.7rem;
+}
+.spcl {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
