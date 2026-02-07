@@ -247,6 +247,8 @@ download
     
     var userInfoHolder = document.querySelector("#user-info");
     var chatTitle = document.querySelector('#chat-title');
+    var notificationHolder = document.querySelector('#notifications');
+  
     
     document.addEventListener('DOMContentLoaded', () => {
    onAuthStateChanged(auth, (user) => {
@@ -261,6 +263,7 @@ download
                         userInfoHolder.textContent = `Welcome ${data[key].username}`;
                         chatTitle.dataset.username = `${data[key].username}`;
                         
+                        //message function
                           var messageQuery = query(
   ref(db, "chat/messages"),
   orderByChild("timestamp")
@@ -298,6 +301,39 @@ onValue(messageQuery, (snapshot) => {
 
   messageHolder.scrollTop = messageHolder.scrollHeight;
 });
+                        //notification function
+                        onValue(messageQuery, (snapshot) => {
+  const messages = snapshot.val();
+  if (!messages) {
+    notificationHolder.textContent = '';
+    return;
+  }
+
+  const username = chatTitle.dataset.username;
+  const notificationRef = ref(db, `chat/notification/${username}`);
+
+  onValue(notificationRef, (notifSnap) => {
+    const notifData = notifSnap.val();
+    const lastSeenTime = notifData?.reminderTime || 0;
+
+    let unreadCount = 0;
+
+    Object.values(messages).forEach(message => {
+      if (message.timestamp && message.timestamp > lastSeenTime) {
+        unreadCount++;
+      }
+    });
+
+    if (unreadCount > 0) {
+      notificationHolder.textContent = unreadCount;
+      notificationHolder.style.display = 'grid';
+    } else {
+      notificationHolder.textContent = '';
+      notificationHolder.style.display = 'none';
+    }
+  }, { onlyOnce: true });
+});
+
                         
                     }
            
@@ -656,45 +692,6 @@ function sendMessage() {
     });
   });
   
-  //notification function
-  var notificationHolder = document.querySelector('#notifications');
-  var messageQuery = query(
-  ref(db, "chat/messages"),
-  orderByChild("timestamp")
-);
-
-onValue(messageQuery, (snapshot) => {
-  const messages = snapshot.val();
-  if (!messages) {
-    notificationHolder.textContent = '';
-    return;
-  }
-
-  const username = chatTitle.dataset.username;
-  const notificationRef = ref(db, `chat/notification/${username}`);
-
-  onValue(notificationRef, (notifSnap) => {
-    const notifData = notifSnap.val();
-    const lastSeenTime = notifData?.reminderTime || 0;
-
-    let unreadCount = 0;
-
-    Object.values(messages).forEach(message => {
-      if (message.timestamp && message.timestamp > lastSeenTime) {
-        unreadCount++;
-      }
-    });
-
-    if (unreadCount > 0) {
-      notificationHolder.textContent = unreadCount;
-      notificationHolder.style.display = 'grid';
-    } else {
-      notificationHolder.textContent = '';
-      notificationHolder.style.display = 'none';
-    }
-  }, { onlyOnce: true });
-});
-
 
     
     </script>
