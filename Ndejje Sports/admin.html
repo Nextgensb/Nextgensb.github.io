@@ -311,6 +311,8 @@ folder_delete
     var adminHeader = document.querySelector("#admin-holder");
     var sportImage = document.querySelector("#sport-image");
     var chatTitle = document.querySelector('#chat-title');
+    var notificationHolder = document.querySelector('#notifications');
+ 
         
     var currentSport;
     var tabulationQuery;
@@ -336,7 +338,8 @@ folder_delete
                             sportImage.src = `${data[key].mysport}.png`;
                             adminHeader.textContent = `${data[key].mysport} Admin Dashboard`;
                             adminInfoHolder.textContent = `Welcome ${data[key].username}`;
-                            chatTitle.dataset.username = `${data[key].mysport} admin`;                    
+                            chatTitle.dataset.username = `${data[key].mysport} admin`; 
+                            chatTitle.dataset.id = `${data[key].username}`;                         
                         currentSport = `${data[key].mysport}`;
                         
                         // Per sport tabulation
@@ -470,7 +473,7 @@ onValue(clubTotalPerSportRef, (snapshot) => {
    
   });
 });
-                        
+                        // chat messages load function
                           var messageQuery = query(
   ref(db, "chat/messages"),
   orderByChild("timestamp")
@@ -508,7 +511,38 @@ onValue(messageQuery, (snapshot) => {
 
   messageHolder.scrollTop = messageHolder.scrollHeight;
 });
+                 //chat notifications       
+                        onValue(messageQuery, (snapshot) => {
+  const messages = snapshot.val();
+  if (!messages) {
+    notificationHolder.textContent = '';
+    return;
+  }
 
+  const username = chatTitle.dataset.id;
+  const notificationRef = ref(db, `chat/notification/${username}`);
+
+  onValue(notificationRef, (notifSnap) => {
+    const notifData = notifSnap.val();
+    const lastSeenTime = notifData?.reminderTime || 0;
+
+    let unreadCount = 0;
+
+    Object.values(messages).forEach(message => {
+      if (message.timestamp && message.timestamp > lastSeenTime) {
+        unreadCount++;
+      }
+    });
+
+    if (unreadCount > 0) {
+      notificationHolder.textContent = unreadCount;
+      notificationHolder.style.display = 'grid';
+    } else {
+      notificationHolder.textContent = '';
+      notificationHolder.style.display = 'none';
+    }
+  }, { onlyOnce: true });
+});
                                 
                     }
            
@@ -767,7 +801,7 @@ function sendMessage() {
   var chatCloseBtn = document.querySelector('#chat-close-btn');
   chatCloseBtn.addEventListener('click', () => {
     
-    var username = chatTitle.dataset.username;
+    var username = chatTitle.dataset.id;
     var notificationRef = ref(db, `chat/notification/${username}`);
     set(notificationRef, {
       reminderTime: Date.now()
@@ -778,44 +812,8 @@ function sendMessage() {
     });
   });
   
-  //notification function
-  var notificationHolder = document.querySelector('#notifications');
- var messageQuery = query(
-  ref(db, "chat/messages"),
-  orderByChild("timestamp")
-);
     
-onValue(messageQuery, (snapshot) => {
-  const messages = snapshot.val();
-  if (!messages) {
-    notificationHolder.textContent = '';
-    return;
-  }
 
-  const username = chatTitle.dataset.username;
-  const notificationRef = ref(db, `chat/notification/${username}`);
-
-  onValue(notificationRef, (notifSnap) => {
-    const notifData = notifSnap.val();
-    const lastSeenTime = notifData?.reminderTime || 0;
-
-    let unreadCount = 0;
-
-    Object.values(messages).forEach(message => {
-      if (message.timestamp && message.timestamp > lastSeenTime) {
-        unreadCount++;
-      }
-    });
-
-    if (unreadCount > 0) {
-      notificationHolder.textContent = unreadCount;
-      notificationHolder.style.display = 'grid';
-    } else {
-      notificationHolder.textContent = '';
-      notificationHolder.style.display = 'none';
-    }
-  }, { onlyOnce: true });
-});
 
     </script>
 </body>
