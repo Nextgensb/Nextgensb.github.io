@@ -1,5 +1,45 @@
-//copyright 
-document.getElementById("year").textContent = new Date().getFullYear();
+
+//password view functions
+var passwordInput = document.querySelector("#password");
+var adminPasswordInput = document.querySelector("#admin-password");
+var viewPassBtn = document.querySelector("#seePass");
+var checkPass = "pass";
+viewPassBtn.addEventListener("click", viewUserPass);
+function viewUserPass() {
+    if (checkPass === "pass") {
+        passwordInput.type = "text";
+        checkPass = "code";
+        viewPassBtn.innerHTML = `<span class="material-symbols-outlined">
+visibility_off
+</span>`;
+    } else {
+        passwordInput.type = "password";
+        checkPass = "pass";
+        viewPassBtn.innerHTML = `<span class="material-symbols-outlined">
+visibility
+</span>`;
+    }
+}
+var viewAdminPassBtn = document.querySelector("#seeAdmin");
+var adminCheck = "true";
+viewAdminPassBtn.addEventListener("click", viewAdminUserPass);
+function viewAdminUserPass() {
+    if (adminCheck === "true") {
+        adminPasswordInput.type = "text";
+        adminCheck = "False";
+        viewAdminPassBtn.innerHTML = `<span class="material-symbols-outlined">
+visibility_off
+</span>`;
+    } else {
+        adminPasswordInput.type = "password";
+        adminCheck = "true";
+        viewAdminPassBtn.innerHTML = `<span class="material-symbols-outlined">
+visibility
+</span>`;
+    }
+    
+}// copy right
+  document.getElementById("year").textContent = new Date().getFullYear();
 //chat function
 var chatBtn = document.querySelector('#chat-btn');
 var chatroomHolder = document.querySelector('#chatroom-holder');
@@ -149,46 +189,56 @@ function downloadPerSportPDF() {
     .save();
 }
 
-// Initialize the application
-document.addEventListener('DOMContentLoaded', function() {
-    initializeApp();
-    setupEventListeners();
-    startAnimations();
-});
-
-function initializeApp() {
-    // Check if user is already logged in
-    const savedUser = localStorage.getItem('currentUser');
-    if (savedUser) {
-        currentUser = JSON.parse(savedUser);
-        if (currentUser.role === 'admin') {
-            showAdminDashboard();
-        } else {
-            showUserDashboard();
-        }
+function toggleSportSelection() {
+    const role = document.getElementById('role').value;
+    const sportSelection = document.getElementById('sport-selection');
+    const adminPasswordSection = document.getElementById('admin-password-section');
+    
+    if (role === 'admin') {
+        sportSelection.style.display = 'block';
+        adminPasswordSection.style.display = 'block';
+        document.getElementById('sport').setAttribute('required', 'required');
+        document.getElementById('admin-password').setAttribute('required', 'required');
     } else {
-        showPage('welcome-page');
-    }
-    
-    // Initialize empty data structure if not exists
-    if (!localStorage.getItem('sportsData')) {
-        initializeSportsData();
+        sportSelection.style.display = 'none';
+        adminPasswordSection.style.display = 'none';
+        document.getElementById('sport').removeAttribute('required');
+        document.getElementById('admin-password').removeAttribute('required');
     }
 }
 
-function setupEventListeners() {
-    // Signup form submission
-    document.getElementById('signup-form').addEventListener('submit', handleSignup);
+
+function toggleGameForm() {
+    const gameSection = document.getElementById('game-recording-section');
+    const button = document.querySelector('.record-game-btn');
     
-    // Game form submission
-    document.getElementById('game-form').addEventListener('submit', handleGameSubmission);
-    
-    // Add ripple effect to all ripple buttons
-    document.querySelectorAll('.ripple-btn').forEach(btn => {
-        btn.addEventListener('click', createRipple);
-    });
+    if (gameSection.style.display === 'none') {
+        gameSection.style.display = 'block';
+        button.innerHTML = '<span class="btn-icon">❌</span> Cancel Recording';
+        button.classList.remove('btn-primary', 'pulse-btn');
+        button.classList.add('btn-secondary');
+        
+        // Set today's date as default if empty
+        const dateInput = document.getElementById('game-date');
+        if (!dateInput.value) {
+            dateInput.value = new Date().toISOString().split('T')[0];
+        }
+        
+        // Scroll to form
+        gameSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        gameSection.style.display = 'none';
+        button.innerHTML = '<span class="btn-icon">➕</span> Record New Game';
+        button.classList.remove('btn-secondary');
+        button.classList.add('btn-primary', 'pulse-btn');
+        
+        // Reset form
+        document.getElementById('game-form').reset();
+    }
 }
 
+
+// others
 function createRipple(event) {
     const button = event.currentTarget;
     const ripple = document.createElement('span');
@@ -316,104 +366,6 @@ function initializeTicker() {
     tickerContent.innerHTML = tickerHTML + tickerHTML;
 }
 
-function showPage(pageId) {
-    // Hide all pages
-    const pages = document.querySelectorAll('.page');
-    pages.forEach(page => page.classList.remove('active'));
-    
-    // Show the specified page
-    document.getElementById(pageId).classList.add('active');
-    
-    // Restart animations for the new page
-    if (pageId === 'welcome-page') {
-        animateCounters();
-    }
-}
-
-function toggleSportSelection() {
-    const role = document.getElementById('role').value;
-    const sportSelection = document.getElementById('sport-selection');
-    const adminPasswordSection = document.getElementById('admin-password-section');
-    
-    if (role === 'admin') {
-        sportSelection.style.display = 'block';
-        adminPasswordSection.style.display = 'block';
-        document.getElementById('sport').setAttribute('required', 'required');
-        document.getElementById('admin-password').setAttribute('required', 'required');
-    } else {
-        sportSelection.style.display = 'none';
-        adminPasswordSection.style.display = 'none';
-        document.getElementById('sport').removeAttribute('required');
-        document.getElementById('admin-password').removeAttribute('required');
-    }
-}
-
-var passwordInput = document.querySelector("#password");
-var adminPasswordInput = document.querySelector("#admin-password");
-var viewPassBtn = document.querySelector("#seePass");
-var checkPass = "pass";
-viewPassBtn.addEventListener("click", viewUserPass);
-function viewUserPass() {
-    if (checkPass === "pass") {
-        passwordInput.type = "text";
-        checkPass = "code";
-        viewPassBtn.innerHTML = `<span class="material-symbols-outlined">
-visibility_off
-</span>`;
-    } else {
-        passwordInput.type = "password";
-        checkPass = "pass";
-        viewPassBtn.innerHTML = `<span class="material-symbols-outlined">
-visibility
-</span>`;
-    }
-}
-var viewAdminPassBtn = document.querySelector("#seeAdmin");
-var adminCheck = "true";
-viewAdminPassBtn.addEventListener("click", viewAdminUserPass);
-function viewAdminUserPass() {
-    if (adminCheck === "true") {
-        adminPasswordInput.type = "text";
-        adminCheck = "False";
-        viewAdminPassBtn.innerHTML = `<span class="material-symbols-outlined">
-visibility_off
-</span>`;
-    } else {
-        adminPasswordInput.type = "password";
-        adminCheck = "true";
-        viewAdminPassBtn.innerHTML = `<span class="material-symbols-outlined">
-visibility
-</span>`;
-    }
-    
-}
-function toggleGameForm() {
-    const gameSection = document.getElementById('game-recording-section');
-    const button = document.querySelector('.record-game-btn');
-    
-    if (gameSection.style.display === 'none') {
-        gameSection.style.display = 'block';
-        button.innerHTML = '<span class="btn-icon">❌</span> Cancel Recording';
-        button.classList.remove('btn-primary', 'pulse-btn');
-        button.classList.add('btn-secondary');
-        
-        // Set today's date as default if empty
-        const dateInput = document.getElementById('game-date');
-        if (!dateInput.value) {
-            dateInput.value = new Date().toISOString().split('T')[0];
-        }
-        
-        // Scroll to form
-        gameSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } else {
-        gameSection.style.display = 'none';
-        button.innerHTML = '<span class="btn-icon">➕</span> Record New Game';
-        button.classList.remove('btn-secondary');
-        button.classList.add('btn-primary', 'pulse-btn');
-        
-        // Reset form
-        document.getElementById('game-form').reset();
-    }
-}
 
 
+                             
