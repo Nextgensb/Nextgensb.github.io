@@ -20,6 +20,9 @@
     
 </head>
 <body class="quicksand-bodyfont">
+  <!--alert-->
+   <div id="alert" class="full">     
+    </div>
     
   <!-- Admin Dashboard -->
 <div id="admin-dashboard" class="page">
@@ -111,14 +114,21 @@ chat
         <div class="section full-width glass-card slide-up">
           <div class="section-header">
             <h3 class="section-title">
-              <span class="title-icon" id="admin-sport-icon">
+              <span class="title-icon" id="admin-sport-icon"> 
                 <img src="banner2.png" id="sport-image" alt="Sport">
               </span>
               <span id="admin-sport-title">
-                Current Sport Performance
+                Monitor Sport
               </span>
             </h3>
 
+
+              <button
+              class="btn btn-primary record-game-btn ripple-btn pulse-btn"
+              onclick="toggleFixtureForm()"
+            >
+              <span class="btn-icon">➕</span> Set Game FIxture
+            </button>
             <button
               class="btn btn-primary record-game-btn ripple-btn pulse-btn"
               onclick="toggleGameForm()"
@@ -131,6 +141,101 @@ chat
             <!-- Current sport table -->
           </div>
         </div>
+
+        <!-- MATCH FIXTURE FORM -->
+<div
+  class="section full-width glass-card fixture-form-section"
+  id="match-fixture-section"
+  style="display: none;"
+>
+  <div class="form-header-admin">
+    <h3>Set Match Day Fixture</h3>
+  </div>
+
+  <div class="form-card enhanced-form">
+    <div id="fixture-form">
+
+      <!-- MATCH ROW -->
+      <div class="form-row match-row">
+
+        <div class="form-group team-group">
+          <label for="fixtureHouseA">House A</label>
+          <select id="fixtureHouseA" required>
+            <option value="">Select House A</option>
+            <option value="Muyingo">Muyingo</option>
+            <option value="Kabalega">Kabalega</option>
+            <option value="Walusimbi">Walusimbi</option>
+            <option value="Muteesa">Muteesa</option>
+            <option value="Mboya">Mboya</option>
+            <option value="Lumumba">Lumumba</option>
+            <option value="Lubambula">Lubambula</option>
+          </select>
+        </div>
+
+        <div class="vs-separator">
+          <span class="vs-text">VS</span>
+        </div>
+
+        <div class="form-group team-group">
+          <label for="fixtureHouseB">House B</label>
+          <select id="fixtureHouseB" required>
+            <option value="">Select House B</option>
+            <option value="Muyingo">Muyingo</option>
+            <option value="Kabalega">Kabalega</option>
+            <option value="Walusimbi">Walusimbi</option>
+            <option value="Muteesa">Muteesa</option>
+            <option value="Mboya">Mboya</option>
+            <option value="Lumumba">Lumumba</option>
+            <option value="Lubambula">Lubambula</option>
+          </select>
+        </div>
+
+      </div>
+
+      <!-- SPORT + DATE + TIME ROW -->
+      <div class="form-row">
+
+        <div class="form-group">
+          <label for="fixtureSport">Sport</label>
+          <select id="fixtureSport" required>
+             <option value="">Select Sport</option>
+                                <option value="Football">⚽ Football</option>
+                                <option value="Basketball">🏀 Basketball</option>                        
+                                <option value="Chess">♟️ Chess</option>
+                                <option value="Cricket">🏏 Cricket</option>
+                                <option value="Handball">🤾 Handball</option>
+                                <option value="Volleyball">🏐 Volleyball</option>
+                                <option value="Netball">🥅 Netball</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="fixtureDate">Match Date</label>
+          <input type="date" id="fixtureDate" required>
+        </div>
+
+        <div class="form-group">
+          <label for="fixtureTime">Match Time</label>
+          <input type="time" id="fixtureTime" required>
+        </div>
+
+      </div>
+
+      <!-- SUBMIT ROW -->
+      <div class="form-group submit-group">
+        <button id="fixtureSubmit" type="button" class="btn btn-primary">
+          ✓ Save Fixture
+        </button>
+
+        <button type="button" class="btn btn-secondary" onclick="toggleFixtureForm()">
+          ✕ Cancel
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 
         <!-- GAME RECORD FORM -->
         <div
@@ -342,7 +447,7 @@ folder_delete
                             chatTitle.dataset.id = `${data[key].username}`;                         
                         currentSport = `${data[key].mysport}`;
                         
-                        // Per sport tabulation
+                        // recent games tabulation
                         tabulationQuery = query(
   ref(db, `recents/${currentSport}`),
   orderByChild("timestamp")
@@ -432,7 +537,7 @@ function deleteFromHouseData(timestamp) {
           }
         });
       },
-      { onlyOnce: true } // VERY IMPORTANT
+      { onlyOnce: true } 
     );
   });
 }
@@ -556,6 +661,66 @@ onValue(messageQuery, (snapshot) => {
 });
     
     
+// fixture setting
+
+const fixtureSubmitBtn = document.querySelector("#fixtureSubmit");
+
+fixtureSubmitBtn.addEventListener("click", saveFixture);
+
+function saveFixture() {
+
+  const houseA = document.querySelector("#fixtureHouseA").value;
+  const houseB = document.querySelector("#fixtureHouseB").value;
+  const sport = document.querySelector("#fixtureSport").value;
+  const date = document.querySelector("#fixtureDate").value;
+  const time = document.querySelector("#fixtureTime").value;
+
+  // 🔴 Basic Validation
+  if (!houseA || !houseB || !sport || !date || !time) {
+    showAlert("Please fill in all fixture fields.");
+    return;
+  }
+
+  if (houseA === houseB) {
+    showAlert("A house cannot play against itself.");
+    return;
+  }
+
+  //  Create Timestamp
+  const timestamp = Date.now();
+
+  // Combine Date + Time for sorting future fixtures
+  const matchDateTime = new Date(`${date}T${time}`).getTime();
+
+  //  Create new fixture reference
+  const fixtureRef = push(ref(db, "fixtures/"));
+
+  set(fixtureRef, {
+    houseOne: houseA,
+    houseTwo: houseB,
+    sport: sport,
+    matchDate: date,
+    matchTime: time,
+    matchDateTime: matchDateTime, // For ordering upcoming matches
+    timestamp: timestamp
+  })
+  .then(() => {
+
+    showAlert("Fixture saved successfully.");
+
+    // Clear form
+    document.querySelector("#fixtureHouseA").value = "";
+    document.querySelector("#fixtureHouseB").value = "";
+    document.querySelector("#fixtureSport").value = "";
+    document.querySelector("#fixtureDate").value = "";
+    document.querySelector("#fixtureTime").value = "";
+
+  })
+  .catch((error) => {
+    console.error("Error saving fixture:", error);
+    showAlert("Failed to save fixture.");
+  });
+}
 
     
     var logoutBtn = document.querySelector("#logoutbtn");
@@ -655,6 +820,13 @@ logoutBtn.addEventListener("click", () => {
             });        
         });
     });
+    //toggle fixture tab
+    function toggleFixtureForm() {
+  const section = document.getElementById("match-fixture-section");
+  section.style.display =
+    section.style.display === "none" ? "block" : "none";
+}
+
     
 // over all total function
 const leagueTotalRef = ref(db, "sportTotals");
@@ -813,7 +985,15 @@ function sendMessage() {
     });
   });
   
-    
+        // alerts
+    var alertHolder = document.querySelector("#alert");
+    function showAlert(text) {
+        alertHolder.textContent = text;
+        alertHolder.style.display = "flex";
+        setTimeout(function() {
+            alertHolder.style.display = "none";
+        },3000);
+    }
 
 
     </script>

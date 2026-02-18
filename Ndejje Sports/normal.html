@@ -218,23 +218,9 @@ download
             Recent Game Records
           </h3>
 
-          <div class="animated-table">
-            <table>
-              <thead>
-                <tr>
-                  <th>House One</th>
-                  <th>Score</th>
-                  <th>Points</th>
-                  <th>House Two</th>
-                  <th>Score</th>
-                  <th>Points</th>
-                  <th>Date</th>
-                  <th>MVP</th>
-                    
-                </tr>
-              </thead>
-              <tbody id="recent-games-table"></tbody>
-            </table>
+          <div id="recent-games-table" class="animated-table">
+           
+   
           </div>
         </div>
                 </div>
@@ -274,6 +260,7 @@ download
     var userInfoHolder = document.querySelector("#user-info");
     var chatTitle = document.querySelector('#chat-title');
     var notificationHolder = document.querySelector('#notifications');
+    var resultsTableHolder = document.querySelector("#recent-games-table");
   
     
     document.addEventListener('DOMContentLoaded', () => {
@@ -381,6 +368,79 @@ logoutBtns.addEventListener("click", () => {
          window.location.href = "index.html";
       });
    });
+// recent games tabulation
+tabulationQuery = query(
+  ref(db, `recents/`),
+  orderByChild("timestamp")
+);
+
+onValue(tabulationQuery, (snapshot) => {
+  resultsTableHolder.innerHTML = "";
+
+  const data = snapshot.val();
+  if (!data) return;
+
+  // 1️⃣ Group games by sport
+  const groupedBySport = {};
+
+  Object.keys(data).forEach((key) => {
+    const game = data[key];
+    const sport = game.sport || "Other";
+
+    if (!groupedBySport[sport]) {
+      groupedBySport[sport] = [];
+    }
+
+    groupedBySport[sport].push(game);
+  });
+
+  // 2️⃣ Create a table for each sport
+  Object.keys(groupedBySport).forEach((sport) => {
+
+    // Create sport title
+    const title = document.createElement("h3");
+    title.textContent = sport;
+    resultsTableHolder.appendChild(title);
+
+    // Create table
+    const table = document.createElement("table");
+    table.classList.add("results-table");
+
+    // Create header row
+    const header = table.insertRow();
+    const headers = [
+      "Club One", "Score", "Points",
+      "Club Two", "Score", "Points",
+      "Game Date", "MVP"
+    ];
+
+    headers.forEach(text => {
+      const th = document.createElement("th");
+      th.textContent = text;
+      header.appendChild(th);
+    });
+
+    // Sort games by timestamp (latest first)
+    groupedBySport[sport]
+      .sort((a, b) => b.timestamp - a.timestamp)
+      .forEach((game) => {
+
+        const row = table.insertRow();
+
+        row.insertCell(0).textContent = game.clubOne;
+        row.insertCell(1).textContent = game.scoreOne;
+        row.insertCell(2).textContent = game.pointOne;
+        row.insertCell(3).textContent = game.clubTwo;
+        row.insertCell(4).textContent = game.scoreTwo;
+        row.insertCell(5).textContent = game.pointTwo;
+        row.insertCell(6).textContent = game.gameDate;
+        row.insertCell(7).textContent = game.mvp;
+      });
+
+    resultsTableHolder.appendChild(table);
+  });
+
+});
 
     // house total tabulations
     var overallTable = document.querySelector("#overall-table");
