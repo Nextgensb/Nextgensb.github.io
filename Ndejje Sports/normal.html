@@ -765,18 +765,36 @@ recentGameBtns.forEach(btn => {
     var recentDataRef = ref(db, `recents/${recentSport}`);
     resultsTableHolder.innerHTML = "";
     get(recentDataRef).then((snapshot) => {
-        perSportTable.innerHTML = "";
+       
 
         if (!snapshot.exists()) {
             const alertRow = document.createElement("tr");
             alertRow.innerHTML = `
                 <td colspan="2" style="color:tomato; text-align:center;">
-                    No games played yet for ${game}.
+                    No Recent games played yet for ${recentSport}.
                 </td>
             `;
             resultsTableHolder.appendChild(alertRow);
             return;
         }
+
+        var data = snapshot.val();
+        
+        Object.keys(data).forEach(key => {
+          var game = data[key];
+          var row = resultsTableHolder.insertRow();
+
+        row.insertCell(0).textContent = game.clubOne; 
+        row.insertCell(1).textContent = game.scoreOne; 
+        row.insertCell(2).textContent = game.pointOne; 
+        row.insertCell(3).textContent = game.clubTwo; 
+        row.insertCell(4).textContent = game.scoreTwo; 
+        row.insertCell(5).textContent = game.pointTwo; 
+        row.insertCell(6).textContent = game.gameDate; 
+        row.insertCell(7).textContent = game.mvp;
+        });
+        
+        });
   });
 });
 
