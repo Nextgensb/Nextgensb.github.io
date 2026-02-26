@@ -197,16 +197,7 @@ chat
 
         <div class="form-group">
           <label for="fixtureSport">Sport</label>
-          <select id="fixtureSport" required>
-             <option value="">Select Sport</option>
-                                <option value="Football">⚽ Football</option>
-                                <option value="Basketball">🏀 Basketball</option>                        
-                                <option value="Chess">♟️ Chess</option>
-                                <option value="Cricket">🏏 Cricket</option>
-                                <option value="Handball">🤾 Handball</option>
-                                <option value="Volleyball">🏐 Volleyball</option>
-                                <option value="Netball">🥅 Netball</option>
-          </select>
+          <div id="sport-holder"></div>
         </div>
 
         <div class="form-group">
@@ -446,7 +437,7 @@ folder_delete
                             chatTitle.dataset.username = `${data[key].mysport} admin`; 
                             chatTitle.dataset.id = `${data[key].username}`;                         
                         currentSport = `${data[key].mysport}`;
-                        
+                        document.querySelector("#sport-holder").textContent = currentSport;
                         // recent games tabulation
                         tabulationQuery = query(
   ref(db, `recents/${currentSport}`),
@@ -989,7 +980,41 @@ function sendMessage() {
             alertHolder.style.display = "none";
         },3000);
     }
+// fixture submision
+var setFixtureBtn = document.querySelector("#fixturesubmit");
+var gamesetValue = document.querySelector("#sport-holder");
+var houseOneInput = document.querySelector("#fixtureHouseA");
+var houseTwoInput = document.querySelector("#fixtureHouseB");
+var matchDateInput = document.querySelector("fixtureDate");
+var matchTimeInput = document.querySelector("#fixtureTime");
 
+setFixtureBtn.addEventListener("click", () => {
+  var gameSet = gamesetValue.textContent;
+  var houseA = houseOneInput.value;
+  var houseB = houseTwoInput.value;
+  var matchDatevalue = matchDateInput.value;
+  var matchTime = matchTimeInput.value;
+
+  var fixtureRef = push(ref(db, 'fixtures/'));
+  set(fixtureRef, {
+    game: gameSet,
+    houseOne: houseA,
+    houseTwo: houseB,
+    matchDate: matchDatevalue,
+    matchTime: matchTime
+  })
+  .then(() => {
+    houseOneInput.value ="";
+    houseTwoInput.value ="";
+    matchDateInput.value ="";
+    matchTimeInput.value ="";
+  });
+});
+ 
+  var fixtureQuery = query(ref(db, `fixture/${currentSport}`));
+  onValue(fixtureQuery, (snapshot) => {
+    
+  });
 
     </script>
 </body>
