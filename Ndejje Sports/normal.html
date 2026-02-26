@@ -762,11 +762,16 @@ var recentGameBtns = document.querySelectorAll(".recent-btn");
 recentGameBtns.forEach(btn => {
   btn.addEventListener("click", ()=> {
     var recentSport = btn.dataset.game;
-    var recentDataRef = ref(db, `recents/${recentSport}`);
+    
     recentGameBtns.forEach(btn => btn.classList.remove("active"));
     btn.classList.add("active");
+    showRecentGame(recentSport);
     
-    get(recentDataRef).then((snapshot) => {
+  });
+});
+function showRecentGame(recentSport) {
+  var recentDataRef = ref(db, `recents/${recentSport}`);
+get(recentDataRef).then((snapshot) => {
        resultsTableHolder.innerHTML = "";
 
         if (!snapshot.exists()) {
@@ -797,8 +802,8 @@ recentGameBtns.forEach(btn => {
         });
         
         });
-  });
-});
+}
+showRecentGame("Football");
 
     </script>
 </body>
