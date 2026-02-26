@@ -198,7 +198,19 @@ function toggleGameForm() {
     }
 }
 
-
+ //toggle fixture tab
+    function toggleFixtureForm() {
+  const button = document.querySelector('.fixture-game-btn');
+  const section = document.getElementById("match-fixture-section");
+  if (section.style.display === "none") {
+    section.style.display = "block";
+    button.textContent = "Cancel Fixture";
+        button.classList.remove('btn-primary', 'pulse-btn');
+        button.classList.add('btn-secondary');
+  } else {
+    
+  }
+}
 // others
 function createRipple(event) {
     const button = event.currentTarget;

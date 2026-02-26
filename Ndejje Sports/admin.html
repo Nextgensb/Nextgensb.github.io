@@ -124,7 +124,7 @@ chat
 
 
               <button
-              class="btn btn-primary record-game-btn ripple-btn pulse-btn"
+              class="btn btn-primary fixture-game-btn ripple-btn pulse-btn"
               onclick="toggleFixtureForm()"
             >
               <span class="btn-icon">➕</span> Set Game FIxture
@@ -820,12 +820,7 @@ logoutBtn.addEventListener("click", () => {
             });        
         });
     });
-    //toggle fixture tab
-    function toggleFixtureForm() {
-  const section = document.getElementById("match-fixture-section");
-  section.style.display =
-    section.style.display === "none" ? "block" : "none";
-}
+   
 
     
 // over all total function
