@@ -763,6 +763,7 @@ recentGameBtns.forEach(btn => {
   btn.addEventListener("click", ()=> {
     var recentSport = btn.dataset.game;
     var recentDataRef = ref(db, `recents/${recentSport}`);
+    recentGameBtns.forEach(btn => btn.classList.remove("active"));
     btn.classList.add("active");
     
     get(recentDataRef).then((snapshot) => {
