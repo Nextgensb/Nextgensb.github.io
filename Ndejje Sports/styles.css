@@ -1356,3 +1356,42 @@ tbody tr:hover {
     .glass-card { box-shadow: none; border: 1px solid #ccc; }
     body { background: white; }
 }
+
+.fixtures-tab {
+    width: 100%;
+    margin: auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.fixtures-tab h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.fixture-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    background-color: #fafafa;
+}
+
+.teams {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.vs {
+    margin: 0 10px;
+    color: #888;
+}
+
+.details p {
+    margin: 4px 0;
+    font-size: 14px;
+}
