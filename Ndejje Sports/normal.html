@@ -763,9 +763,10 @@ recentGameBtns.forEach(btn => {
   btn.addEventListener("click", ()=> {
     var recentSport = btn.dataset.game;
     var recentDataRef = ref(db, `recents/${recentSport}`);
-    resultsTableHolder.innerHTML = "";
+    btn.classList.add("active");
+    
     get(recentDataRef).then((snapshot) => {
-       
+       resultsTableHolder.innerHTML = "";
 
         if (!snapshot.exists()) {
             const alertRow = document.createElement("tr");
