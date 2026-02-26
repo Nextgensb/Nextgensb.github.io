@@ -820,7 +820,7 @@ a{
     background: linear-gradient(135deg, var(--gray), white);
 }
 
-.tab-btn {
+.tab-btn, .recent-btn {
     padding: 12px 20px;
     border: 2px solid var(--light-blue);
     background: var(--white);
@@ -834,14 +834,14 @@ a{
     gap: 8px;
 }
 
-.tab-btn:hover {
+.tab-btn:hover, .recent-btn:hover {
     background: var(--light-blue);
     color: var(--white);
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(173, 216, 230, 0.4);
 }
 
-.tab-btn.active {
+.tab-btn.active, .recent-btn.active {
     background: linear-gradient(135deg, var(--yellow), #FFA500);
     border-color: var(--yellow);
     color: var(--dark-gray);
