@@ -208,7 +208,10 @@ function toggleGameForm() {
         button.classList.remove('btn-primary', 'pulse-btn');
         button.classList.add('btn-secondary');
   } else {
-    
+    section.style.display = "none";
+    button.textContent = "Set Game Fixture";
+        button.classList.add('btn-primary', 'pulse-btn');
+        button.classList.remove('btn-secondary');
   }
 }
 // others
