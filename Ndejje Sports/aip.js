@@ -1,6 +1,4 @@
 
-// copy right
-  document.getElementById("year").textContent = new Date().getFullYear();
 //chat function
 var chatBtn = document.querySelector('#chat-btn');
 var chatroomHolder = document.querySelector('#chatroom-holder');
