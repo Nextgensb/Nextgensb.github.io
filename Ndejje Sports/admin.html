@@ -352,32 +352,7 @@
                         currentSport = `${data[key].mysport}`;
                         document.querySelector("#sport-holder").textContent = currentSport;
 
-                        //fixture download
-                        var fixtureQuery = query(ref(db, `fixture/${currentSport}`));
-  var fixtureHolder = document.querySelector('.fixture-card');
-
-  onValue(fixtureQuery, (snapshot) => {
-    if (!snapshot.exists()) return
-    fixtureHolder.innerHTML = "";
-    var data = snapshot.val();
-    Object.keys(data).forEach(key => {
-      fixtureHolder.innerHTML += `
-       <div class="fixture">
-        <div class="teams">
-        <span class="club">${data[key].houseOne}</span>
-        <span class="vs">vs</span>
-        <span class="club">${data[key].houseTwo}</span>
-      </div>
-
-      <div class="details">
-        <p><strong>Sport:</strong> ${data[key].sport}</p>
-        <p><strong>Date:</strong> ${data[key].matchDate}</p>
-        <p><strong>Time:</strong> ${data[key].matchDateTime}</p>
-      </div>
-      </div>
-      `;
-    });
-  });
+                       
                         // recent games tabulation
                         tabulationQuery = query(
   ref(db, `recents/${currentSport}`),
@@ -586,6 +561,33 @@ onValue(messageQuery, (snapshot) => {
               }
                 
           });
+
+           //fixture download
+  var fixtureQuery = query(ref(db, `fixture/${currentSport}`));
+  var fixtureHolder = document.querySelector('.fixture-card');
+
+  onValue(fixtureQuery, (snapshot) => {
+    if (!snapshot.exists()) return
+    fixtureHolder.innerHTML = "";
+    var data = snapshot.val();
+    Object.keys(data).forEach(key => {
+      fixtureHolder.innerHTML += `
+       <div class="fixture">
+        <div class="teams">
+        <span class="club">${data[key].houseOne}</span>
+        <span class="vs">vs</span>
+        <span class="club">${data[key].houseTwo}</span>
+      </div>
+
+      <div class="details">
+        <p><strong>Sport:</strong> ${data[key].sport}</p>
+        <p><strong>Date:</strong> ${data[key].matchDate}</p>
+        <p><strong>Time:</strong> ${data[key].matchDateTime}</p>
+      </div>
+      </div>
+      `;
+    });
+  });
    });
         
             
