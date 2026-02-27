@@ -869,7 +869,7 @@ function saveFixture() {
 
   const houseA = document.querySelector("#fixtureHouseA").value;
   const houseB = document.querySelector("#fixtureHouseB").value;
-  const sport = document.querySelector("#fixtureSport").value;
+  const sport = document.querySelector("#fixtureSport").textContent;
   const date = document.querySelector("#fixtureDate").value;
   const time = document.querySelector("#fixtureTime").value;
 
@@ -909,7 +909,7 @@ function saveFixture() {
     // Clear form
     document.querySelector("#fixtureHouseA").value = "";
     document.querySelector("#fixtureHouseB").value = "";
-    document.querySelector("#fixtureSport").value = "";
+    
     document.querySelector("#fixtureDate").value = "";
     document.querySelector("#fixtureTime").value = "";
 
