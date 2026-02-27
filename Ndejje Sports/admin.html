@@ -20,15 +20,14 @@
     
 </head>
 <body class="quicksand-bodyfont">
-  <!--alert-->
-   <div id="alert" class="full">     
-    </div>
-    
-  <!-- Admin Dashboard -->
+  <!-- ALERT -->
+<div id="alert" class="full"></div>
+
+<!-- ================= ADMIN DASHBOARD ================= -->
 <div id="admin-dashboard" class="page">
 
   <!-- ALERT / CONFIRMATION BOX -->
-  <div class="full" id="alert-box">
+  <div id="alert-box" class="full">
     <div id="inner-box">
       <div id="info-holder">
         some information about deleting
@@ -39,51 +38,46 @@
       </div>
     </div>
   </div>
-    <!--confirmation-->
-    <div id="confirm-overlay" class="full">
-  <div class="confirm-box">
-    <p id="confirm-message">Are you sure?</p>
 
-    <div class="confirm-actions">
+  <!-- CONFIRM OVERLAY -->
+  <div id="confirm-overlay" class="full">
+    <div class="confirm-box">
+      <p id="confirm-message">Are you sure?</p>
+      <div class="confirm-actions">
         <button id="confirm-no" class="btn btn-secondary">Cancel</button>
-      <button id="confirm-yes" class="btn btn-danger">Delete</button>
+        <button id="confirm-yes" class="btn btn-danger">Delete</button>
+      </div>
     </div>
   </div>
-</div>
-
 
   <!-- BACKGROUND -->
   <div class="animated-bg"></div>
 
   <!-- MAIN CONTAINER -->
   <div class="container">
- <!--Public chat-->
-      <div id="chatroom-holder" class="chat-app">
 
-  <main class="chat-main">
-    <header class="chat-header">
-      
-      <h3 id="chat-title">Ndejje Sports Chat room</h3>
-      
-      <button class="btn" id="chat-close-btn"><span class="material-symbols-outlined">
-close
-</span></button>
-    </header>
+    <!-- ================= PUBLIC CHAT ================= -->
+    <div id="chatroom-holder" class="chat-app">
+      <main class="chat-main">
+        <header class="chat-header">
+          <h3 id="chat-title">Ndejje Sports Chat Room</h3>
+          <button class="btn" id="chat-close-btn">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </header>
 
-    <div id="messages" class="messages-container">
-      
+        <div id="messages" class="messages-container"></div>
+
+        <div class="chat-input">
+          <input type="text" id="message" placeholder="Type a message…">
+          <button id="message-send">Send</button>
+        </div>
+      </main>
     </div>
 
-    <div class="chat-input">
-     
-      <input type="text" id="message" placeholder="Type a message…">
-      <button id="message-send">Send</button>
-    </div>
-  </main>
-</div>
-      
-    <!-- HEADER -->
+    <!-- ================= HEADER ================= -->
     <header class="header dashboard-header">
+
       <div class="logo-container">
         <img class="banner" src="banner.jpg" alt="Banner">
       </div>
@@ -94,175 +88,84 @@ close
 
       <div class="header-actions">
         <span id="admin-info" class="admin-badge">Welcome</span>
-          <button id="chat-btn" class="btn btn-secondary spcl"><span class="material-symbols-outlined">
-chat
-          </span>
-              <span id="notifications"></span>
-          </button>
+
+        <button id="chat-btn" class="btn btn-secondary spcl">
+          <span class="material-symbols-outlined">chat</span>
+          <span id="notifications"></span>
+        </button>
+
         <button id="logoutbtn" class="btn btn-secondary ripple-btn">
           <span>Logout</span>
         </button>
       </div>
+
     </header>
-     
-    <!-- DASHBOARD CONTENT -->
+
+    <!-- ================= DASHBOARD CONTENT ================= -->
     <div class="dashboard-content">
 
       <div class="admin-sections">
-<!--fixture display-->
-<div class="fixture-card">
-        <div class="teams">
+
+        <!-- FIXTURE DISPLAY -->
+        <div class="fixture-card">
+          <div class="teams">
             <span class="club">Manchester United</span>
             <span class="vs">vs</span>
             <span class="club">Chelsea</span>
-        </div>
-        <div class="details">
-            <p><strong>Sport:</strong> Football</p>
-            <p><strong>Date:</strong> 12 March 2026</p>
-            <p><strong>Time:</strong> 6:00 PM</p>
-        </div>
-    </div>
+          </div>
 
-    
+          <div class="details">
+            <p id="fixture-sport"></p>
+            <p id="fixture-date"></p>
+            <p id="fixture-time"></p>
+          </div>
+        </div>
 
-</div>
         <!-- CURRENT SPORT PERFORMANCE -->
         <div class="section full-width glass-card slide-up">
+
           <div class="section-header">
+
             <h3 class="section-title">
-              <span class="title-icon" id="admin-sport-icon"> 
+              <span class="title-icon" id="admin-sport-icon">
                 <img src="banner2.png" id="sport-image" alt="Sport">
               </span>
-              <span id="admin-sport-title">
-                Monitor Sport
-              </span>
+              <span id="admin-sport-title">Monitor Sport</span>
             </h3>
 
-
-              <button
-              class="btn btn-primary fixture-game-btn ripple-btn pulse-btn"
-              onclick="toggleFixtureForm()"
-            >
-              <span class="btn-icon">➕</span> Set Game FIxture
+            <button class="btn btn-primary fixture-game-btn ripple-btn pulse-btn"
+                    onclick="toggleFixtureForm()">
+              <span class="btn-icon">➕</span> Set Game Fixture
             </button>
-            <button
-              class="btn btn-primary record-game-btn ripple-btn pulse-btn"
-              onclick="toggleGameForm()"
-            >
+
+            <button class="btn btn-primary record-game-btn ripple-btn pulse-btn"
+                    onclick="toggleGameForm()">
               <span class="btn-icon">➕</span> Record New Game
             </button>
+
           </div>
 
-          <div id="admin-sport-table" class="animated-table">
-            <!-- Current sport table -->
-          </div>
+          <div id="admin-sport-table" class="animated-table"></div>
+
         </div>
 
-        <!-- MATCH FIXTURE FORM -->
-<div
-  class="section full-width glass-card fixture-form-section"
-  id="match-fixture-section"
-  style="display: none;"
->
-  <div class="form-header-admin">
-    <h3>Set Match Day Fixture</h3>
-  </div>
+        <!-- ================= MATCH FIXTURE FORM ================= -->
+        <div id="match-fixture-section"
+             class="section full-width glass-card fixture-form-section"
+             style="display: none;">
 
-  <div class="form-card enhanced-form">
-    <div id="fixture-form">
-
-      <!-- MATCH ROW -->
-      <div class="form-row match-row">
-
-        <div class="form-group team-group">
-          <label for="fixtureHouseA">House A</label>
-          <select id="fixtureHouseA" required>
-            <option value="">Select House A</option>
-            <option value="Muyingo">Muyingo</option>
-            <option value="Kabalega">Kabalega</option>
-            <option value="Walusimbi">Walusimbi</option>
-            <option value="Muteesa">Muteesa</option>
-            <option value="Mboya">Mboya</option>
-            <option value="Lumumba">Lumumba</option>
-            <option value="Lubambula">Lubambula</option>
-          </select>
-        </div>
-
-        <div class="vs-separator">
-          <span class="vs-text">VS</span>
-        </div>
-
-        <div class="form-group team-group">
-          <label for="fixtureHouseB">House B</label>
-          <select id="fixtureHouseB" required>
-            <option value="">Select House B</option>
-            <option value="Muyingo">Muyingo</option>
-            <option value="Kabalega">Kabalega</option>
-            <option value="Walusimbi">Walusimbi</option>
-            <option value="Muteesa">Muteesa</option>
-            <option value="Mboya">Mboya</option>
-            <option value="Lumumba">Lumumba</option>
-            <option value="Lubambula">Lubambula</option>
-          </select>
-        </div>
-
-      </div>
-
-      <!-- SPORT + DATE + TIME ROW -->
-      <div class="form-row">
-
-        <div class="form-group">
-          <label for="fixtureSport">Sport</label>
-          <div id="sport-holder"></div>
-        </div>
-
-        <div class="form-group">
-          <label for="fixtureDate">Match Date</label>
-          <input type="date" id="fixtureDate" required>
-        </div>
-
-        <div class="form-group">
-          <label for="fixtureTime">Match Time</label>
-          <input type="time" id="fixtureTime" required>
-        </div>
-
-      </div>
-
-      <!-- SUBMIT ROW -->
-      <div class="form-group submit-group">
-        <button id="fixtureSubmit" type="button" class="btn btn-primary">
-          ✓ Save Fixture
-        </button>
-
-        <button type="button" class="btn btn-secondary" onclick="toggleFixtureForm()">
-          ✕ Cancel
-        </button>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-
-        <!-- GAME RECORD FORM -->
-        <div
-          class="section full-width glass-card game-form-section"
-          id="game-recording-section"
-          style="display: none;"
-        >
           <div class="form-header-admin">
-            <h3>Add New Game Record</h3>
+            <h3>Set Match Day Fixture</h3>
           </div>
 
           <div class="form-card enhanced-form">
-            <div id="game-form">
+            <div id="fixture-form">
 
-              <!-- MATCH ROW -->
               <div class="form-row match-row">
 
                 <div class="form-group team-group">
-                  <label for="clubA">House A</label>
-                  <select id="clubA" required>
+                  <label for="fixtureHouseA">House A</label>
+                  <select id="fixtureHouseA" required>
                     <option value="">Select House A</option>
                     <option value="Muyingo">Muyingo</option>
                     <option value="Kabalega">Kabalega</option>
@@ -274,23 +177,13 @@ chat
                   </select>
                 </div>
 
-                <div class="form-group score-group">
-                  <label for="scoreA">Score</label>
-                  <input type="number" id="scoreA" min="0" placeholder="0" required>
-                </div>
-
                 <div class="vs-separator">
                   <span class="vs-text">VS</span>
                 </div>
 
-                <div class="form-group score-group">
-                  <label for="scoreB">Score</label>
-                  <input type="number" id="scoreB" min="0" placeholder="0" required>
-                </div>
-
                 <div class="form-group team-group">
-                  <label for="clubB">House B</label>
-                  <select id="clubB" required>
+                  <label for="fixtureHouseB">House B</label>
+                  <select id="fixtureHouseB" required>
                     <option value="">Select House B</option>
                     <option value="Muyingo">Muyingo</option>
                     <option value="Kabalega">Kabalega</option>
@@ -304,42 +197,32 @@ chat
 
               </div>
 
-              <!-- MVP ROW -->
               <div class="form-row">
-                <div class="form-group mvp">
-                  <label for="mvp">MVP (Optional)</label>
-                  <input type="text" id="mvp" placeholder="Enter MVP name">
 
-                  <select id="mvp-class">
-                    <option value="">Select MVP Class</option>
-                    <option value="S1">S.1</option>
-                    <option value="S2">S.2</option>
-                    <option value="S3">S.3</option>
-                    <option value="S4">S.4</option>
-                    <option value="S5">S.5</option>
-                    <option value="S6">S.6</option>
-                  </select>
-
-                  <select id="mvp-house">
-                    <option value="">Select MVP House</option>
-                    <option value="Kabalega">Kabalega</option>
-                    <option value="Lubambula">Lubambula</option>
-                    <option value="Lumumba">Lumumba</option>
-                    <option value="Mboya">Mboya</option>
-                    <option value="Muteesa">Muteesa</option>
-                    <option value="Muyingo">Muyingo</option>
-                    <option value="Walusimbi">Walusimbi</option>
-                  </select>
+                <div class="form-group">
+                  <label>Sport</label>
+                  <div id="sport-holder"></div>
                 </div>
+
+                <div class="form-group">
+                  <label for="fixtureDate">Match Date</label>
+                  <input type="date" id="fixtureDate" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="fixtureTime">Match Time</label>
+                  <input type="time" id="fixtureTime" required>
+                </div>
+
               </div>
 
-              <!-- SUBMIT ROW -->
               <div class="form-group submit-group">
-                <button id="gameSubmit" type="button" class="btn btn-primary">
-                  ✓ Submit Game Record
+                <button id="fixtureSubmit" type="button" class="btn btn-primary">
+                  ✓ Save Fixture
                 </button>
 
-                <button type="button" class="btn btn-secondary" onclick="toggleGameForm()">
+                <button type="button" class="btn btn-secondary"
+                        onclick="toggleFixtureForm()">
                   ✕ Cancel
                 </button>
               </div>
@@ -348,8 +231,10 @@ chat
           </div>
         </div>
 
-        <!-- RECENT GAMES -->
-        <div class="section full-width glass-card slide-up-delayed" id="recent-games-section">
+        <!-- ================= RECENT GAMES ================= -->
+        <div class="section full-width glass-card slide-up-delayed"
+             id="recent-games-section">
+
           <h3 class="section-title">
             <span class="title-icon">📋</span>
             Recent Game Records
@@ -367,33 +252,41 @@ chat
                   <th>Points</th>
                   <th>Date</th>
                   <th>MVP</th>
-                    <th>DEL</th>
+                  <th>DEL</th>
                 </tr>
               </thead>
               <tbody id="recent-games-table"></tbody>
             </table>
           </div>
+
         </div>
 
-        <!-- CLEAR DATA -->
+        <!-- ================= CLEAR DATA ================= -->
         <div class="section full-width glass-card slide-up-delayed del-holder">
           <button class="reset quicksand-bodyfont" id="reset-season">
-              <span class="material-symbols-outlined">
-folder_delete
-</span>
+            <span class="material-symbols-outlined">folder_delete</span>
             CLEAR DATA
           </button>
         </div>
 
-      </div>
-    </div>
-  </div>
-</div>
+      </div> <!-- admin-sections -->
 
+    </div> <!-- dashboard-content -->
+
+  </div> <!-- container -->
+
+</div> <!-- admin-dashboard -->
+
+
+<!-- ================= FOOTER ================= -->
 <footer class="site-footer">
-  <p>&copy;Ndejje Sports created by ICT club (2025-2026), All rights reserved.</p>
+  <p>
+    &copy; Ndejje Sports created by ICT club (2025-2026),
+    All rights reserved.
+  </p>
 </footer>
-    
+
+
       <script src="aip.js"></script>
       <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
@@ -454,6 +347,33 @@ folder_delete
                             chatTitle.dataset.id = `${data[key].username}`;                         
                         currentSport = `${data[key].mysport}`;
                         document.querySelector("#sport-holder").textContent = currentSport;
+
+                        //fixture download
+                        var fixtureQuery = query(ref(db, `fixture/${currentSport}`));
+  var fixtureHolder = document.querySelector('.fixture-card');
+
+  onValue(fixtureQuery, (snapshot) => {
+    if (!snapshot.exists()) return
+    fixtureHolder.innerHTML = "";
+    var data = snapshot.val();
+    Object.keys(data).forEach(key => {
+      fixtureHolder.innerHTML += `
+       <div class="fixture">
+        <div class="teams">
+        <span class="club">${data[key].houseOne}</span>
+        <span class="vs">vs</span>
+        <span class="club">${data[key].houseTwo}</span>
+      </div>
+
+      <div class="details">
+        <p><strong>Sport:</strong> ${data[key].sport}</p>
+        <p><strong>Date:</strong> ${data[key].matchDate}</p>
+        <p><strong>Time:</strong> ${data[key].matchDateTime}</p>
+      </div>
+      </div>
+      `;
+    });
+  });
                         // recent games tabulation
                         tabulationQuery = query(
   ref(db, `recents/${currentSport}`),
@@ -666,70 +586,7 @@ onValue(messageQuery, (snapshot) => {
         
             
 });
-    
-    
-// fixture setting
-
-const fixtureSubmitBtn = document.querySelector("#fixtureSubmit");
-
-fixtureSubmitBtn.addEventListener("click", saveFixture);
-
-function saveFixture() {
-
-  const houseA = document.querySelector("#fixtureHouseA").value;
-  const houseB = document.querySelector("#fixtureHouseB").value;
-  const sport = document.querySelector("#fixtureSport").value;
-  const date = document.querySelector("#fixtureDate").value;
-  const time = document.querySelector("#fixtureTime").value;
-
-  // 🔴 Basic Validation
-  if (!houseA || !houseB || !sport || !date || !time) {
-    showAlert("Please fill in all fixture fields.");
-    return;
-  }
-
-  if (houseA === houseB) {
-    showAlert("A house cannot play against itself.");
-    return;
-  }
-
-  //  Create Timestamp
-  const timestamp = Date.now();
-
-  // Combine Date + Time for sorting future fixtures
-  const matchDateTime = new Date(`${date}T${time}`).getTime();
-
-  //  Create new fixture reference
-  const fixtureRef = push(ref(db, "fixtures/"));
-
-  set(fixtureRef, {
-    houseOne: houseA,
-    houseTwo: houseB,
-    sport: sport,
-    matchDate: date,
-    matchTime: time,
-    matchDateTime: matchDateTime, // For ordering upcoming matches
-    timestamp: timestamp
-  })
-  .then(() => {
-
-    showAlert("Fixture saved successfully.");
-
-    // Clear form
-    document.querySelector("#fixtureHouseA").value = "";
-    document.querySelector("#fixtureHouseB").value = "";
-    document.querySelector("#fixtureSport").value = "";
-    document.querySelector("#fixtureDate").value = "";
-    document.querySelector("#fixtureTime").value = "";
-
-  })
-  .catch((error) => {
-    console.error("Error saving fixture:", error);
-    showAlert("Failed to save fixture.");
-  });
-}
-
-    
+        
     var logoutBtn = document.querySelector("#logoutbtn");
 logoutBtn.addEventListener("click", () => {
       signOut(auth)
@@ -996,41 +853,65 @@ function sendMessage() {
             alertHolder.style.display = "none";
         },3000);
     }
-// fixture submision
-var setFixtureBtn = document.querySelector("#fixturesubmit");
-var gamesetValue = document.querySelector("#sport-holder");
-var houseOneInput = document.querySelector("#fixtureHouseA");
-var houseTwoInput = document.querySelector("#fixtureHouseB");
-var matchDateInput = document.querySelector("fixtureDate");
-var matchTimeInput = document.querySelector("#fixtureTime");
+// fixture setting
 
-setFixtureBtn.addEventListener("click", () => {
-  var gameSet = gamesetValue.textContent;
-  var houseA = houseOneInput.value;
-  var houseB = houseTwoInput.value;
-  var matchDatevalue = matchDateInput.value;
-  var matchTime = matchTimeInput.value;
+const fixtureSubmitBtn = document.querySelector("#fixtureSubmit");
 
-  var fixtureRef = push(ref(db, 'fixtures/'));
+fixtureSubmitBtn.addEventListener("click", saveFixture);
+
+function saveFixture() {
+
+  const houseA = document.querySelector("#fixtureHouseA").value;
+  const houseB = document.querySelector("#fixtureHouseB").value;
+  const sport = document.querySelector("#fixtureSport").value;
+  const date = document.querySelector("#fixtureDate").value;
+  const time = document.querySelector("#fixtureTime").value;
+
+  // 🔴 Basic Validation
+  if (!houseA || !houseB || !sport || !date || !time) {
+    showAlert("Please fill in all fixture fields.");
+    return;
+  }
+
+  if (houseA === houseB) {
+    showAlert("A house cannot play against itself.");
+    return;
+  }
+
+  //  Create Timestamp
+  const timestamp = Date.now();
+
+  // Combine Date + Time for sorting future fixtures
+  const matchDateTime = new Date(`${date}T${time}`).getTime();
+
+  //  Create new fixture reference
+  const fixtureRef = push(ref(db, "fixtures/"));
+
   set(fixtureRef, {
-    game: gameSet,
     houseOne: houseA,
     houseTwo: houseB,
-    matchDate: matchDatevalue,
-    matchTime: matchTime
+    sport: sport,
+    matchDate: date,
+    matchTime: time,
+    matchDateTime: matchDateTime, // For ordering upcoming matches
+    timestamp: timestamp
   })
   .then(() => {
-    houseOneInput.value ="";
-    houseTwoInput.value ="";
-    matchDateInput.value ="";
-    matchTimeInput.value ="";
-  });
-});
- 
-  var fixtureQuery = query(ref(db, `fixture/${currentSport}`));
-  onValue(fixtureQuery, (snapshot) => {
+
+    showAlert("Fixture saved successfully.");
+
+    // Clear form
+    document.querySelector("#fixtureHouseA").value = "";
+    document.querySelector("#fixtureHouseB").value = "";
+    document.querySelector("#fixtureSport").value = "";
+    document.querySelector("#fixtureDate").value = "";
+    document.querySelector("#fixtureTime").value = "";
 
   });
+}
+
+ 
+  
 
     </script>
 </body>

@@ -1360,10 +1360,21 @@ tbody tr:hover {
 .fixtures-tab {
     width: 100%;
     margin: auto;
-    background: #ffffff;
+    background: #4ab7ff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.fixture {
+    width: 100%;
+    margin: 10px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    border-bottom: 3px var(--yellow);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .fixtures-tab h2 {
