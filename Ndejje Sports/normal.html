@@ -19,273 +19,258 @@
     
 </head>
 <body class="quicksand-bodyfont">
-  
-  <!-- Normal User Dashboard -->
-    <button id="closetab"><span class="material-symbols-outlined">
-close
-</span></button>
-    <div id="display-tab" class="full">     
-    </div>
-     <button id="closemvptab"><span class="material-symbols-outlined">
-close
-</span></button>
-    <div id="display-mvp-tab" class="full">     
-    </div>
-     <button id="closepersporttab"><span class="material-symbols-outlined">
-close
-</span></button>
-    <div id="display-per-sport-tab" class="full">     
-    </div>
-    
-    <div id="user-dashboard" class="page">
-        <div class="animated-bg"></div>
-        <div class="container">
-              <!--chat info-->
-            <div id="chatroom-holder" class="chat-app">
+<!-- Overlay Tabs -->
+<button id="closetab">
+  <span class="material-symbols-outlined">close</span>
+</button>
+<div id="display-tab" class="full"></div>
 
-  <main class="chat-main">
-    <header class="chat-header">
-      
-      <h3 id="chat-title">Ndejje Sports Chat room</h3>
-      
-      <button class="btn" id="chat-close-btn"><span class="material-symbols-outlined">
-close
-</span></button>
+<button id="closemvptab">
+  <span class="material-symbols-outlined">close</span>
+</button>
+<div id="display-mvp-tab" class="full"></div>
+
+<button id="closepersporttab">
+  <span class="material-symbols-outlined">close</span>
+</button>
+<div id="display-per-sport-tab" class="full"></div>
+
+
+<!-- USER DASHBOARD -->
+<div id="user-dashboard" class="page">
+  
+  <div class="animated-bg"></div>
+
+  <div class="container">
+
+    <!-- ================= CHAT ROOM ================= -->
+    <div id="chatroom-holder" class="chat-app">
+      <main class="chat-main">
+        <header class="chat-header">
+          <h3 id="chat-title">Ndejje Sports Chat Room</h3>
+          <button class="btn" id="chat-close-btn">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </header>
+
+        <div id="messages" class="messages-container"></div>
+
+        <div class="chat-input">
+          <input type="text" id="message" placeholder="Type a message…">
+          <button id="message-send">Send</button>
+        </div>
+      </main>
+    </div>
+
+
+    <!-- ================= HEADER ================= -->
+    <header class="header dashboard-header">
+      <div class="logo-container">
+        <img class="banner" src="banner.jpg" alt="Banner">
+      </div>
+
+      <div class="header-actions">
+        <span id="user-info" class="user-badge"></span>
+
+        <button id="chat-btn" class="btn btn-secondary spcl">
+          <span class="material-symbols-outlined">chat</span>
+          <span id="notifications"></span>
+        </button>
+
+        <button class="btn btn-secondary ripple-btn" id="logoutbtn">
+          <span>Logout</span>
+        </button>
+      </div>
     </header>
 
-    <div id="messages" class="messages-container">
-      
+
+    <!-- ================= FIXTURE CARD ================= -->
+    <div class="fixture-card">
+      <div class="teams">
+        <span class="club">Manchester United</span>
+        <span class="vs">vs</span>
+        <span class="club">Chelsea</span>
+      </div>
+
+      <div class="details">
+        <p><strong>Sport:</strong> Football</p>
+        <p><strong>Date:</strong> 12 March 2026</p>
+        <p><strong>Time:</strong> 6:00 PM</p>
+      </div>
     </div>
 
-    <div class="chat-input">
-     
-      <input type="text" id="message" placeholder="Type a message…">
-      <button id="message-send">Send</button>
-    </div>
-  </main>
-</div>
-    
-            
-            <header class="header dashboard-header">
-                <div class="logo-container">
-                    <img class="banner" src="banner.jpg"/>
-                </div>
-                <div class="header-actions">
-                    <span id="user-info" class="user-badge"></span>
-                    <button id="chat-btn" class="btn btn-secondary spcl"><span class="material-symbols-outlined">
-chat
-          </span>
-              <span id="notifications"></span>
-          </button>
-                    <button class="btn btn-secondary ripple-btn" id="logoutbtn">
-                        <span>Logout</span>
-                        
-                    </button>
-                </div>
-            </header>
-            
-            <!--fixture display-->
-<div class="fixture-card">
-        <div class="teams">
-            <span class="club">Manchester United</span>
-            <span class="vs">vs</span>
-            <span class="club">Chelsea</span>
+
+    <!-- ================= DASHBOARD CONTENT ================= -->
+    <div class="dashboard-content">
+      <div class="dashboard-sections">
+
+        <!-- ===== OVERALL RANKINGS ===== -->
+        <div class="section full-width glass-card slide-up">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">
+                <span class="title-icon">🏅</span>
+                Overall Club Rankings
+              </h2>
+              <p class="section-description">
+                Combined performance across all sports competitions
+              </p>
+            </div>
+
+            <div class="export-buttons">
+              <button class="btn btn-secondary ripple-btn" id="fullscreen">
+                <span class="material-symbols-outlined">fullscreen</span>
+                Full Screen
+              </button>
+
+              <button class="btn btn-primary ripple-btn" onclick="downloadOverallPDF()">
+                <span class="material-symbols-outlined">download</span>
+                Download PDF
+              </button>
+            </div>
+          </div>
+
+          <div id="overall-rankings" class="animated-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>HOUSE</th>
+                  <th>TOTAL POINTS</th>
+                </tr>
+              </thead>
+              <tbody id="overall-table"></tbody>
+            </table>
+          </div>
         </div>
-        <div class="details">
-            <p><strong>Sport:</strong> Football</p>
-            <p><strong>Date:</strong> 12 March 2026</p>
-            <p><strong>Time:</strong> 6:00 PM</p>
+
+
+        <!-- ===== MVP SECTION ===== -->
+        <div class="section full-width glass-card slide-up-delayed">
+          <h2 class="section-title">
+            <span class="title-icon">⭐</span>
+            Most Valuable Players
+          </h2>
+
+          <div class="export-buttons">
+            <button class="btn btn-secondary ripple-btn" id="fullscreen-mvp">
+              <span class="material-symbols-outlined">fullscreen</span>
+              Full Screen
+            </button>
+
+            <button class="btn btn-primary ripple-btn" onclick="downloadMvpPDF()">
+              <span class="material-symbols-outlined">download</span>
+              Download PDF
+            </button>
+          </div>
+
+          <p class="section-description">
+            Most Valuable Players across all sports
+          </p>
+
+          <div id="mvp-leaderboard" class="animated-table"></div>
         </div>
-    </div>
 
-    
 
-</div>
-            
-            <!--dashboard content-->
-         <div class="dashboard-content">
-                <div class="dashboard-sections">
-                    <div class="section full-width glass-card slide-up">
-                        <div class="section-header">
-                            <div>
-                                <h2 class="section-title">
-                                    <span class="title-icon">🏅</span>
-                                    Overall Club Rankings
-                                </h2>
-                                <p class="section-description">Combined performance across all sports competitions</p>
-                            </div>
-                            <div class="export-buttons">
-                                <button class="btn btn-secondary ripple-btn" id="fullscreen">
-                                    <span class="material-symbols-outlined">
-fullscreen
-</span> Full Screen
-                                </button>
-                                <button class="btn btn-primary ripple-btn" onclick="downloadOverallPDF()">
-                                    <span class="material-symbols-outlined">
-download
-</span> Download PDF
-                                </button>
-                            </div>
-                        </div>
-                        <div id="overall-rankings" class="animated-table">
-                            <!-- Overall rankings table -->
-                            <div>                         
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>HOUSE</th>
-                                        <th>TOTAL POINTS</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="overall-table">
-                                    
-                                </tbody>
-                            </table>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="section full-width glass-card slide-up-delayed">
-                        <h2 class="section-title">
-                            <span class="title-icon">⭐</span>
-                            Most Valuable Players
-                        </h2>
-                        <div class="export-buttons">
-                                <button class="btn btn-secondary ripple-btn" id="fullscreen-mvp">
-                                    <span class="material-symbols-outlined">
-fullscreen
-</span> Full screen
-                                </button>
-                                <button class="btn btn-primary ripple-btn" onclick="downloadMvpPDF()">
-                                    <span class="material-symbols-outlined">
-download
-</span> Download PDF
-                                </button>
-                            </div>
-                        <p class="section-description">Most Valuable Players across all sports</p>
-                        <div id="mvp-leaderboard" class="animated-table">
-                            <!-- MVP leaderboard table -->
-                             
-                        </div>
-                    </div>
-                    <!--per sport-->
-                    <div class="section full-width glass-card">
-                        <h2 class="section-title">
-                            <span class="title-icon">📊</span>
-                            Sport-Specific Performance
-                        </h2>
-                        <p class="section-description">View detailed standings for individual sports</p>                        
-                        
-                        <div class="tabs sports-tabs">
-                            <button class="tab-btn active ripple-btn" data-game="Football">
-                                <span class="tab-icon">⚽</span> Football
-                            </button>
-                            <button class="tab-btn ripple-btn" data-game="Basketball">
-                                <span class="tab-icon">🏀</span> Basketball
-                            </button>                         
-                            <button class="tab-btn ripple-btn" data-game="Chess">
-                                <span class="tab-icon">♟️</span> Chess
-                            </button>
-                            <button class="tab-btn ripple-btn" data-game="Cricket">
-                                <span class="tab-icon">🏏</span> Cricket
-                            </button>
-                            <button class="tab-btn ripple-btn" data-game="Handball">
-                                <span class="tab-icon">🤾</span> Handball
-                            </button>
-                            <button class="tab-btn ripple-btn" data-game="Volleyball">
-                                <span class="tab-icon">🏐</span> Volleyball
-                            </button>
-                            <button class="tab-btn ripple-btn" data-game="Netball">
-                                <span class="tab-icon">🥅</span> Netball
-                            </button>
-                            
-                        </div>
-                        <div class="export-buttons">
-                                <button class="btn btn-secondary ripple-btn" id="fullscreen-persport">
-                                    <span class="material-symbols-outlined">
-fullscreen
-</span> Full screen
-                                </button>
-                                <button class="btn btn-primary ripple-btn" onclick="downloadPerSportPDF()">
-                                    <span class="material-symbols-outlined">
-download
-</span> Download PDF
-                                </button>
-                            </div>
-                        <div id="sport-tables" class="animated-table">
-                            <!-- Tables will be generated dynamically -->
-                             <table>
-                                <thead>
-                                    <tr>
-                                        <th>HOUSE</th>
-                                        <th>TOTAL</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="per-sport-table">
-                                    
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <!--recent games display-->
+        <!-- ===== SPORT SPECIFIC PERFORMANCE ===== -->
+        <div class="section full-width glass-card">
+          <h2 class="section-title">
+            <span class="title-icon">📊</span>
+            Sport-Specific Performance
+          </h2>
+
+          <p class="section-description">
+            View detailed standings for individual sports
+          </p>
+
+          <div class="tabs sports-tabs">
+            <button class="tab-btn active ripple-btn" data-game="Football">⚽ Football</button>
+            <button class="tab-btn ripple-btn" data-game="Basketball">🏀 Basketball</button>
+            <button class="tab-btn ripple-btn" data-game="Chess">♟️ Chess</button>
+            <button class="tab-btn ripple-btn" data-game="Cricket">🏏 Cricket</button>
+            <button class="tab-btn ripple-btn" data-game="Handball">🤾 Handball</button>
+            <button class="tab-btn ripple-btn" data-game="Volleyball">🏐 Volleyball</button>
+            <button class="tab-btn ripple-btn" data-game="Netball">🥅 Netball</button>
+          </div>
+
+          <div class="export-buttons">
+            <button class="btn btn-secondary ripple-btn" id="fullscreen-persport">
+              <span class="material-symbols-outlined">fullscreen</span>
+              Full Screen
+            </button>
+
+            <button class="btn btn-primary ripple-btn" onclick="downloadPerSportPDF()">
+              <span class="material-symbols-outlined">download</span>
+              Download PDF
+            </button>
+          </div>
+
+          <div id="sport-tables" class="animated-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>HOUSE</th>
+                  <th>TOTAL</th>
+                </tr>
+              </thead>
+              <tbody id="per-sport-table"></tbody>
+            </table>
+          </div>
+        </div>
+
+
+        <!-- ===== RECENT GAMES ===== -->
         <div class="section full-width glass-card slide-up-delayed" id="recent-games-section">
           <h3 class="section-title">
             <span class="title-icon">📋</span>
             Recent Game Records
           </h3>
-<div class="recent-cont">
-<div class="tabs sports-tabs">
-    <button class="recent-btn active ripple-btn" data-game="Football">
-        <span class="tab-icon">⚽</span> Football
-    </button>
-    <button class="recent-btn ripple-btn" data-game="Basketball">
-        <span class="tab-icon">🏀</span> Basketball
-    </button>                         
-    <button class="recent-btn ripple-btn" data-game="Chess">
-        <span class="tab-icon">♟️</span> Chess
-    </button>
-    <button class="recent-btn ripple-btn" data-game="Cricket">
-        <span class="tab-icon">🏏</span> Cricket
-    </button>
-    <button class="recent-btn ripple-btn" data-game="Handball">
-        <span class="tab-icon">🤾</span> Handball
-    </button>
-    <button class="recent-btn ripple-btn" data-game="Volleyball">
-        <span class="tab-icon">🏐</span> Volleyball
-    </button>
-    <button class="recent-btn ripple-btn" data-game="Netball">
-        <span class="tab-icon">🥅</span> Netball
-    </button>
-</div>
 
-                        <div class="animated-table">
-                  <table>
-              <thead>
-                <tr>
-                  <th>House One</th>
-                  <th>Score</th>
-                  <th>Points</th>
-                  <th>House Two</th>
-                  <th>Score</th>
-                  <th>Points</th>
-                  <th>Date</th>
-                  <th>MVP</th>
-                    <th>DEL</th>
-                </tr>
-              </thead>
-              <tbody id="recent-games-table"></tbody>
-            </table>
-   
-          </div>
-</div>
-          
-        </div>
-                </div>
+          <div class="recent-cont">
+            <div class="tabs sports-tabs">
+              <button class="recent-btn active ripple-btn" data-game="Football">⚽ Football</button>
+              <button class="recent-btn ripple-btn" data-game="Basketball">🏀 Basketball</button>
+              <button class="recent-btn ripple-btn" data-game="Chess">♟️ Chess</button>
+              <button class="recent-btn ripple-btn" data-game="Cricket">🏏 Cricket</button>
+              <button class="recent-btn ripple-btn" data-game="Handball">🤾 Handball</button>
+              <button class="recent-btn ripple-btn" data-game="Volleyball">🏐 Volleyball</button>
+              <button class="recent-btn ripple-btn" data-game="Netball">🥅 Netball</button>
             </div>
+
+            <div class="animated-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>House One</th>
+                    <th>Score</th>
+                    <th>Points</th>
+                    <th>House Two</th>
+                    <th>Score</th>
+                    <th>Points</th>
+                    <th>Date</th>
+                    <th>MVP</th>
+                    <th>DEL</th>
+                  </tr>
+                </thead>
+                <tbody id="recent-games-table"></tbody>
+              </table>
+            </div>
+          </div>
         </div>
-    </div>
-    <footer class="site-footer">
-  <p>&copy; <span id="year"></span> Ndejje Sports created by ICT club (2025-2026), All rights reserved.</p>
+
+      </div> <!-- dashboard-sections -->
+    </div> <!-- dashboard-content -->
+
+  </div> <!-- container -->
+
+</div> <!-- user-dashboard -->
+
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <p>
+    &copy; <span id="year"></span> 
+    Ndejje Sports created by ICT club (2025-2026), All rights reserved.
+  </p>
 </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.12.1/html2pdf.bundle.min.js" integrity="sha512-D25Z8/1q2z65ZpJ3NzY6XiPZfwjhbv34OTQHDIZd+KPK+uWCovGt+fMkSzW8ArzCMFUgZt6Cdu7qoXNuy6a2GA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
