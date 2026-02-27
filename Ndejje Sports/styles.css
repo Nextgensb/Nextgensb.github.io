@@ -1373,6 +1373,8 @@ tbody tr:hover {
     border-radius: 8px;
     border-bottom: 3px var(--yellow);
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     gap: 5px;
 }
