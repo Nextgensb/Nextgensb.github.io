@@ -20,7 +20,7 @@
     
 </head>
 <body class="quicksand-bodyfont">
-  <!-- ALERT -->
+<!-- ALERT -->
 <div id="alert" class="full"></div>
 
 <!-- ================= ADMIN DASHBOARD ================= -->
@@ -32,6 +32,7 @@
       <div id="info-holder">
         some information about deleting
       </div>
+
       <div class="alert-actions">
         <button class="btn btn-secondary" id="cancel-btn">Cancel</button>
         <button class="btn btn-danger" id="delete-btn">Delete</button>
@@ -43,6 +44,7 @@
   <div id="confirm-overlay" class="full">
     <div class="confirm-box">
       <p id="confirm-message">Are you sure?</p>
+
       <div class="confirm-actions">
         <button id="confirm-no" class="btn btn-secondary">Cancel</button>
         <button id="confirm-yes" class="btn btn-danger">Delete</button>
@@ -59,6 +61,7 @@
     <!-- ================= PUBLIC CHAT ================= -->
     <div id="chatroom-holder" class="chat-app">
       <main class="chat-main">
+
         <header class="chat-header">
           <h3 id="chat-title">Ndejje Sports Chat Room</h3>
           <button class="btn" id="chat-close-btn">
@@ -72,6 +75,7 @@
           <input type="text" id="message" placeholder="Type a message…">
           <button id="message-send">Send</button>
         </div>
+
       </main>
     </div>
 
@@ -103,20 +107,17 @@
 
     <!-- ================= DASHBOARD CONTENT ================= -->
     <div class="dashboard-content">
-
       <div class="admin-sections">
 
         <!-- FIXTURE DISPLAY -->
         <div class="fixture-card">
-      <div class="fixture">
-      
-    </div>
+          <div class="fixture"></div>
+        </div>
 
         <!-- CURRENT SPORT PERFORMANCE -->
         <div class="section full-width glass-card slide-up">
 
           <div class="section-header">
-
             <h3 class="section-title">
               <span class="title-icon" id="admin-sport-icon">
                 <img src="banner2.png" id="sport-image" alt="Sport">
@@ -125,23 +126,19 @@
             </h3>
 
             <div style="display: flex; gap: 20px;">
+              <button class="btn btn-primary fixture-game-btn ripple-btn pulse-btn"
+                      onclick="toggleFixtureForm()">
+                <span class="btn-icon">➕</span> Set Game Fixture
+              </button>
 
-               <button class="btn btn-primary fixture-game-btn ripple-btn pulse-btn"
-                    onclick="toggleFixtureForm()">
-              <span class="btn-icon">➕</span> Set Game Fixture
-            </button>
-
-            <button class="btn btn-primary record-game-btn ripple-btn pulse-btn"
-                    onclick="toggleGameForm()">
-              <span class="btn-icon">➕</span> Record New Game
-            </button>
+              <button class="btn btn-primary record-game-btn ripple-btn pulse-btn"
+                      onclick="toggleGameForm()">
+                <span class="btn-icon">➕</span> Record New Game
+              </button>
             </div>
-           
-
           </div>
 
           <div id="admin-sport-table" class="animated-table"></div>
-
         </div>
 
         <!-- ================= MATCH FIXTURE FORM ================= -->
@@ -216,7 +213,8 @@
                   ✓ Save Fixture
                 </button>
 
-                <button type="button" class="btn btn-secondary"
+                <button type="button"
+                        class="btn btn-secondary"
                         onclick="toggleFixtureForm()">
                   ✕ Cancel
                 </button>
@@ -225,140 +223,73 @@
             </div>
           </div>
         </div>
+
         <!-- ================= GAME RECORD FORM ================= -->
-<div class="section full-width glass-card game-form-section"
-     id="game-recording-section"
-     style="display: none;">
+        <div class="section full-width glass-card game-form-section"
+             id="game-recording-section"
+             style="display: none;">
 
-  <div class="form-header-admin">
-    <h3>Add New Game Record</h3>
-  </div>
+          <div class="form-header-admin">
+            <h3>Add New Game Record</h3>
+          </div>
 
-  <div class="form-card enhanced-form">
-    <div id="game-form">
+          <div class="form-card enhanced-form">
+            <div id="game-form">
 
-      <!-- ========= MATCH ROW ========= -->
-      <div class="form-row match-row">
+              <div class="form-row match-row">
 
-        <!-- House A -->
-        <div class="form-group team-group">
-          <label for="clubA">House A</label>
-          <select id="clubA" required>
-            <option value="">Select House A</option>
-            <option value="Muyingo">Muyingo</option>
-            <option value="Kabalega">Kabalega</option>
-            <option value="Walusimbi">Walusimbi</option>
-            <option value="Muteesa">Muteesa</option>
-            <option value="Mboya">Mboya</option>
-            <option value="Lumumba">Lumumba</option>
-            <option value="Lubambula">Lubambula</option>
-          </select>
+                <div class="form-group team-group">
+                  <label for="clubA">House A</label>
+                  <select id="clubA" required>...</select>
+                </div>
+
+                <div class="form-group score-group">
+                  <label for="scoreA">Score</label>
+                  <input type="number" id="scoreA" min="0" placeholder="0" required>
+                </div>
+
+                <div class="vs-separator">
+                  <span class="vs-text">VS</span>
+                </div>
+
+                <div class="form-group score-group">
+                  <label for="scoreB">Score</label>
+                  <input type="number" id="scoreB" min="0" placeholder="0" required>
+                </div>
+
+                <div class="form-group team-group">
+                  <label for="clubB">House B</label>
+                  <select id="clubB" required>...</select>
+                </div>
+
+              </div>
+
+              <!-- MVP -->
+              <div class="form-row">
+                <div class="form-group mvp">
+                  <label for="mvp">MVP (Optional)</label>
+                  <input type="text" id="mvp" placeholder="Enter MVP name">
+                  <select id="mvp-class">...</select>
+                  <select id="mvp-house">...</select>
+                </div>
+              </div>
+
+              <!-- SUBMIT -->
+              <div class="form-group submit-group">
+                <button id="gameSubmit" type="button" class="btn btn-primary">
+                  ✓ Submit Game Record
+                </button>
+
+                <button type="button"
+                        class="btn btn-secondary"
+                        onclick="toggleGameForm()">
+                  ✕ Cancel
+                </button>
+              </div>
+
+            </div>
+          </div>
         </div>
-
-        <!-- Score A -->
-        <div class="form-group score-group">
-          <label for="scoreA">Score</label>
-          <input type="number"
-                 id="scoreA"
-                 min="0"
-                 placeholder="0"
-                 required>
-        </div>
-
-        <!-- VS -->
-        <div class="vs-separator">
-          <span class="vs-text">VS</span>
-        </div>
-
-        <!-- Score B -->
-        <div class="form-group score-group">
-          <label for="scoreB">Score</label>
-          <input type="number"
-                 id="scoreB"
-                 min="0"
-                 placeholder="0"
-                 required>
-        </div>
-
-        <!-- House B -->
-        <div class="form-group team-group">
-          <label for="clubB">House B</label>
-          <select id="clubB" required>
-            <option value="">Select House B</option>
-            <option value="Muyingo">Muyingo</option>
-            <option value="Kabalega">Kabalega</option>
-            <option value="Walusimbi">Walusimbi</option>
-            <option value="Muteesa">Muteesa</option>
-            <option value="Mboya">Mboya</option>
-            <option value="Lumumba">Lumumba</option>
-            <option value="Lubambula">Lubambula</option>
-          </select>
-        </div>
-
-      </div>
-      <!-- ========= END MATCH ROW ========= -->
-
-
-      <!-- ========= MVP ROW ========= -->
-      <div class="form-row">
-        <div class="form-group mvp">
-
-          <label for="mvp">MVP (Optional)</label>
-
-          <input type="text"
-                 id="mvp"
-                 placeholder="Enter MVP name">
-
-          <select id="mvp-class">
-            <option value="">Select MVP Class</option>
-            <option value="S1">S.1</option>
-            <option value="S2">S.2</option>
-            <option value="S3">S.3</option>
-            <option value="S4">S.4</option>
-            <option value="S5">S.5</option>
-            <option value="S6">S.6</option>
-          </select>
-
-          <select id="mvp-house">
-            <option value="">Select MVP House</option>
-            <option value="Kabalega">Kabalega</option>
-            <option value="Lubambula">Lubambula</option>
-            <option value="Lumumba">Lumumba</option>
-            <option value="Mboya">Mboya</option>
-            <option value="Muteesa">Muteesa</option>
-            <option value="Muyingo">Muyingo</option>
-            <option value="Walusimbi">Walusimbi</option>
-          </select>
-
-        </div>
-      </div>
-      <!-- ========= END MVP ROW ========= -->
-
-
-      <!-- ========= SUBMIT ROW ========= -->
-      <div class="form-group submit-group">
-
-        <button id="gameSubmit"
-                type="button"
-                class="btn btn-primary">
-          ✓ Submit Game Record
-        </button>
-
-        <button type="button"
-                class="btn btn-secondary"
-                onclick="toggleGameForm()">
-          ✕ Cancel
-        </button>
-
-      </div>
-      <!-- ========= END SUBMIT ROW ========= -->
-
-    </div>
-  </div>
-
-</div>
-<!-- ================= END GAME RECORD FORM ================= -->
-        
 
         <!-- ================= RECENT GAMES ================= -->
         <div class="section full-width glass-card slide-up-delayed"
@@ -398,14 +329,11 @@
           </button>
         </div>
 
-      </div> <!-- admin-sections -->
+      </div>
+    </div>
 
-    </div> <!-- dashboard-content -->
-
-  </div> <!-- container -->
-
-</div> <!-- admin-dashboard -->
-
+  </div>
+</div>
 
 <!-- ================= FOOTER ================= -->
 <footer class="site-footer">
