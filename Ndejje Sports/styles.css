@@ -1385,10 +1385,10 @@ tbody tr:hover {
 }
 
 .fixture-card {
-    border: 1px solid #ddd;
+    border-bottom: 3px solid var(--yellow);
     padding: 15px;
     margin-bottom: 15px;
-    border-radius: 6px;
+    border-radius: 8px;
     background-color: #fafafa;
 }
 
